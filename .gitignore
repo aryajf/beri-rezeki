@@ -1,6 +1,16 @@
+# === GIT IGNORE FOR API ===
+api/node_modules/
+api/public/images/avatars/
+api/public/images/programs/
+api/.env
+api/api.zip
+
+# === GIT IGNORE FOR FRONTEND ===
 frontend/node_modules
 frontend/.DS_Store
 frontend/dist
 frontend/dist.zip
+frontend/frontend
+frontend/frontend.zip
 frontend/dist-ssr
 frontend/*.local
