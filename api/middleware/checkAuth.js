@@ -12,6 +12,6 @@ module.exports = (req, res, next) => {
 
         next()
     }catch(err){
-        res.status(401).json({error: err.message, message: 'Problem with token', status: false})
+        res.status(401).json({message: "You're not authenticated", status: false})
     }
 }

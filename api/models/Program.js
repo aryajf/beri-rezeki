@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     expiredAt: DataTypes.DATE
   }, {
     sequelize,
-    freezeTableName: true,
     modelName: 'Program',
   });
   return Program;

@@ -3,6 +3,8 @@ var router = express.Router()
 
 // CALL CONTROLLER
 const auth = require('../controllers/auth')
+const comment = require('../controllers/comment')
+const program = require('../controllers/program')
 const user = require('../controllers/user')
 
 // CALL MIDDLEWARE
@@ -38,5 +40,24 @@ router.route('/user/search/:status/:keyword')
     .get(checkAuth, isAdmin, user.searchUsers)
 router.route('/user/search/:keyword')
     .get(checkAuth, isAdmin, user.searchUsers)
+
+// PROGRAM
+router.route('/program')
+    .get(program.index)
+    .post(checkAuth, isAdmin, fileUpload.single('cover'), program.store)
+
+router.route('/program/:slug')
+    .get(program.show)
+    .put(checkAuth, isAdmin, fileUpload.single('cover'), program.update)
+    .delete(checkAuth, isAdmin, program.delete)
+
+// SEARCH PROGRAM
+router.route('/program/search/:keyword')
+    .get(program.search)
+
+// COMMENTS
+router.route('/comments')
+    .post(checkAuth, comment.store)
+    .get(comment.get)
 
 module.exports = router
