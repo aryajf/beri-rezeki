@@ -80,4 +80,32 @@ router.route('/comments')
     .post(checkAuth, comment.store)
     .get(comment.get)
 
+// PAYMENTS
+router.route('/payment/notification')
+    .post(payment.handleNotification)
+
+router.route('/payment/buy/:type/:slug')
+    .put(checkAuth, payment.buyProduct)
+
+// router.route('/payment/check/:kode')
+//   .get(checkAuth, payment.checkStatus)
+
+router.route('/payment/cancel/:kode')
+    .delete(checkAuth, payment.cancelPayment)
+
+router.route('/payment/confirm/:kode')
+    .put(checkAuth, payment.confirmPayment)
+
+router.route('/payment/restart/:kode')
+    .put(checkAuth, isAdmin, payment.restartPayment)
+
+router.route('/payment/accepted/:kode')
+    .put(checkAuth, isAdmin, payment.acceptPayment)
+
+router.route('/payment/:type/:status')
+    .get(checkAuth, payment.getPayment)
+
+router.route('/payment/:type/:status/:kode')
+    .get(checkAuth, payment.show)
+
 module.exports = router
