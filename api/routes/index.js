@@ -2,8 +2,10 @@ var express = require('express')
 var router = express.Router()
 
 // CALL CONTROLLER
+const admin = require('../controllers/admin')
 const auth = require('../controllers/auth')
 const comment = require('../controllers/comment')
+const payment = require('../controllers/payment')
 const program = require('../controllers/program')
 const user = require('../controllers/user')
 
@@ -40,6 +42,24 @@ router.route('/user/search/:status/:keyword')
     .get(checkAuth, isAdmin, user.searchUsers)
 router.route('/user/search/:keyword')
     .get(checkAuth, isAdmin, user.searchUsers)
+
+router.route('/product')
+    .get(checkAuth, isAdmin, admin.allProduct)
+
+router.route('/product/reply/:kode')
+    .post(checkAuth, isAdmin, admin.replyComment)
+
+router.route('/accepted')
+    .get(checkAuth, isAdmin, admin.allAccepted)
+
+router.route('/payments/search/:status/:keyword')
+    .get(checkAuth, isAdmin, admin.searchPayments)
+
+router.route('/payments/:status/:kode')
+    .get(checkAuth, isAdmin, admin.showPayment)
+
+router.route('/history/:status')
+    .get(checkAuth, isAdmin, admin.getHistory)
 
 // PROGRAM
 router.route('/program')
