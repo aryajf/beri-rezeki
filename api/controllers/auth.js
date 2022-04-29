@@ -28,7 +28,16 @@ module.exports = {
 
             if(user.email_status != 'Verified') return res.status(400).json({message: 'Harap verifikasi email anda terlebih dahulu', status: false})
 
-            if(user.email_status != 'Verified') return res.status(400).json({message: 'Harap verifikasi email anda terlebih dahulu', status: false})
+            const authLog = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            }
+
+            const token = jwt.sign(authLog, JWT_SECRET, {
+                expiresIn: JWT_SECRET_EXPIRES
+            })
 
             const expiresToken = parseInt(JWT_SECRET_EXPIRES)
 
@@ -38,10 +47,6 @@ module.exports = {
             }
 
             user.update({token_expired_at: Date.now() + expiresToken})
-
-            const token = jwt.sign(user.toJSON(), JWT_SECRET, {
-                expiresIn: JWT_SECRET_EXPIRES
-            })
 
             if(user.role == 'Admin'){
                 res.json({

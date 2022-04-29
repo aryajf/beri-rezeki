@@ -97,60 +97,6 @@ module.exports = {
             res.status(404).json({message : 'Transaksi tidak ditemukan', status: false})
         }
     },
-    confirmPayment: async(req, res) => {
-        const payment = await Payment.findOne({where: {kode: req.params.kode, user_id: req.decoded.id, status: 'Delivering'}})
-        if(payment){
-            try{
-                payment.update({status : 'Accepted'})
-                res.json({
-                    message: 'Berhasil mengonfirmasi pembayaran',
-                    status: true
-                })
-            }catch(e){
-                res.status(500).json({err:e,message : 'Terjadi kesalahan saat mengonfirmasi pembayaran', status: false})
-            }
-        }else{
-            res.status(404).json({message : 'Transaksi tidak ditemukan', status: false})
-        }
-    },
-    acceptPayment: async(req, res) => {
-        const payment = await Payment.findOne({where: {kode: req.params.kode}})
-        const user = await User.findOne({where: {id: payment.user_id}})
-        if(payment){
-            try{
-                let message
-                if(payment.type == 'Shop'){
-                    let transporter = nodemailer.createTransport(emailConfig)
-                    await transporter.sendMail({
-                        from: MAIL_FROM_ADDRESS,
-                        to: user.email,
-                        subject: "Barang dalam perjalanan - Pojoklaku",
-                        html: `
-                        <div>
-                            <h1 style="color:#333;text-align:center;">Barang sedang kami antar</h1>
-                            <div style="padding: auto 10px;">
-                                <div>Harap cek website kami secara berkala yaa :) pesanan mu sedang kami antar ke tempat tujuanmu</div>
-                            </div>
-                        </div>
-                        `,
-                    })
-                    payment.update({status : 'Delivering'})
-                    message = 'Berhasil mengonfirmasi barang untuk dikirim'
-                }else{
-                    payment.update({status : 'Accepted'})
-                    message = 'Berhasil mengonfirmasi pembayaran'
-                }
-                res.json({
-                    message: message,
-                    status: true
-                })
-            }catch(e){
-                res.status(500).json({err:e,message : 'Terjadi kesalahan saat mengonfirmasi pembayaran', status: false})
-            }
-        }else{
-            res.status(404).json({message : 'Transaksi tidak ditemukan', status: false})
-        }
-    },
     handleNotification: async(req, res) => {
         const payload = req.body
         const validSignatureKey = crypto.createHash('sha512').update(payload.order_id + payload.status_code + payload.gross_amount + MIDTRANS_SERVER).digest('hex')
@@ -172,7 +118,6 @@ module.exports = {
             }
             
             if (transactionStatus == 'settlement'){
-                let payment = await Payment.findOne({where: {kode: orderId}})
                 await Payment.update({status: 'Accepted', expiredAt: null, deeplink_url: null},{where: {kode: orderId}})
                 await Comment.update({status: 'Accepted'},{where: {kode: orderId}})
             }
@@ -190,16 +135,15 @@ module.exports = {
             id: req.decoded.id
         }})
         
-        let harga, stok, expired
+        let harga, expired
         const now = new Date()
         
         let kode = 'INV-' + now.getTime().toString().slice(-6).substring(0,4) + crypto.randomBytes(4).toString('hex') + now.getTime().toString().slice(-4)
-        let produk = await Proposal.findOne({where : {
+        let produk = await Program.findOne({where : {
             slug: req.params.slug
         }})
 
         if(produk){
-            stok = 1
             expired = new Date(produk.expiredAt) - now < 0
             if(expired){
                 return res.status(404).json({message : 'Produk sudah kadaluarsa', status: false})
@@ -264,14 +208,12 @@ module.exports = {
                     }
                     const expiresToken = Date.parse(response.transaction_time) + time
 
-                    produkType = req.params.type[0].toUpperCase() + req.params.type.slice(1)
-
                     paymentReq = {
                         kode : kode,
                         user_id : req.decoded.id,
+                        program_id : produk.id,
                         total_harga : harga,
                         status: 'Pending',
-                        type: `${produkType}`,
                         deeplink_url : deeplinkUrl,
                         expiredAt: expiresToken,
                     }
@@ -286,7 +228,6 @@ module.exports = {
                             messages : req.body.messages,
                             isAnonymous : false,
                             status: 'Pending',
-                            type: `${produkType}`,
                         }
 
                         if(req.body.isAnonymous == true){
@@ -298,7 +239,7 @@ module.exports = {
 
                     res.json({
                         response: chargeResponse,
-                        message : `${produkType} berhasil dipesan`,
+                        message : `Program berhasil dipesan`,
                         request : {
                             method: req.method,
                             url: process.env.BASE_URL + '/payment/buy/' + req.params.slug
@@ -306,7 +247,8 @@ module.exports = {
                         status: true
                     })
                 })
-            }).catch(() => {
+            }).catch((err) => {
+                console.log(err)
                 res.status(500).json({message : 'Terjadi kesalahan saat membeli produk', status: false})
             })
         }else{res.status(404).json({message : 'Produk tidak ditemukan', status: false})}

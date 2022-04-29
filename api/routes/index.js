@@ -84,7 +84,7 @@ router.route('/comments')
 router.route('/payment/notification')
     .post(payment.handleNotification)
 
-router.route('/payment/buy/:type/:slug')
+router.route('/payment/buy/:slug')
     .put(checkAuth, payment.buyProduct)
 
 // router.route('/payment/check/:kode')
@@ -95,9 +95,6 @@ router.route('/payment/cancel/:kode')
 
 router.route('/payment/confirm/:kode')
     .put(checkAuth, payment.confirmPayment)
-
-router.route('/payment/restart/:kode')
-    .put(checkAuth, isAdmin, payment.restartPayment)
 
 router.route('/payment/accepted/:kode')
     .put(checkAuth, isAdmin, payment.acceptPayment)
