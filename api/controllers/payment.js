@@ -359,8 +359,8 @@ function checkPaymentMethod(method, user, kode, harga){
         case 'mandiri':
             parameter.payment_type = "echannel"
             parameter.echannel = {
-                "bill_info1" : "Pembelian:",
-                "bill_info2" : "Produk Pojoklaku",
+                "bill_info1" : "Pembayaran:",
+                "bill_info2" : "Program Beri Rezeki",
             }
             break
         case 'gopay':
@@ -370,14 +370,14 @@ function checkPaymentMethod(method, user, kode, harga){
             parameter.payment_type = "cstore"
             parameter.cstore = {
                 "store" : "alfamart",
-                "message" : "Pembelian produk Pojoklaku"
+                "message" : "Pembayaran program Beri Rezeki"
             }
             break
         case 'indomaret':
             parameter.payment_type = "cstore"
             parameter.cstore = {
                 "store" : "indomaret",
-                "message" : "Pembelian produk Pojoklaku"
+                "message" : "Pembayaran program Beri Rezeki"
             }
             break
         default:
