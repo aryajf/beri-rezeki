@@ -93,12 +93,6 @@ router.route('/payment/buy/:slug')
 router.route('/payment/cancel/:kode')
     .delete(checkAuth, payment.cancelPayment)
 
-router.route('/payment/confirm/:kode')
-    .put(checkAuth, payment.confirmPayment)
-
-router.route('/payment/accepted/:kode')
-    .put(checkAuth, isAdmin, payment.acceptPayment)
-
 router.route('/payment/:type/:status')
     .get(checkAuth, payment.getPayment)
 
