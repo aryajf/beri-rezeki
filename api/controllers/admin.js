@@ -9,13 +9,13 @@ module.exports = {
 
         try{
             if(!program){
-                res.status(404).json({message: 'Tipe produk tidak tersedia', status: false})
+                res.status(404).json({message: 'Tipe program tidak tersedia', status: false})
             }else{
                 const data = [program.count]
 
                 res.json({
                     data : data,
-                    message: 'Total produk berhasil ditampilkan',
+                    message: 'Total program berhasil ditampilkan',
                     request: {
                         method: req.method,
                         url: process.env.BASE_URL + 'product'
@@ -24,7 +24,7 @@ module.exports = {
                 })
             }
         }catch(err){
-            res.status(404).json({message : 'Terjadi kesalahan pada produk', status: false})
+            res.status(404).json({message : 'Terjadi kesalahan pada program', status: false})
         }
     },
     allAccepted: async(req, res) => {
@@ -42,7 +42,7 @@ module.exports = {
                 [Op.or]: [{status:'Accepted'}, {status:'Delivering'}, {status:'Processing'}]
         }}).then(data => {
             if(!data){
-                res.status(404).json({message: 'Produk yang sudah dibayar tidak ditemukan', status: false})
+                res.status(404).json({message: 'Program yang sudah dibayar tidak ditemukan', status: false})
             }else{
                 let total_harga = 0
                 let count = {
@@ -84,7 +84,7 @@ module.exports = {
                     count: countMonth,
                     total_harga : total_harga,
                     payments : payments,
-                    message: 'Produk yang sudah dibayar berhasil ditampilkan',
+                    message: 'Program yang sudah dibayar berhasil ditampilkan',
                     request: {
                         method: req.method,
                         url: process.env.BASE_URL + 'accepted'
@@ -93,7 +93,7 @@ module.exports = {
                 })
             }
         }).catch(() => {
-            res.status(404).json({message : 'Produk yang sudah dibayar tidak ditemukan', status: false})
+            res.status(404).json({message : 'Program yang sudah dibayar tidak ditemukan', status: false})
         })
     },
     getHistory: async(req, res) => {
@@ -101,7 +101,7 @@ module.exports = {
         const { limit, offset } = getPagination(page, 10)
         await checkStatus(req.params.status, limit, offset).then(data => {            
             if(!data){
-                res.status(404).json({message: 'Tipe produk tidak tersedia', status: false})
+                res.status(404).json({message: 'Tipe program tidak tersedia', status: false})
             }else{
                 let total_harga = 0
                 data.rows.map(item =>{
@@ -160,14 +160,14 @@ module.exports = {
     },
     searchPayments: async(req, res) => {
         if(req.params.keyword == ''){
-            res.status(404).json({message : 'Produk tidak ditemukan', status: false})
+            res.status(404).json({message : 'Program tidak ditemukan', status: false})
         }
         let { page } = req.query
         const { limit, offset } = getPagination(page, 10)
         
         await checkStatus(req.params.status, limit, offset, req.params.keyword).then(data => {
             if(!data){
-                res.status(404).json({message: 'Tipe produk tidak tersedia', status: false})
+                res.status(404).json({message: 'Tipe program tidak tersedia', status: false})
             }else{
                 let total_harga = 0
                 data.rows.map(item =>{
@@ -208,15 +208,15 @@ module.exports = {
                     let replyReq = {
                         kode: adminKode,
                         user_id: req.decoded.id,
-                        produk_id: comment.produk_id,
+                        program_id: comment.program_id,
                         reply_kode: req.params.kode,
                         messages: req.body.messages,
                         status: 'Accepted',
                         role: 'Admin',
                     }
 
-                    if(req.body.produk_id){
-                        replyReq.produk_id = req.body.produk_id
+                    if(req.body.program_id){
+                        replyReq.program_id = req.body.program_id
                     }
                     await Comment.create(replyReq)
 

@@ -46,9 +46,6 @@ router.route('/user/search/:keyword')
 router.route('/product')
     .get(checkAuth, isAdmin, admin.allProduct)
 
-router.route('/product/reply/:kode')
-    .post(checkAuth, isAdmin, admin.replyComment)
-
 router.route('/accepted')
     .get(checkAuth, isAdmin, admin.allAccepted)
 
@@ -66,6 +63,9 @@ router.route('/program')
     .get(program.index)
     .post(checkAuth, isAdmin, fileUpload.single('cover'), program.store)
 
+router.route('/program/reply/:kode')
+    .post(checkAuth, isAdmin, admin.replyComment)
+
 router.route('/program/:slug')
     .get(program.show)
     .put(checkAuth, isAdmin, fileUpload.single('cover'), program.update)
@@ -76,9 +76,10 @@ router.route('/program/search/:keyword')
     .get(program.search)
 
 // COMMENTS
-router.route('/comments')
-    .post(checkAuth, comment.store)
-    .get(comment.get)
+router.get('/comments', comment.get)
+
+router.route('/comment/like/:kode')
+    .post(checkAuth, comment.like)
 
 // PAYMENTS
 router.route('/payment/notification')

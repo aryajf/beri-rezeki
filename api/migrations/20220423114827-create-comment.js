@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      produk_id: {
+      program_id: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

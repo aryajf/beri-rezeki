@@ -131,6 +131,10 @@ module.exports = {
         })
     },
     buyProduct: async(req, res) => {
+        if(req.decoded.role != 'Member'){
+            return res.status(403).json({message : 'Access Denied', status: false})
+        }
+
         const user = await User.findOne({where : {
             id: req.decoded.id
         }})
@@ -139,18 +143,18 @@ module.exports = {
         const now = new Date()
         
         let kode = 'INV-' + now.getTime().toString().slice(-6).substring(0,4) + crypto.randomBytes(4).toString('hex') + now.getTime().toString().slice(-4)
-        let produk = await Program.findOne({where : {
+        let program = await Program.findOne({where : {
             slug: req.params.slug
         }})
 
-        if(produk){
-            expired = new Date(produk.expiredAt) - now < 0
+        if(program){
+            expired = new Date(program.expiredAt) - now < 0
             if(expired){
-                return res.status(404).json({message : 'Produk sudah kadaluarsa', status: false})
+                return res.status(404).json({message : 'program sudah kadaluarsa', status: false})
             }
-            harga = produk.harga
+            harga = program.harga
             
-            if(produk.type == 'Crowdfunding'){
+            if(program.type == 'Crowdfunding'){
                 if(req.body.harga){
                     harga = req.body.harga
                 }else{
@@ -191,7 +195,7 @@ module.exports = {
             }
         }
         
-        if(produk != null && user != null){
+        if(program != null && user != null){
             let parameter = checkPaymentMethod(req.body.method, user, kode, harga)
             if(parameter == null){
                 return res.status(404).json({message : 'Metode pembayaran belum dipilih', status: false})
@@ -211,7 +215,7 @@ module.exports = {
                     paymentReq = {
                         kode : kode,
                         user_id : req.decoded.id,
-                        program_id : produk.id,
+                        program_id : program.id,
                         total_harga : harga,
                         status: 'Pending',
                         deeplink_url : deeplinkUrl,
@@ -224,7 +228,7 @@ module.exports = {
                         commentReq = {
                             kode: kode,
                             user_id : req.decoded.id,
-                            produk_id : produk.id,
+                            program_id : program.id,
                             messages : req.body.messages,
                             isAnonymous : false,
                             status: 'Pending',
@@ -248,10 +252,9 @@ module.exports = {
                     })
                 })
             }).catch((err) => {
-                console.log(err)
-                res.status(500).json({message : 'Terjadi kesalahan saat membeli produk', status: false})
+                res.status(500).json({message : 'Terjadi kesalahan saat membeli program', status: false})
             })
-        }else{res.status(404).json({message : 'Produk tidak ditemukan', status: false})}
+        }else{res.status(404).json({message : 'Program tidak ditemukan', status: false})}
     }
 }
 

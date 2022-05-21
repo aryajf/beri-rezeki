@@ -1,0 +1,136 @@
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12vh;
+    min-height: 80vh;
+}
+
+.profile-left {
+    .user-info {
+        background: #F6F8FD;
+        padding: 20px;
+        box-sizing: border-box;
+
+        .avatar {
+            margin: 20px 0;
+            position: relative;
+
+            button {
+                position: absolute;
+                background: white;
+                font-size: 20px;
+                right: 50px;
+                color: grey;
+            }
+
+            img {
+                width: 75%;
+                margin-left: 12.5%;
+                background: white;
+            }
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .action {
+            text-align: center;
+        }
+    }
+}
+
+.profile-right {
+    padding: 10px 20px;
+
+    .profile-menu {
+        margin-bottom: 20px;
+
+        button {
+            background: none;
+            padding: 7px 10px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 5px;
+        }
+
+        .active {
+            color: #f1c40f;
+            border-bottom: 2px solid #f1c40f;
+        }
+    }
+
+    .profile-item {
+        font-size: 17px;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    .identity-upload {
+        p {
+            padding: 15px;
+
+            b {
+                margin-bottom: 5px;
+                display: block;
+            }
+
+            span {
+                margin-bottom: 10px;
+                display: block;
+            }
+        }
+
+        .added-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+
+        .file-upload-ktp {
+            padding: 30px 0;
+            border-radius: 10px;
+
+            .default-image {
+                width: 30%;
+                margin: 0 35%;
+            }
+
+            p {
+                font-size: 20px;
+                font-weight: 500;
+                text-align: center;
+                margin-top: 20px;
+                color: #323B46;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile-wrapper {
+        .profile-wrapper-spacing {
+            padding: 0 15px;
+        }
+    }
+
+    .profile-right {
+        padding: 10px;
+
+        .profile-menu {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    }
+
+    .btn-upload {
+        width: 100%;
+        justify-content: center;
+    }
+}

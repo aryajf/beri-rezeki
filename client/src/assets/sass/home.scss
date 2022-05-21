@@ -1,0 +1,291 @@
+.content-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.content-heading {
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-family: Belligan;
+    color: #3F3D56;
+}
+
+// HEADER DESKTOP
+.header {
+    color: rgb(28, 37, 64);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .header-text {
+        h1 {
+            font-size: 50px;
+            font-weight: 600 !important;
+            color: #3F3D56;
+            margin-bottom: 20px;
+            font-family: Belligan;
+
+            span {
+                font-family: Belligan;
+            }
+        }
+
+        p {
+            font-size: 23px;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.header-image-left {
+    display: none;
+}
+
+.header-image-right {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+// ABOUT DESKTOP
+.about {
+    margin-top: 100px;
+
+    .about-text {
+        p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: inline-block;
+
+            &:hover {
+                transition: 0.4s;
+                color: white !important;
+                background: #3F3D56;
+            }
+        }
+    }
+}
+
+// PRODUCT DESKTOP
+.product {
+    margin-top: 100px;
+
+    h2 {
+        width: 45%;
+    }
+
+    .product-item {
+        text-decoration: none;
+        padding: 0 5px !important;
+        margin-bottom: 10px;
+        color: #3F3D56;
+
+        .product-item-content {
+            background: #F6F8FD;
+            border-radius: 10px;
+            padding: 15px;
+            box-sizing: border-box;
+
+            .product-image {
+                display: flex;
+                align-items: center;
+
+                img {
+                    border-radius: 10px 0 0 10px;
+                }
+            }
+
+            .product-text {
+                display: flex;
+                align-items: center;
+
+                h3 {
+                    font-size: 20px;
+                    margin-bottom: 5px;
+                    font-weight: 600;
+                }
+
+                p {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}
+
+// TUTORIAL DESKTOP
+.tutorial {
+    margin-top: 100px;
+
+    .tutorial-text {
+        p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+    }
+}
+
+// TESTIMONI DESKTOP
+.testimoni {
+    margin-top: 100px;
+
+    .testimoni-item {
+        background: #F6F8FD;
+        padding: 20px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin-right: 15px !important;
+
+        &:hover {
+            background: #F6F8FD !important;
+        }
+
+        blockquote {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+// FAQ DESKTOP
+.faq {
+    margin: 100px 0;
+
+    .faq-image-left {
+        display: none;
+    }
+
+    .faq-image-right {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content-badge {
+        margin: 20px 0 10px 0;
+    }
+
+    .content-heading {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+
+    // HEADER MOBILE
+    .header {
+        height: 100vh;
+        align-items: center;
+
+        .header-text {
+            text-align: center;
+
+            h1 {
+                margin: 20px 0 10px 0;
+                font-size: 25px;
+            }
+
+            p {
+                font-size: 17px;
+                margin-bottom: 20px;
+            }
+
+            a {
+                padding: 3px 10px;
+            }
+        }
+    }
+
+    .header-image-left {
+        display: block;
+    }
+
+    .header-image-right {
+        display: none;
+    }
+
+    // ABOUT MOBILE
+    .about {
+        margin-top: 0;
+
+        .about-text {
+            p {
+                font-size: 17px;
+            }
+
+            a {
+                padding: 3px 10px;
+            }
+        }
+    }
+
+    // PRODUCT MOBILE
+    .product {
+        margin-top: 50px;
+
+        h2 {
+            width: 100%;
+        }
+
+        .product-item {
+            margin-bottom: 10px;
+
+            .product-item-content {
+                padding: 10px;
+
+                .product-text {
+                    h3 {
+                        font-size: 17px;
+                        margin-bottom: 5px;
+                    }
+
+                    p {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    // TUTORIAL MOBILE
+    .tutorial {
+        margin-top: 50px;
+        .tutorial-text {
+            p {
+                font-size: 17px;
+            }
+        }
+    }
+
+    // TESTIMONI MOBILE
+    .testimoni {
+        margin-top: 50px;
+
+        .testimoni-item {
+            padding: 10px;
+            margin-right: 10px !important;
+
+            blockquote {
+                font-size: 17px;
+            }
+        }
+
+    }
+
+    // FAQ MOBILE
+    .faq {
+        margin: 50px 0;
+
+        .faq-image-left {
+            display: block;
+        }
+
+        .faq-image-right {
+            display: none;
+        }
+    }
+}

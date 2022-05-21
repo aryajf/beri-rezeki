@@ -98,7 +98,7 @@ module.exports = {
             const program_comments = await Comment.findAll({
                 where: {
                     type: 'program',
-                    produk_id: program.id
+                    program_id: program.id
                 },
                 order:[['updatedAt', 'DESC']],
                 include: [{
