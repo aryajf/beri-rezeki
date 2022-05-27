@@ -59,13 +59,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ program.title }}</h5>
                                 <p class="card-text">{{ program.short_desc }}</p>
-                                <small class="proposal-harga d-block fw-bold text-red" v-if="program.type == 'Single'">Rp{{NumberFormat(program.harga)}}</small>
+                                <p v-if="program.type == 'Single'" class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.harga)}}</small></p>
                                 <template v-if="program.type == 'Crowdfunding'">
                                     <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
                                     </ProgressBar>
-                                    <small class="text-red fw-bold d-block">
-                                        Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}
-                                    </small>
+                                    <p class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}</small></p>
                                 </template>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <div class="btn-group">
@@ -178,40 +176,20 @@
             </div>
             <div class="container text-start">
                 <div class="card-beriRezeki">
-                    <div class="col-md-12 py-3">
+                    <div class="col-md-12 py-3" v-for="program in crowdPrograms.program" :key="program.id">
                         <div class="card shadow-sm mx-5">
                             <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="card- text-end"><small class="text-muted text-end">Rp120.000.000</small></p>
+                                <h5 class="card-title">{{program.title}}</h5>
+                                <p class="card-text">{{program.short_desc}}</p>
+                                <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
+                                </ProgressBar>
+                                <p class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}</small></p>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Donasi</button>
+                                        <router-link :to="program.slug" class="btn btn-info">Donasi</router-link>
                                     </div>
-                                    <small class="text-muted text-end">Donasi ditutup 9 hari lagi</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 py-3">
-                        <div class="card shadow-sm mx-5">
-                            <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="card- text-end"><small class="text-muted text-end">Rp120.000.000</small></p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Donasi</button>
-                                    </div>
-                                    <small class="text-muted text-end">Donasi ditutup 9 hari lagi</small>
+                                    <small class="text-muted text-end">{{ DateFormatExpired(program.expiredAt) }}</small>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +237,7 @@ watch(keyword, () => {
 onMounted(() => {
     getPrograms()
     // getSinglePrograms()
-    // getCrowdfundingPrograms()
+    getCrowdfundingPrograms()
 })
 
 const getPrograms = () => {
@@ -268,12 +246,12 @@ const getPrograms = () => {
 }
 // const getSinglePrograms = () => {
 //     paginationSearch.value = false
-//     store.dispatch('program/getSinglePrograms')
+//     store.dispatch('program/getSinglePrograms', {})
 // }
-// const getCrowdfundingPrograms = () => {
-//     paginationSearch.value = false
-//     store.dispatch('program/getCrowdfundingPrograms')
-// }
+const getCrowdfundingPrograms = () => {
+    paginationSearch.value = false
+    store.dispatch('program/getCrowdfundingPrograms', {})
+}
 
 const changePage = (event) => {
     if (paginationSearch.value == true) {

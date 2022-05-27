@@ -75,7 +75,7 @@ export default({
                 return err
             }
         },
-        async getSinglePrograms({commit}, page){
+        async getSinglePrograms({commit}, {page}){
             commit('SET_LOADING', true, {root: true})
             try{
                 let res
@@ -89,7 +89,7 @@ export default({
                 return err
             }
         },
-        async getCrowdfundingPrograms({commit}, page){
+        async getCrowdfundingPrograms({commit}, {page}){
             commit('SET_LOADING', true, {root: true})
             try{
                 let res
