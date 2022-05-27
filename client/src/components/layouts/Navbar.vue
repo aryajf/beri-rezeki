@@ -1,0 +1,79 @@
+<template>
+    <div>
+        <!-- LOGOUT MODAL -->
+        <LogoutModal />
+
+        <!-- NAVBAR -->
+        <header>
+            <nav class="fixed-top">
+                <div class="container-nav">
+                    <div class="logo">
+                        <router-link to="/">BeriRezeki</router-link>
+                    </div>
+                    <button type="button" class="nav-toggler">
+                        <span></span>
+                    </button>
+                    <div class="nav">
+                        <ul>
+                            <li><router-link to="/pending">Transaksi <i class="fa-solid fa-arrow-right-arrow-left"></i></router-link></li>
+                            <li><router-link to="/register">Registrasi <i class="fa-solid fa-user-plus"></i></router-link></li>
+                            <li><router-link to="/login">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></router-link></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import useEmitter from '@/config/emitter'
+import appConfig from '@/config/app'
+import store from '@/store'
+import LogoutModal from '@/components/modals/LogoutModal.vue'
+
+const emitter = useEmitter()
+const apiURL = ref(appConfig.apiURL)
+const adminURL = ref(appConfig.adminURL)
+const baseURL = ref(appConfig.baseURL)
+let avatar = ref(null)
+
+const authenticated = computed(() => store.getters['auth/authenticated'])
+const user = computed(() => store.getters['auth/user'])
+
+onMounted(() => {
+    emitter.on('avatar', (item) => {
+        avatar.value = item
+    })
+
+    // let nav = document.querySelector('.navbar')
+    // window.onscroll = function () {
+    //     let scrollPoint = window.scrollY
+    //     if (scrollPoint > 80) {
+    //         nav.classList.add('nav-active')
+    //     } else {
+    //         nav.classList.remove('nav-active')
+    //     }
+    // }
+    const navToggler = document.querySelector(".nav-toggler");
+    navToggler.addEventListener("click", navToggle);
+
+    function navToggle() {
+        console.log(navToggler)
+        navToggler.classList.toggle("active");
+        const nav = document.querySelector(".nav");
+        nav.classList.toggle("open");
+        if(nav.classList.contains("open")){
+            nav.style.maxHeight = nav.scrollHeight + "px";
+        }
+        else{
+            nav.removeAttribute("style");
+        }
+    } 
+})
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/sass/navbar.scss';
+</style>

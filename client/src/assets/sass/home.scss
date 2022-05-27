@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+*{
+	font-family: 'Inter', sans-serif;
+}
+
+body{
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+}
+.content-title{
+	font-size: 24px;
+	font-weight: bold;
+	color: #045256;
+}
+.banner img{
+	width: 100%;
+	height: 100%;
+}
+.pagination-BeriDonasi {
+	background-color: transparent;
+}
+
+
+
+/* CUSTOMIZE THE JUMBOTRON 
+-------------------------------------------------- */
+.jumbotron {
+	background-color: #9AB8BA;
+}
+.jumbotron .row h1 {
+	font-size: 4.5em;
+	font-weight: bold;
+	padding-top: 50px;
+}
+.jumbotron .row h5 {
+	font-size: 2.5em;
+	font-weight: bold;
+	padding: 4px 0;
+	color: red;
+}
+.jumbotron .row p {
+	font-size: 1em;
+	padding-top: 4px;
+	padding-bottom: 50px;
+}
+.jumbotron .row .text-start {
+	margin-top: 30px;
+}
+
+.header-image-right img {
+	margin-top: 60px;
+}
+/* END CUSTOMIZE THE JUMBOTRON ---------------- */
+
+
+
+/* CUSTOMIZE THE BERIDOA 
+-------------------------------------------------- */
+.BeriDoa .col-lg-4 {
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+.BeriDoa .col-lg-4 p {
+	margin-right: .75rem;
+	margin-left: .75rem;
+}
+.swiper {
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.swiper-slide {
+	background-position: center;
+	background-size: cover;
+	width: 300px;
+	height: 300px;
+}
+.beridoabox-comment {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+/* END CUSTOMIZE BERIDOA ---------------- */
+
+
+
+/* CUSTOMIZE THE CAROUSEL 
+-------------------------------------------------- */
+.carousel {
+	height: 100%;
+}
+.carousel-item {
+	width: 100%;
+	height: 100%;
+}
+.carousel-caption h1 {
+	font-size: 3em;
+} 
+.carousel-caption p {
+	font-size: 1.5em;
+} 
+/* END CUSTOMIZE THE CAROUSEL ---------------- */
+
+
+@media(max-width: 1440px) {
+    main {
+        max-width: 1440px;
+    }
+
+    .jumbotron .row h1 {
+        font-size: 4.5em;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-width: 1024px) {
+    .jumbotron .row h1 {
+        font-size: 4em;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 2em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-width: 768px) {
+    .jumbotron .row h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
+    }
+}
+
+
+@media(max-width:680px){
+    .jumbotron {
+        margin-top: 40px;
+    }
+}
+
+@media(max-width: 425px) {
+    .jumbotron .row h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding-top: 0;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 0;
+    }
+
+    .header-image-right img {
+        margin-top: 10px;
+    }
+
+    .text-muted {
+        font-size: 0.8em;
+    }
+
+    .card-text {
+        font-size: 0.8em;
+    }
+
+    .carousel-caption h1 {
+        font-size: 1.5em;
+        margin: 0;
+        padding: 0;
+    } 
+    
+    .carousel-caption p {
+        font-size: 0.8em;
+        margin: 0;
+    } 
+    .carousel-caption button {
+        font-size: 0.5em;
+    }
+}
+
+@media(max-width:375px){
+    .jumbotron .row h1 {
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.4em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
+    }
+
+    .carousel-donasi {
+        margin-top: 15px;
+    }
+    .carousel-caption h1 {
+        font-size: 1.3em;
+        margin: 0;
+        padding: 0;
+    } 
+    
+    .carousel-caption p {
+        font-size: 0.6em;
+        margin: 0;
+    } 
+    .carousel-caption button {
+        font-size: 0.3em;
+    } 
+
+    .text-muted {
+        font-size: 0.6em;
+    }
+
+    .BeriDonasi .row .text-muted {
+        font-size: 0.8rem;
+    }
+}

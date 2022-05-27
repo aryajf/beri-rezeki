@@ -1,0 +1,27 @@
+# === GIT IGNORE FOR API ===
+api/node_modules/
+api/public/images/avatars/
+api/public/images/programs/
+api/public/uploads
+api/.env
+api/api.zip
+
+# === GIT IGNORE FOR CLIENT ===
+client/node_modules
+client/.DS_Store
+client/dist
+client/dist.zip
+client/client
+client/client.zip
+client/dist-ssr
+client/*.local
+
+# === GIT IGNORE FOR ADMIN ===
+admin/node_modules
+admin/.DS_Store
+admin/dist
+admin/dist.zip
+admin/admin
+admin/admin.zip
+admin/dist-ssr
+admin/*.local
