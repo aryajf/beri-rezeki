@@ -7,12 +7,11 @@ header{
 header .nav{
 	list-style: none;
 }
-header .logo a{
-	font-size: 32px;
-	color: #ffffff;
-	text-transform: capitalize;
-	text-decoration: none;
-	padding: 4px;
+header .logo a img{
+	width: 150px;
+	height: 150px;
+	margin-top: -40px;
+	margin-bottom: -40px;
 }
 header .nav ul li{
 	display: inline-block;

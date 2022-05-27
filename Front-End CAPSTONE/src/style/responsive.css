@@ -299,5 +299,19 @@
         padding-left: 8px;
         padding-right: 8px;
     }
+
+    footer .p2 {
+        font-size: 0.9em;
+        color: #045256;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    footer .p3 {
+        font-size: 0.8em;
+        color: #045256;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 }
 
