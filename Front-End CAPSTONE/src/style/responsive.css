@@ -60,6 +60,40 @@
         padding-top: 4px;
         padding-bottom: 50px;
     }
+
+    footer .p1 {
+        font-size: 1.3em;
+        color: #045256;
+    }
+    
+    footer .p2 a{
+        font-size: 1.1em;
+        text-decoration: none;
+        color: #045256;
+    }
+    
+    footer .p2 a:hover {
+        text-decoration: underline;
+        color: rgb(100, 48, 48);
+    }
+    
+    footer .p3 {
+        font-size: 1em;
+        color: #045256;
+    }
+    
+    footer .sosmed a{
+        font-size: 1em;
+        padding: 0 8px;
+        text-decoration: none;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    footer .copyright {
+        font-size: 1.2em;
+        color: #045256;
+    }
 }
 
 
@@ -82,7 +116,7 @@
         visibility: visible;
     }
     header .nav ul{
-        padding:12px 15px 0;
+        padding:12px 18px 0;
         margin-top: 12px;
         border-top:1px solid rgba(255,255,255,0.2);
     }
@@ -93,7 +127,7 @@
     }
 }
 
-@media(max-width: 425px) {
+@media(max-width: 428px) {
     .jumbotron .row h1 {
         font-size: 2.5em;
         font-weight: bold;
@@ -139,12 +173,12 @@
     } 
 
     footer .p1 {
-        font-size: 18px;
+        font-size: 1em;
         color: #045256;
     }
     
     footer .p2 a{
-        font-size: 16px;
+        font-size: 0.9em;
         text-decoration: none;
         color: #045256;
     }
@@ -155,45 +189,45 @@
     }
     
     footer .p3 {
-        font-size: 14px;
+        font-size: 0.9em;
         color: #045256;
     }
     
     footer .sosmed a{
-        font-size: 20px;
-        padding: 0 5px;
+        font-size: 0.9em;
+        padding: 0 8px;
         text-decoration: none;
         min-width: 44px;
         min-height: 44px;
     }
     
     footer .copyright {
-        font-size: 18px;
+        font-size: 1em;
         color: #045256;
     }
 }
 
-@media(max-width:375px){
+@media(max-width:378px){
     .jumbotron .row h1 {
-        font-size: 2em;
+        font-size: 1.8em;
         font-weight: bold;
-        padding-top: 50px;
+        padding-top: 20px;
     }
     
     .jumbotron .row h5 {
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-weight: bold;
         padding: 4px 0;
     }
     
     .jumbotron .row p {
-        font-size: 1em;
+        font-size: 0.9em;
         padding-top: 4px;
         padding-bottom: 50px;
     }
 
     .carousel-donasi {
-        margin-top: 15px;
+        margin-top: 18px;
     }
     .carousel-caption h1 {
         font-size: 1.3em;
@@ -210,26 +244,60 @@
     } 
 
     .text-muted {
-        font-size: 0.6em;
-    }
-
-    .BeriDonasi .row .text-muted {
-        font-size: 0.8rem;
+        font-size: 0.7em;
     }
 
     footer .p1 {
-        font-size: 18px;
+        font-size: 0.9em;
         color: #045256;
     }
     
     footer .p2 a{
-        font-size: 14px;
+        font-size: 0.8em;
         text-decoration: none;
         color: #045256;
     }
     
     footer .p3 {
-        font-size: 12px;
+        font-size: 0.8em;
+        color: #045256;
+    }
+
+    footer .copyright {
+        font-size: 0.8em;
         color: #045256;
     }
 }
+
+
+@media(max-width:360px){
+    .jumbotron .row h1 {
+        font-size: 1.8em;
+        font-weight: bold;
+        padding-top: 20px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 4px 8px;
+    }
+    
+    .jumbotron .row p {
+        font-size: 0.9em; 
+        padding-top: 4px;
+        padding-bottom: 50px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    footer .p1 {
+        font-size: 0.9em;
+        color: #045256;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
