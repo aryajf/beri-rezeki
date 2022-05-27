@@ -4,59 +4,25 @@
         <LogoutModal />
 
         <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <router-link class="navbar-brand" to="/">
-                    <img src="@/assets/images/logo.png" alt="logo" width="140" class="d-inline-block">
-                </router-link>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/" exact><i class="uil uil-estate me-1"></i>Home</router-link>
-                        </li>
-                        <template v-if="authenticated">
-                            <li class="nav-item" v-if="user.role == 'Admin'">
-                                <a class="nav-link" :href="adminURL"><i class="uil uil-create-dashboard me-1"></i>
-                                    Manage
-                                </a>
-                            </li>
-                            <li v-if="user.nama" class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <template v-if="avatar != null">
-                                        <img :src="apiURL+'images/avatar/'+avatar" class="rounded-circle avatar shadow-sm" alt="Foto User">
-                                    </template>
-                                    <template v-else-if="user.avatar == null">
-                                        <img src="@/assets/images/no-avatar.png" class="rounded-circle avatar shadow-sm" alt="Foto User">
-                                    </template>
-                                    <template v-else>
-                                        <img v-if="user.auth_type == 'Local'" :src="apiURL+'images/avatar/'+user.avatar" class="rounded-circle avatar shadow-sm" alt="Foto User">
-                                        <img v-else :src="user.avatar" class="rounded-circle avatar shadow-sm" alt="Foto User">
-                                    </template>
-                                    {{ user.nama.split(' ').slice(0,2).join(' ') }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <router-link class="dropdown-item" :to="baseURL + '/profile'"><i class="uil uil-user-md me-1"></i>My Profile</router-link>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#signoutModal"><i class="uil uil-sign-out-alt me-1"></i>Logout</a></li>
-                                </ul>
-                            </li>
-                        </template>
-                        <template v-else>
-                            <li class="nav-item">
-                                <router-link class="nav-link" to="/register"><i class="uil uil-user-plus me-1"></i>Register</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="nav-link" to="/login"><i class="uil uil-sign-out-alt me-1"></i>Login</router-link>
-                            </li>
-                        </template>
-                    </ul>
+        <header>
+            <nav class="fixed-top">
+                <div class="container-nav">
+                    <div class="logo">
+                        <a href="index.html">BeriRezeki</a>
+                    </div>
+                    <button type="button" class="nav-toggler">
+                        <span></span>
+                    </button>
+                    <div class="nav">
+                        <ul>
+                            <li><a href="payment.html">Transaksi <i class="fa-solid fa-arrow-right-arrow-left"></i></a></li>
+                            <li><a href="#">Registrasi <i class="fa-solid fa-user-plus"></i></a></li>
+                            <li><a href="login.html">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
     </div>
 </template>
 
@@ -81,15 +47,30 @@ onMounted(() => {
         avatar.value = item
     })
 
-    let nav = document.querySelector('.navbar')
-    window.onscroll = function () {
-        let scrollPoint = window.scrollY
-        if (scrollPoint > 80) {
-            nav.classList.add('nav-active')
-        } else {
-            nav.classList.remove('nav-active')
+    // let nav = document.querySelector('.navbar')
+    // window.onscroll = function () {
+    //     let scrollPoint = window.scrollY
+    //     if (scrollPoint > 80) {
+    //         nav.classList.add('nav-active')
+    //     } else {
+    //         nav.classList.remove('nav-active')
+    //     }
+    // }
+    const navToggler = document.querySelector(".nav-toggler");
+    navToggler.addEventListener("click", navToggle);
+
+    function navToggle() {
+        console.log(navToggler)
+        navToggler.classList.toggle("active");
+        const nav = document.querySelector(".nav");
+        nav.classList.toggle("open");
+        if(nav.classList.contains("open")){
+            nav.style.maxHeight = nav.scrollHeight + "px";
         }
-    }
+        else{
+            nav.removeAttribute("style");
+        }
+    } 
 })
 </script>
 
