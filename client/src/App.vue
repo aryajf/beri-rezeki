@@ -21,18 +21,16 @@
         <!-- WHATSAPP CHAT -->
         <WhatsappChat />
 
-        <!-- CONTENT -->
-        <Navbar />
+        <!-- NAVBAR -->
+        <Navbar v-if="showNavbar()" />
 
         <!-- ROUTER VIEW -->
         <router-view v-slot="{Component}">
-            <transition name="route" mode="out-in">
-                <component :is='Component'></component>
-            </transition>
+            <component :is='Component'></component>
         </router-view>
 
         <!-- FOOTER -->
-        <Footer />
+        <Footer v-if="showFooter()" />
     </div>
 </template>
 
@@ -66,6 +64,21 @@ const checkToken = () => {
             store.dispatch('auth/logout')
         }
     }
+}
+
+const showNavbar = () => {
+    let url = route.name
+    if(url == 'Home' || url == 'Login' || url == 'Register'){
+        return true
+    }
+    return false
+}
+const showFooter = () => {
+    let url = route.name
+    if(url == 'Home' || url == 'Login' || url == 'Register'){
+        return true
+    }
+    return false
 }
 
 const toLogin = () => {

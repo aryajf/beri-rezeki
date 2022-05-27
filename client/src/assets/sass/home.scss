@@ -1,291 +1,271 @@
-.content-badge {
-    display: inline-block;
-    margin-bottom: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+*{
+	font-family: 'Inter', sans-serif;
 }
 
-.content-heading {
-    font-weight: 500;
-    font-size: 30px;
-    margin-bottom: 20px;
-    font-family: Belligan;
-    color: #3F3D56;
+body{
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+}
+.content-title{
+	font-size: 24px;
+	font-weight: bold;
+	color: #045256;
+}
+.banner img{
+	width: 100%;
+	height: 100%;
+}
+.pagination-BeriDonasi {
+	background-color: transparent;
 }
 
-// HEADER DESKTOP
-.header {
-    color: rgb(28, 37, 64);
-    height: 100vh;
-    display: flex;
-    align-items: center;
 
-    .header-text {
-        h1 {
-            font-size: 50px;
-            font-weight: 600 !important;
-            color: #3F3D56;
-            margin-bottom: 20px;
-            font-family: Belligan;
 
-            span {
-                font-family: Belligan;
-            }
-        }
+/* CUSTOMIZE THE JUMBOTRON 
+-------------------------------------------------- */
+.jumbotron {
+	background-color: #9AB8BA;
+}
+.jumbotron .row h1 {
+	font-size: 4.5em;
+	font-weight: bold;
+	padding-top: 50px;
+}
+.jumbotron .row h5 {
+	font-size: 2.5em;
+	font-weight: bold;
+	padding: 4px 0;
+	color: red;
+}
+.jumbotron .row p {
+	font-size: 1em;
+	padding-top: 4px;
+	padding-bottom: 50px;
+}
+.jumbotron .row .text-start {
+	margin-top: 30px;
+}
 
-        p {
-            font-size: 23px;
-            margin-bottom: 40px;
-        }
+.header-image-right img {
+	margin-top: 60px;
+}
+/* END CUSTOMIZE THE JUMBOTRON ---------------- */
+
+
+
+/* CUSTOMIZE THE BERIDOA 
+-------------------------------------------------- */
+.BeriDoa .col-lg-4 {
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+.BeriDoa .col-lg-4 p {
+	margin-right: .75rem;
+	margin-left: .75rem;
+}
+.swiper {
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.swiper-slide {
+	background-position: center;
+	background-size: cover;
+	width: 300px;
+	height: 300px;
+}
+.beridoabox-comment {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+/* END CUSTOMIZE BERIDOA ---------------- */
+
+
+
+/* CUSTOMIZE THE CAROUSEL 
+-------------------------------------------------- */
+.carousel {
+	height: 100%;
+}
+.carousel-item {
+	width: 100%;
+	height: 100%;
+}
+.carousel-caption h1 {
+	font-size: 3em;
+} 
+.carousel-caption p {
+	font-size: 1.5em;
+} 
+/* END CUSTOMIZE THE CAROUSEL ---------------- */
+
+
+@media(max-width: 1440px) {
+    main {
+        max-width: 1440px;
     }
-}
 
-.header-image-left {
-    display: none;
-}
-
-.header-image-right {
-    display: flex;
-    align-items: center;
-    padding: 0;
-}
-
-// ABOUT DESKTOP
-.about {
-    margin-top: 100px;
-
-    .about-text {
-        p {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
-        a {
-            display: inline-block;
-
-            &:hover {
-                transition: 0.4s;
-                color: white !important;
-                background: #3F3D56;
-            }
-        }
+    .jumbotron .row h1 {
+        font-size: 4.5em;
+        font-weight: bold;
+        padding-top: 50px;
     }
-}
-
-// PRODUCT DESKTOP
-.product {
-    margin-top: 100px;
-
-    h2 {
-        width: 45%;
+    
+    .jumbotron .row h5 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding: 4px 0;
     }
-
-    .product-item {
-        text-decoration: none;
-        padding: 0 5px !important;
-        margin-bottom: 10px;
-        color: #3F3D56;
-
-        .product-item-content {
-            background: #F6F8FD;
-            border-radius: 10px;
-            padding: 15px;
-            box-sizing: border-box;
-
-            .product-image {
-                display: flex;
-                align-items: center;
-
-                img {
-                    border-radius: 10px 0 0 10px;
-                }
-            }
-
-            .product-text {
-                display: flex;
-                align-items: center;
-
-                h3 {
-                    font-size: 20px;
-                    margin-bottom: 5px;
-                    font-weight: 600;
-                }
-
-                p {
-                    font-size: 17px;
-                }
-            }
-        }
-    }
-}
-
-// TUTORIAL DESKTOP
-.tutorial {
-    margin-top: 100px;
-
-    .tutorial-text {
-        p {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-    }
-}
-
-// TESTIMONI DESKTOP
-.testimoni {
-    margin-top: 100px;
-
-    .testimoni-item {
-        background: #F6F8FD;
-        padding: 20px;
-        border-radius: 10px;
-        box-sizing: border-box;
-        margin-right: 15px !important;
-
-        &:hover {
-            background: #F6F8FD !important;
-        }
-
-        blockquote {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
     }
 }
 
-// FAQ DESKTOP
-.faq {
-    margin: 100px 0;
-
-    .faq-image-left {
-        display: none;
+@media(max-width: 1024px) {
+    .jumbotron .row h1 {
+        font-size: 4em;
+        font-weight: bold;
+        padding-top: 50px;
     }
-
-    .faq-image-right {
-        display: flex;
-        align-items: center;
+    
+    .jumbotron .row h5 {
+        font-size: 2em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .content-badge {
-        margin: 20px 0 10px 0;
+@media(max-width: 768px) {
+    .jumbotron .row h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
+    }
+}
+
+
+@media(max-width:680px){
+    .jumbotron {
+        margin-top: 40px;
+    }
+}
+
+@media(max-width: 425px) {
+    .jumbotron .row h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        padding-top: 0;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.5em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 0;
     }
 
-    .content-heading {
-        font-size: 25px;
-        margin-bottom: 15px;
+    .header-image-right img {
+        margin-top: 10px;
     }
 
-
-    // HEADER MOBILE
-    .header {
-        height: 100vh;
-        align-items: center;
-
-        .header-text {
-            text-align: center;
-
-            h1 {
-                margin: 20px 0 10px 0;
-                font-size: 25px;
-            }
-
-            p {
-                font-size: 17px;
-                margin-bottom: 20px;
-            }
-
-            a {
-                padding: 3px 10px;
-            }
-        }
+    .text-muted {
+        font-size: 0.8em;
     }
 
-    .header-image-left {
-        display: block;
+    .card-text {
+        font-size: 0.8em;
     }
 
-    .header-image-right {
-        display: none;
+    .carousel-caption h1 {
+        font-size: 1.5em;
+        margin: 0;
+        padding: 0;
+    } 
+    
+    .carousel-caption p {
+        font-size: 0.8em;
+        margin: 0;
+    } 
+    .carousel-caption button {
+        font-size: 0.5em;
+    }
+}
+
+@media(max-width:375px){
+    .jumbotron .row h1 {
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.4em;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .jumbotron .row p {
+        font-size: 1em;
+        padding-top: 4px;
+        padding-bottom: 50px;
     }
 
-    // ABOUT MOBILE
-    .about {
-        margin-top: 0;
+    .carousel-donasi {
+        margin-top: 15px;
+    }
+    .carousel-caption h1 {
+        font-size: 1.3em;
+        margin: 0;
+        padding: 0;
+    } 
+    
+    .carousel-caption p {
+        font-size: 0.6em;
+        margin: 0;
+    } 
+    .carousel-caption button {
+        font-size: 0.3em;
+    } 
 
-        .about-text {
-            p {
-                font-size: 17px;
-            }
-
-            a {
-                padding: 3px 10px;
-            }
-        }
+    .text-muted {
+        font-size: 0.6em;
     }
 
-    // PRODUCT MOBILE
-    .product {
-        margin-top: 50px;
-
-        h2 {
-            width: 100%;
-        }
-
-        .product-item {
-            margin-bottom: 10px;
-
-            .product-item-content {
-                padding: 10px;
-
-                .product-text {
-                    h3 {
-                        font-size: 17px;
-                        margin-bottom: 5px;
-                    }
-
-                    p {
-                        font-size: 15px;
-                    }
-                }
-            }
-        }
-    }
-
-    // TUTORIAL MOBILE
-    .tutorial {
-        margin-top: 50px;
-        .tutorial-text {
-            p {
-                font-size: 17px;
-            }
-        }
-    }
-
-    // TESTIMONI MOBILE
-    .testimoni {
-        margin-top: 50px;
-
-        .testimoni-item {
-            padding: 10px;
-            margin-right: 10px !important;
-
-            blockquote {
-                font-size: 17px;
-            }
-        }
-
-    }
-
-    // FAQ MOBILE
-    .faq {
-        margin: 50px 0;
-
-        .faq-image-left {
-            display: block;
-        }
-
-        .faq-image-right {
-            display: none;
-        }
+    .BeriDonasi .row .text-muted {
+        font-size: 0.8rem;
     }
 }

@@ -20,10 +20,10 @@
                     <div class="whatsappChatBody">
                         <div class="whatsappChatMessage">
                             <b>Assalamu'alaikum</b><br>
-                            Selamat datang di <b>Pojoklaku</b>, ada yang bisa kami bantu?
+                            Selamat datang di <b>Beri Rezeki</b>, ada yang bisa kami bantu?
                         </div>
                         <div class="whatsappChatContainerButton text-end">
-                            <a @click="toggleChat" target="_blank" href="https://api.whatsapp.com/send?phone=+6281292751775">
+                            <a @click="toggleChat" target="_blank" href="https://api.whatsapp.com/send?phone=+628979243010">
                                 <button class="btn text-white">Buka Pesan <i class="uil uil-message ms-1"></i></button>
                             </a>
                         </div>
