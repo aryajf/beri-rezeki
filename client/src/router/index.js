@@ -15,6 +15,14 @@ const routes = [
       window.scrollTo(0, 0)
     }
   },
+  {
+    path: '/program/:slug',
+    name: 'Show',
+    component: () => import(/* webpackChunkName: "Show" */ '@/views/Show.vue'),
+    beforeEnter: () => {
+      window.scrollTo(0, 0)
+    }
+  },
 
   // AUTHENTICATION
   {

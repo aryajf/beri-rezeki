@@ -1,11 +1,12 @@
 import { createStore } from 'vuex'
 import auth from './modules/auth'
-import programs from './modules/programs'
+import program from './modules/program'
 
 export default createStore({
   state: {
     btnLoading: false,
-    formErrors: []
+    formErrors: [],
+    loadingStatus: false
   },
   mutations: {
     SET_BUTTON_LOADING(state, status){
@@ -13,6 +14,12 @@ export default createStore({
     },
     SET_FORM_ERRORS(state, errors){
       state.formErrors = errors
+    },
+    SET_LOADING(state, status){
+      state.loadingStatus = status
+    },
+    loadingStatus(state){
+      return state.loadingStatus
     },
   },
   actions: {
@@ -26,6 +33,6 @@ export default createStore({
     }
   },
   modules: {
-    auth, programs
+    auth, program
   }
 })
