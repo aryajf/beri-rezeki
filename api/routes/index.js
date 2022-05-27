@@ -71,10 +71,6 @@ router.route('/program/:slug')
     .put(checkAuth, isAdmin, fileUpload.single('cover'), program.update)
     .delete(checkAuth, isAdmin, program.delete)
 
-// SEARCH PROGRAM
-router.route('/program/search/:keyword')
-    .get(program.search)
-
 // COMMENTS
 router.get('/comments', comment.get)
 

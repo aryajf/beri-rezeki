@@ -5,7 +5,6 @@ header{
 	line-height: 1.5;
 }
 header .nav{
-	padding: 5px 0;
 	list-style: none;
 }
 header .logo a{
@@ -28,7 +27,7 @@ header .nav ul li a{
 	text-decoration: none;
 }
 header .nav ul li a.active, header .nav ul li a:hover{
-	color: #fff;
+	color: #ac8f63;
 }
 /* END CUSTOMIZE THE HEADER ---------------------- */
 
@@ -37,24 +36,23 @@ header .nav ul li a.active, header .nav ul li a:hover{
 /* CUSTOMIZE THE HAMBURGER BUTTON
 -------------------------------------------------- */
 .nav-toggler{
-	height: 44px;
-	width: 44px;
-	background-color: #ffffff;
+	background-color: #4e4b4b;
 	border-radius: 4px;
 	cursor: pointer;
 	border:none;
 	display: none;
 	min-width: 44px;
 	min-height: 44px;
+	margin: 10px;
 }
 .nav-toggler:focus{
 	outline: none;
 	box-shadow: 0 0 15px rgba(255,255,255,0.5);
 }
 .nav-toggler span{
-    height: 2px;
+    height: 3px;
     width: 20px;
-    background-color: #045256;
+    background-color: #ffffff;
     display: block;
     margin:auto;
     position: relative;
@@ -70,7 +68,7 @@ header .nav ul li a.active, header .nav ul li a:hover{
 	top:0;
 	width: 100%;
 	height: 100%;
-	background-color: #045256;
+	background-color: #ffffff;
 	transition: all 0.3s ease;
 }
 .nav-toggler span::before{

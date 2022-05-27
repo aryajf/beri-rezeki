@@ -8,16 +8,16 @@
             <nav class="fixed-top">
                 <div class="container-nav">
                     <div class="logo">
-                        <router-link to="/">BeriRezeki</router-link>
+                        <a href="index.html"><img src="@/assets/images/logo/berirezeki.png" class="w-50"></a>
                     </div>
                     <button type="button" class="nav-toggler">
                         <span></span>
                     </button>
                     <div class="nav">
                         <ul>
-                            <li><router-link to="/pending">Transaksi <i class="fa-solid fa-arrow-right-arrow-left"></i></router-link></li>
-                            <li><router-link to="/register">Registrasi <i class="fa-solid fa-user-plus"></i></router-link></li>
-                            <li><router-link to="/login">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></router-link></li>
+                            <li><a href="payment.html">Transaksi <i class="fa-solid fa-arrow-right-arrow-left"></i></a></li>
+                            <li><a href="#">Registrasi <i class="fa-solid fa-user-plus"></i></a></li>
+                            <li><a href="login.html">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,16 +46,6 @@ onMounted(() => {
     emitter.on('avatar', (item) => {
         avatar.value = item
     })
-
-    // let nav = document.querySelector('.navbar')
-    // window.onscroll = function () {
-    //     let scrollPoint = window.scrollY
-    //     if (scrollPoint > 80) {
-    //         nav.classList.add('nav-active')
-    //     } else {
-    //         nav.classList.remove('nav-active')
-    //     }
-    // }
     const navToggler = document.querySelector(".nav-toggler");
     navToggler.addEventListener("click", navToggle);
 

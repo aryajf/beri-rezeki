@@ -8,20 +8,20 @@ const {compressImage, moveFile, deleteFile, makeDirectory, createSlug, getPagina
 
 module.exports = {
     index: async(req, res) => {
-        let { page, type } = req.query
-        const { limit, offset } = getPagination(page, 12)
+        let { page, type, keyword } = req.query
+        const { limit, offset } = getPagination(page, 6)
         
-        await programType(limit, offset, type).then(async (data) => {
+        await programType(limit, offset, type, keyword).then(async (data) => {
             const { totalItems, dataPaginate, totalPages, currentPage } = getPagingData(data, page, limit)
             
             if(dataPaginate.length != 0 && !isNaN(currentPage)){
                 dataPaginate.map(program => {
                     if(program.type == 'Crowdfunding'){
                         program.dataValues.total_funding = 0
-                        program.item.map(itemCart => {
-                            if(itemCart.payment){
-                                if(itemCart.payment.status == 'Accepted' && itemCart.payment.type == 'Program'){
-                                    program.dataValues.total_funding += itemCart.payment.total_harga
+                        program.payments.map(payment => {
+                            if(payment){
+                                if(payment.status == 'Accepted'){
+                                    program.dataValues.total_funding += payment.total_harga
                                 }
                             }
                         })
@@ -42,54 +42,9 @@ module.exports = {
                     },
                     status: true
                 })
-            }else{res.json({totalItems : 0,program: dataPaginate, message : 'Belum ada program', status: false})}
+            }else{res.json({totalItems : 0,program: dataPaginate, message : 'Program belum tersedia', status: false})}
         }).catch((err) => {
-            console.log(err)
             res.status(404).json({message : 'Terjadi kesalahan saat menampilkan program', status: false})
-        })
-    },
-    search: async(req, res) => {
-        if(req.params.keyword == ''){
-            res.status(404).json({message : 'Program tidak ditemukan', status: false})
-        }
-
-        let { page, type } = req.query
-        const { limit, offset } = getPagination(page, 12)
-        
-        await programType(limit, offset, type, req.params.keyword).then(async(data) => {
-            const { totalItems, dataPaginate, totalPages, currentPage } = getPagingData(data, page, limit)
-
-            if(dataPaginate.length != 0 && !isNaN(currentPage)){
-                dataPaginate.map(program => {
-                    if(program.type == 'Crowdfunding'){
-                        program.dataValues.total_funding = 0
-                        program.payment.map(payment => {
-                            if(payment){
-                                if(payment.status == 'Accepted' && payment.type == 'Program'){
-                                    program.dataValues.total_funding += payment.total_harga
-                                }
-                            }
-                        })
-                    }
-                    delete program.dataValues.item
-                })
-
-                res.json({
-                    totalItems : totalItems,
-                    limitItems : limit,
-                    totalPages : totalPages,
-                    currentPage : currentPage,
-                    program : dataPaginate,
-                    message: 'Pencarian program berhasil',
-                    request: {
-                        method: req.method,
-                        url: process.env.BASE_URL + 'program/search/' + req.params.keyword
-                    },
-                    status: true
-                })
-            }else{res.json({totalItems : 0, message : 'Program tidak ditemukan', status: false})}
-        }).catch(() => {
-            res.status(404).json({message : 'Terjadi kesalahan saat mencari program', status: false})
         })
     },
     show: async(req, res) => {

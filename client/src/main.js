@@ -32,10 +32,32 @@ import PrimeVue from 'primevue/config'
 import "primevue/resources/themes/saga-blue/theme.css"
 import "primevue/resources/primevue.min.css"
 import "primeicons/primeicons.css"
+import ConfirmationService from 'primevue/confirmationservice'
+import ConfirmDialog from 'primevue/confirmdialog'
+import ProgressBar from 'primevue/progressbar'
+import Message from 'primevue/message'
+import Paginator from 'primevue/paginator'
+import Skeleton from 'primevue/skeleton'
 
 // Axios
 import axios from 'axios'
 axios.defaults.baseURL = appConfig.apiURL
+
+// Progressbar Loading
+import VueProgressBar from "@aacassandra/vue3-progressbar"
+const options = {
+    color: "#EC615B",
+    failedColor: "#AA0022",
+    thickness: "5px",
+    transition: {
+        speed: "0.2s",
+        opacity: "0.6s",
+        termination: 300,
+    },
+    autoRevert: true,
+    location: "top",
+    inverse: false,
+}
 
 // Mitt
 import mitt from 'mitt'
@@ -54,5 +76,5 @@ import '@/store/subscriber'
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
     const app = createApp(App)
     app.config.globalProperties.emitter = emitter
-    app.use(store).use(router).use(PrimeVue).mixin(Mixins).component(VueCountdown.name, VueCountdown).mount('#app')
+    app.use(store).use(router).use(PrimeVue).use(VueProgressBar, options).mixin(Mixins).component(VueCountdown.name, VueCountdown).component("ConfirmDialog", ConfirmDialog).component("ProgressBar", ProgressBar).component("Message", Message).component("Paginator", Paginator).component("Skeleton", Skeleton).mount('#app')
 })

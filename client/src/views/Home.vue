@@ -47,104 +47,39 @@
                 </div>
                 <div class="col-md-6 text-end">
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control me-2" v-model="keyword" type="search" placeholder="Search" aria-label="Search">
                     </form>
                 </div>
             </div>
             <div class="container px-5">
-                <div class="row">
-                    <div class="col-md-6 py-3">
+                <div class="row" v-if="programs.program && programs.totalItems != 0">
+                    <div class="col-md-6 py-3" v-for="program in programs.program" :key="program.id">
                         <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" :src="`${apiURL}/images/programs/${program.cover}`" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="card- text-end"><small class="text-muted text-end">Rp120.000.000</small></p>
+                                <h5 class="card-title">{{ program.title }}</h5>
+                                <p class="card-text">{{ program.short_desc }}</p>
+                                <small class="proposal-harga d-block fw-bold text-red" v-if="program.type == 'Single'">Rp{{NumberFormat(program.harga)}}</small>
+                                <template v-if="program.type == 'Crowdfunding'">
+                                    <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
+                                    </ProgressBar>
+                                    <small class="text-red fw-bold d-block">
+                                        Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}
+                                    </small>
+                                </template>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Donasi</button>
+                                        <router-link :to="program.slug" class="btn btn-info">Donasi</router-link>
                                     </div>
-                                    <small class="text-muted text-end">Donasi ditutup 9 hari lagi</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 py-3">
-                        <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="card- text-end"><small class="text-muted text-end">Rp120.000.000</small></p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Donasi</button>
-                                    </div>
-                                    <small class="text-muted text-end">Donasi ditutup 9 hari lagi</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 py-3">
-                        <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="card- text-end"><small class="text-muted text-end">Rp120.000.000</small></p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Donasi</button>
-                                    </div>
-                                    <small class="text-muted text-end">Donasi ditutup 9 hari lagi</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 py-3">
-                        <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="card- text-end"><small class="text-muted text-end">Rp120.000.000</small></p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Donasi</button>
-                                    </div>
-                                    <small class="text-muted text-end">Donasi ditutup 9 hari lagi</small>
+                                    <small class="text-muted text-end">{{ DateFormatExpired(program.expiredAt) }}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Message v-else severity="info" :closable="false">{{programs.message}}</Message>
     
-                <div class="row">
-                    <div class="col">
-                        <nav aria-label="Halaman BeriDonasi" class="pagination-BeriDonasi">
-                            <ul class="pagination pagination-lg d-flex justify-content-center">
-                                <li class="page-item active" aria-current="page">
-                                    <span class="page-link">1</span>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+                <Paginator aria-label="Halaman BeriDonasi" v-if="programs.totalPages >= 2" @page="changePage($event)" v-model:rows="programs.limitItems" :totalRecords="programs.totalItems" />
             </div>
         </div>
         <!-- ------------------------------------------------ END CONTENT  BeriDonasi ----------------------------------->
@@ -292,11 +227,78 @@
     </main>
 </template>
 <script setup>
+import { ref, computed, onMounted, watch } from 'vue'
+import Rolling from '@/components/loadings/Rolling.vue'
+// import Comments from '@/components/layouts/Comments.vue'
+import appConfig from '@/config/app'
+import store from '@/store'
+
 // SWIPER
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import SwiperCore, { FreeMode } from 'swiper'
 SwiperCore.use([FreeMode])
+
+const loadingStatus = computed(() => store.getters['loadingStatus'])
+const btnLoading = computed(() => store.getters['btnLoading'])
+const programs = computed(() => store.getters['program/programs'])
+const singlePrograms = computed(
+    () => store.getters['program/singlePrograms']
+)
+const crowdPrograms = computed(() => store.getters['program/crowdPrograms'])
+
+const apiURL = ref(appConfig.apiURL)
+const keyword = ref('')
+const index = ref(null)
+const paginationSearch = ref(false)
+
+watch(keyword, () => {
+    search()
+})
+
+onMounted(() => {
+    getPrograms()
+    // getSinglePrograms()
+    // getCrowdfundingPrograms()
+})
+
+const getPrograms = () => {
+    paginationSearch.value = false
+    store.dispatch('program/getPrograms', {keyword: keyword.value})
+}
+// const getSinglePrograms = () => {
+//     paginationSearch.value = false
+//     store.dispatch('program/getSinglePrograms')
+// }
+// const getCrowdfundingPrograms = () => {
+//     paginationSearch.value = false
+//     store.dispatch('program/getCrowdfundingPrograms')
+// }
+
+const changePage = (event) => {
+    if (paginationSearch.value == true) {
+        const data = { keyword: keyword.value, page: event.page }
+        store.dispatch('program/searchProgram', { keyword: keyword.value, page: event.page })
+    } else {
+        store.dispatch('program/getPrograms', {page: event.page})
+    }
+}
+const changePageSingle = (event) => {
+    store.dispatch('program/getSinglePrograms', {page: event.page})
+}
+
+const changePageCrowd = (event) => {
+    store.dispatch('program/getCrowdfundingPrograms', {page: event.page})
+}
+
+const search = () => {
+    paginationSearch.value = true
+    if (keyword.value != '') {
+        store.dispatch('program/getPrograms', { keyword: keyword.value })
+    } else {
+        getPrograms()
+    }
+}
 </script>
 
 <style lang="scss" scoped>
