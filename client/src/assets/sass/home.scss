@@ -49,7 +49,6 @@ body{
 .jumbotron .row .text-start {
 	margin-top: 30px;
 }
-
 .header-image-right img {
 	margin-top: 60px;
 }
@@ -177,9 +176,12 @@ body{
     .jumbotron {
         margin-top: 40px;
     }
+    .nav-toggler{
+        display: block;
+    }
 }
 
-@media(max-width: 425px) {
+@media(max-width: 428px) {
     .jumbotron .row h1 {
         font-size: 2.5em;
         font-weight: bold;
@@ -225,27 +227,27 @@ body{
     }
 }
 
-@media(max-width:375px){
+@media(max-width:378px){
     .jumbotron .row h1 {
-        font-size: 2em;
+        font-size: 1.8em;
         font-weight: bold;
-        padding-top: 50px;
+        padding-top: 20px;
     }
     
     .jumbotron .row h5 {
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-weight: bold;
         padding: 4px 0;
     }
     
     .jumbotron .row p {
-        font-size: 1em;
+        font-size: 0.9em;
         padding-top: 4px;
         padding-bottom: 50px;
     }
 
     .carousel-donasi {
-        margin-top: 15px;
+        margin-top: 18px;
     }
     .carousel-caption h1 {
         font-size: 1.3em;
@@ -262,10 +264,31 @@ body{
     } 
 
     .text-muted {
-        font-size: 0.6em;
+        font-size: 0.7em;
     }
+}
 
-    .BeriDonasi .row .text-muted {
-        font-size: 0.8rem;
+
+@media(max-width:360px){
+    .jumbotron .row h1 {
+        font-size: 1.8em;
+        font-weight: bold;
+        padding-top: 20px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    .jumbotron .row h5 {
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 4px 8px;
+    }
+    
+    .jumbotron .row p {
+        font-size: 0.9em; 
+        padding-top: 4px;
+        padding-bottom: 50px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 }
