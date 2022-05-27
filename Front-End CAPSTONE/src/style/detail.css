@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+*{
+	font-family: 'Inter', sans-serif;
+    color: #045256;
+}
+
+#detail-header {
+    background-color: transparent;
+}
+
+.logo a i {
+    color: white;
+}
+
+#detail #image-header  {
+    height: 500px;
+    background-image: url("../../src/style/image/Kuning\ Neon\ Minimal\ Ilustratif\ Layanan\ Manusia\ Penggalangan\ Dana\ Facebook\ Foto\ Sampul\ 1.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#card-donation-detail {
+    background-color: #9AB8BA;
+}
+
+.card-body {
+    background-color: #F8F8F8;
+}
+
+.card-body a {
+    list-style: none;
+    text-decoration: none;
+    color: #045256;
+}
+
+.text-donasi {
+    font-size: 1.5em;
+}
+
+#button {
+    background-color: #DDF7F8;
+    color: #045256;
+}
+
+#button:hover {
+    background-color: #bff5f7;
+    color: #045256;
+}
