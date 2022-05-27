@@ -38,3 +38,57 @@ footer .copyright {
 	color: #045256;
 	padding-top: 10px;
 }
+
+@media(max-width: 425px) {
+	footer .p1 {
+        font-size: 18px;
+        color: #045256;
+    }
+    
+    footer .p2 a{
+        font-size: 16px;
+        text-decoration: none;
+        color: #045256;
+    }
+    
+    footer .p2 a:hover {
+        text-decoration: underline;
+        color: rgb(100, 48, 48);
+    }
+    
+    footer .p3 {
+        font-size: 14px;
+        color: #045256;
+    }
+    
+    footer .sosmed a{
+        font-size: 20px;
+        padding: 0 5px;
+        text-decoration: none;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    footer .copyright {
+        font-size: 18px;
+        color: #045256;
+    }
+}
+
+@media(max-width:375px){
+	footer .p1 {
+        font-size: 18px;
+        color: #045256;
+    }
+    
+    footer .p2 a{
+        font-size: 14px;
+        text-decoration: none;
+        color: #045256;
+    }
+    
+    footer .p3 {
+        font-size: 12px;
+        color: #045256;
+    }
+}

@@ -7,9 +7,10 @@
                 </div>
                 <div class="col-md-6 d-flex align-items-center">
                     <div>
-                        <span class="d-block text-yellow number">404</span>
-                        <span class="d-block text-yellow heading">PAGE NOT FOUND</span>
+                        <span class="d-block text-darkBlue number">404</span>
+                        <span class="d-block text-darkBlue heading">PAGE NOT FOUND</span>
                         <p class="caption text-wa text-center">Halaman yang anda kunjungi tidak ditemukan atau mungkin sudah kadaluarsa</p>
+                        <div class="text-center"><router-link to="/" class="btn text-darkBlue"><i class="fa-solid fa-arrow-left me-1"></i>Kembali ke halaman utama</router-link></div>
                     </div>
                 </div>
             </div>
