@@ -1,0 +1,67 @@
+/* CUSTOMIZE THE STATUS PEMBAYARAN 
+-------------------------------------------------- */
+.statuspembayaran {
+    background-color: #EBEBEB;
+    margin-top: 90px;
+    border-radius: 5px;
+}
+.statuspembayaran .text-center p{
+    background-color: #9AB8BA;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 20px;
+}
+.statuspembayaran .title {
+    font-size: 20px;
+    font-weight: 700;
+}
+.statuspembayaran .message {
+    font-size: 16px;
+    font-weight: 500;
+}
+/* END CUSTOMIZE THE STATUS PEMBAYARAN ------------ */
+
+
+.hubungiadmin .row .btn{
+    font-weight: 700;
+    color: #045256;
+    font-size: 20px;
+}
+
+
+/* CUSTOMIZE THE STATUS PROGRAM DONASI 
+-------------------------------------------------- */
+.programdonasi .text-judul {
+    font-size: 24px;
+    font-weight: 700;
+}
+.programdonasi .card-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+/* END CUSTOMIZE THE PROGRAM DONASI ------------ */
+
+
+
+/* CUSTOMIZE THE STATUS DETAIL PEMBAYARAN 
+-------------------------------------------------- */
+.detailpembayaran .title {
+    font-weight: 700;
+    font-size: 20px;
+}
+.detailpembayaran .message {
+    font-weight: 500;
+    font-size: 18px;
+}
+/* END CUSTOMIZE THE DETAIL PEMBAYARAN ------------ */
+
+
+
+.statusbayar {
+    background-color: #9AB8BA;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 20px;
+}

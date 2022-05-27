@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="src/style/main.css">
+    <link rel="stylesheet" href="src/style/navbar.css">
+    <link rel="stylesheet" href="src/style/footer.css">
+    <link rel="stylesheet" href="src/style/payment.css">
+    <link rel="stylesheet" href="src/style/paymentinfo.css">
+    <link rel="stylesheet" href="src/style/responsive.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <script src="https://kit.fontawesome.com/8a6cb35a1f.js" crossorigin="anonymous"></script>
+
+    <title>BeriRezeki</title>
+</head>
+<body>
+    <header>
+        <nav class="fixed-top">
+            <div class="container-nav">
+                <div class="logo">
+                    <a href="index.html">BeriRezeki</a>
+                </div>
+                <button type="button" class="nav-toggler">
+                    <span></span>
+                </button>
+                <div class="nav">
+                    <ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle dark" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="index.html">Beranda</a></li>
+                                <li><a class="dropdown-item" href="payment.html">Transaksi</a></li>
+                                <li><a class="dropdown-item" href="#">Kontak</a></li>
+                                <li><a class="dropdown-item" href="#">Tentang</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Alul Gaming <i class="fa-solid fa-user"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container my-5 paymentinfo">
+            <div class="container statuspembayaran py-3">
+                <div class="text-center d-flex justify-content-center">
+                    <p><i class="fa-regular fa-circle-check"></i> Pembayaran Selesai</i></p>
+                    <p><i class="fa-regular fa-hourglass"></i> Menunggu Pembayaran</i></p>
+                </div>
+                <div class="col px-3">
+                    <p class="title">Tanggal Pembayaran</p>
+                    <p class="message">12/12/2020</p>
+                </div>
+                <div class="col px-3">
+                    <p class="title">Total Pembayaran</p>
+                    <p class="message">Rp12.000.000</p>
+                </div>
+                <div class="col px-3">
+                    <p class="title">Pesan / Salam</p>
+                    <p class="message">Salam Satu Jiwa!!!!!!</p>
+                </div>
+            </div>
+
+            <div class="container hubungiadmin my-3">
+                <div class="row">
+                    <button type="button" class="btn btn-info">Hubungi Admin <i class="fa-solid fa-headset"></i></button>
+                </div>
+            </div>
+            
+            <div class="container programdonasi border">
+                <div class="text-start pt-5">
+                    <p class="text-judul"> <i class="fa-solid fa-clipboard-list"></i> Program Donasi</p>
+                </div>
+     
+                <div class="card" style="border: none;">
+                    <div class="row">
+                       <div class="col-md-6">
+                         <img src="src/style/image/jumbotron.jpeg" class="img-fluid" alt="..." style="width: 100%; height: 100%;">
+                       </div>
+                       <div class="col-md-6 text-start">
+                            <div class="card-body">
+                                <h5 class="card-title">Donasi Badai Lia</h5>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa ea quo ut, sit explicabo 
+                                 unde voluptatum debitis tenetur commodi rerum ratione vero iure id necessitatibus 
+                                 corporis doloremque maiores nihil veritatis.</p>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+
+                <div class="row p-5 detailpembayaran">
+                    <div class="col-md-6 text-start">
+                        <p class="text-center title"><i class="fa-solid fa-coins"></i> Detail Pembayaran</p>
+                        <div class="col">
+                            <p class="title">Kode Pembayaran</p>
+                            <p class="message">BR-12345</p>
+                        </div>
+                        <div class="col">
+                            <p class="title">Total Pembayaran</p>
+                            <p class="message">Rp12.000.000</p>
+                        </div>
+                        <div class="col">
+                            <p class="title">Tangga Pembayaran</p>
+                            <p class="message">12/12/2022</p>
+                        </div>
+                        <div class="col">
+                            <p class="title d-flex">Status</p>
+                            <div class="d-flex">
+                                <p class="statusbayar"><i class="fa-regular fa-circle-check"></i> Pembayaran Selesai</i></p>
+                                <p class="statusbayar"><i class="fa-regular fa-hourglass"></i> Menunggu Pembayaran</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-start">
+                        <p class="text-center title"><i class="fa-solid fa-user"></i> User Detail</p>
+                        <div class="col">
+                            <p class="title">Nama Lengkap</p>
+                            <p class="message">Kurt Cobain</p>
+                        </div>
+                        <div class="col">
+                            <p class="title">Email</p>
+                            <p class="message">cobain@gmail.com</p>
+                        </div>
+                        <div class="col">
+                            <p class="title">No. Telepon</p>
+                            <p class="message">0812345678</p>
+                        </div>
+                        <div class="col">
+                            <p class="title">Alamat</p>
+                            <p class="message">Jln. Kenangan Mantan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="text-center py-3">
+            <p class="p1">BeriRezeki dibuat dengan tujuan dapat membantu masyarakat diseluruh Wilayah Indonesia.
+                Hampir jutaan masyarakat & perusahaan bergabung dengan kami. 
+            </p>
+            <p class="p2"> 
+                <a href="#">Tentang Kami |</a>
+                <a href="#">Syarat & Ketentuan |</a>
+                <a href="#">Pusat Bantuan</a>
+            </p>
+            <p class="p3">Temukan kami di sosial media</p>
+            <p class="sosmed">
+                <a href="#"><img src="src/style/image/logo/ig.png"></a>
+                <a href="#"><img src="src/style/image/logo/wa.png"></a>
+                <a href="#"><img src="src/style/image/logo/fb.png"></a>
+                <a href="#"><img src="src/style/image/logo/twitter.png"></a>
+            </p>
+            <p class="copyright">Copyright © 2022 BeriRezeki. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="src/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
