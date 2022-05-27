@@ -180,6 +180,7 @@
                         <div class="card shadow-sm mx-5">
                             <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <div class="card-body">
+                                <i class="fa-solid fa-box-heart"></i>
                                 <h5 class="card-title">{{program.title}}</h5>
                                 <p class="card-text">{{program.short_desc}}</p>
                                 <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
