@@ -81,7 +81,7 @@ module.exports = {
                         }else{
                             comments.push({
                                 id: item.kode,
-                                nama: 'Pojoklaku Member',
+                                nama: 'Beri Rezeki Member',
                                 avatar: null,
                                 auth_type: 'Local',
                                 isAnonymous: item.isAnonymous,

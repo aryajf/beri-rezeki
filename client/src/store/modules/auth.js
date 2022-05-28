@@ -51,6 +51,7 @@ export default({
                 window.notyf.success(res.data.message)
                 dispatch('attempt', res.data.token)
                 setTimeout(() => {
+                    console.log(res.data)
                     if(res.data.data.role == 'Admin'){
                         window.location.href= appConfig.adminURL
                     }else{
@@ -126,8 +127,7 @@ export default({
                 window.notyf.success(res.data.message)
             }).catch(err => {
                 commit('SET_BUTTON_LOADING', false, {root: true})
-                window.notyf.error(err.response.data.message)
-                router.push({name:'not-found'})
+                router.push({name:'NotFound'})
             })
         },
         async updateProfile({commit, dispatch}, credentials){

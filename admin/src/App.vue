@@ -1,21 +1,92 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+    <div>
+        <!-- SESSION EXPIRED MODAL -->
+        <div class="modal fade" ref="tokenExpiredModal" id="tokenExpiredModal" tabindex="-1" aria-labelledby="tokenExpiredModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tokenExpiredModalLabel"><i class="uil uil-bell me-2"></i>Pemberitahuan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Session anda telah berakhir, harap login kembali untuk melanjutkan
+                    </div>
+                    <div class="modal-footer">
+                        <a @click="toLogin" data-bs-dismiss="modal" class="btn btn-sm btn-primary">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DASHBOARD MENU -->
+        <div v-if="authenticated">
+            <DashboardMenu />
+        </div>
+
+        <vue-progress-bar></vue-progress-bar>
+    </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script>
+export default {
+    mounted() {
+        this.$Progress.finish();
+    },
+    created() {
+        this.$Progress.start();
+
+        this.$router.beforeEach((to, from, next) => {
+            if (to.meta.progress !== undefined) {
+                let meta = to.meta.progress;
+                this.$Progress.parseMeta(meta);
+            }
+            this.$Progress.start();
+            next();
+        });
+
+        this.$router.afterEach((to, from) => {
+            this.$Progress.finish();
+        });
+    },
 }
+</script>
+
+<script setup>
+import { ref, computed, watch } from 'vue'
+import appConfig from '@/config/app'
+import { Modal } from 'bootstrap'
+import DashboardMenu from '@/components/layouts/DashboardMenu.vue'
+import store from '@/store'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+const authenticated = computed(() => store.getters['auth/authenticated'])
+const user = computed(() => store.getters['auth/user'])
+
+const tokenExpiredModal = ref(null)
+const homeURL = ref(appConfig.homeURL)
+
+watch(route, () => {
+    checkToken()
+})
+
+const checkToken = () => {
+    if (authenticated.value) {
+        let now = new Date()
+        let expired = new Date(user.value.data.token_expired_at) - now
+        if (expired < 0) {
+            var myModal = new Modal(tokenExpiredModal.value)
+            myModal.show()
+            store.dispatch('auth/logout')
+        }
+    }
+}
+
+const toLogin = () => {
+    window.location.href = homeURL.value + '/login'
+}
+</script>
+
+<style lang="scss">
+@import '@/assets/sass/app.scss';
 </style>

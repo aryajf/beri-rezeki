@@ -1,0 +1,79 @@
+@import './variables.scss';
+
+.comment-item-home {
+    padding: 15px;
+}
+
+.comments-wrapper {
+    .comment-item {
+        width: 40% !important;
+        padding: 15px;
+        margin: 0 10px !important;
+        background: #F6F8FD;
+        border-radius: 10px;
+
+        span {
+            text-align: center;
+            display: block;
+        }
+
+        .reply {
+            min-height: 70px;
+            margin-bottom: 10px;
+
+            a {
+                color: $darkBlue;
+                text-decoration: none;
+            }
+
+            .product {
+                font-size: 15px;
+                font-weight: 500;
+            }
+
+            .quote {
+                font-size: 17px;
+                font-style: italic;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+        }
+
+        .member {
+            font-size: 17px;
+            font-weight: bold;
+            color: grey;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .comments-wrapper {
+        .image {
+            display: none;
+        }
+
+        .comment-item {
+            width: 90% !important;
+            padding: 10px;
+            margin: 0 5px !important;
+
+            .reply {
+                min-height: 60px;
+
+                .product {
+                    font-size: 15px;
+                }
+
+                .quote {
+                    font-size: 15px;
+                    margin-top: 0;
+                }
+            }
+
+            .member {
+                font-size: 15px;
+            }
+        }
+    }
+}

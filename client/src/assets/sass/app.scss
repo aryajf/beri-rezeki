@@ -32,6 +32,13 @@ body {
     background: $darkBlue;
 }
 
+.p-progressbar-value{
+    background: $darkBlue !important;
+}
+.p-progressbar-label{
+    display: none !important;
+}
+
 .break {
     clear: both;
 }

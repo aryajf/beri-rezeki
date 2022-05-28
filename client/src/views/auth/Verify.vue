@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="mt-3 d-flex justify-content-center align-items-center">
+    <div id="verify" class="mt-3 d-flex justify-content-center align-items-center">
         <div class="col-md-4 mb-5">
             <div class="text-center mb-3 mb-lg-5">
                 <div class="text-center"><img src="@/assets/images/verified.png" alt=""></div>
@@ -31,7 +31,29 @@ onMounted(() => {
     verify()
 })
 </script>
-
 <style lang="scss">
-@import "@/assets/sass/login_register.scss";
+#verify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    .input-group-text {
+        background-color: #fff;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #ccc;
+        box-shadow: 0 0 0 #ccc inset, 0 0 0 #ccc;
+        outline: 0 none;
+    }
+}
+@media screen and (max-width: 768px) {
+    #verify{
+        padding: 12vh 10px 0 10px;
+    }
+
+}
 </style>

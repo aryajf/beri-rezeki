@@ -9,24 +9,32 @@
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
     "@chenfengyuan/vue-countdown": "^2.0.0-beta",
+    "@fullcalendar/core": "^5.9.0",
+    "@fullcalendar/daygrid": "^5.9.0",
+    "@fullcalendar/interaction": "^5.9.0",
+    "@fullcalendar/timegrid": "^5.9.0",
+    "@fullcalendar/vue3": "^5.9.0",
     "aos": "^2.3.4",
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
+    "chart.js": "^3.5.0",
+    "core-js": "^3.6.5",
     "cross-domain-storage": "^2.0.7",
+    "jquery": "^3.6.0",
     "moment": "^2.29.2",
     "notyf": "^3.10.0",
     "primeicons": "^5.0.0",
-    "primevue": "^3.12.5",
-    "swiper": "^8.1.0",
+    "primevue": "^3.12.6",
+    "quill": "^1.3.7",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.14",
+    "vue-cropperjs": "^5.0.0",
+    "vue-router": "^4.0.15",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",
     "@vue/compiler-sfc": "^3.2.33",
     "sass": "^1.43.4",
-    "vite": "^2.7.2",
-    "vite-plugin-pwa": "^0.11.3"
+    "vite": "^2.7.2"
   }
 }

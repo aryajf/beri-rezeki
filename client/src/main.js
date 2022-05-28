@@ -71,6 +71,13 @@ window.notyf = new Notyf({duration: 4000})
 // Vue Countdown
 import VueCountdown from '@chenfengyuan/vue-countdown'
 
+// Swiper
+import "swiper/css";
+import "swiper/css/pagination";
+
+// Vue Cropper
+import 'cropperjs/dist/cropper.css'
+
 import Mixins from '@/mixins'
 import '@/store/subscriber'
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {

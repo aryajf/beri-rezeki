@@ -49,14 +49,11 @@ router.route('/product')
 router.route('/accepted')
     .get(checkAuth, isAdmin, admin.allAccepted)
 
-router.route('/payments/search/:status/:keyword')
-    .get(checkAuth, isAdmin, admin.searchPayments)
-
-router.route('/payments/:status/:kode')
-    .get(checkAuth, isAdmin, admin.showPayment)
-
-router.route('/history/:status')
+router.route('/history')
     .get(checkAuth, isAdmin, admin.getHistory)
+    
+router.route('/history/:kode')
+    .get(checkAuth, isAdmin, admin.showPayment)
 
 // PROGRAM
 router.route('/program')

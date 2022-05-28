@@ -19,7 +19,7 @@
                                 </span>
                             </div>
                             <div class="avatar">
-                                <button v-if="user.auth_type == 'Local'" class="btn rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#avatarModal"><i class="uil uil-pen"></i></button>
+                                <button class="btn rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#avatarModal"><i class="uil uil-pen"></i></button>
                                 <template v-if="avatar != null">
                                     <img :src="apiURL+'images/avatar/'+avatar" class="rounded-circle shadow-sm" alt="Foto User">
                                 </template>
@@ -27,8 +27,7 @@
                                     <img src="@/assets/images/no-avatar.png" class="rounded-circle shadow-sm" alt="Foto User">
                                 </template>
                                 <template v-else>
-                                    <img v-if="user.auth_type == 'Local'" :src="apiURL+'images/avatar/'+user.avatar" class="rounded-circle shadow-sm" alt="Foto User">
-                                    <img v-else :src="user.avatar" class="rounded-circle shadow-sm" alt="Foto User">
+                                    <img :src="apiURL+'images/avatar/'+user.avatar" class="rounded-circle shadow-sm" alt="Foto User">
                                 </template>
                             </div>
                             <div class="text-center">

@@ -142,7 +142,7 @@ module.exports = {
         let harga, expired
         const now = new Date()
         
-        let kode = 'INV-' + now.getTime().toString().slice(-6).substring(0,4) + crypto.randomBytes(4).toString('hex') + now.getTime().toString().slice(-4)
+        let kode = 'INV-' + crypto.randomBytes(5).toString('hex') + now.getTime().toString().slice(-4)
         let program = await Program.findOne({where : {
             slug: req.params.slug
         }})

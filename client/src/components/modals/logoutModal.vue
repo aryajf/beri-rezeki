@@ -1,9 +1,9 @@
 <template>
-    <div class="modal fade" id="signoutModal" tabindex="-1" aria-labelledby="signoutModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="signoutModalLabel"><i class="uil uil-bell me-2"></i>Pemberitahuan</h5>
+                    <h5 class="modal-title" id="logoutModalLabel"><i class="uil uil-bell me-2"></i>Pemberitahuan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

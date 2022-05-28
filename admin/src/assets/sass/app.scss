@@ -1,0 +1,128 @@
+@import 'variables';
+
+/* Google Font CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Mulish', sans-serif;
+}
+
+body {
+    color: $darkBlue !important;
+}
+
+// ROUTE ENTER
+.route-enter-from {
+    opacity: 0;
+    transform: translate(0, 25px);
+}
+
+.route-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.route-leave-to {
+    opacity: 0;
+    transform: translateX(0, -25px);
+}
+
+.route-leave-active {
+    transition: all 0.3s ease-in;
+}
+
+// BAHAN
+.break {
+    clear: both;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.bg-outline-blue {
+    background: #E7F1FF;
+    color: #0C63E6 !important;
+}
+
+.bg-outline-green {
+    background: #deffe8;
+    color: #2ecc71 !important;
+}
+
+.bg-outline-red {
+    background: #ffd8d4;
+    color: #e74c3c !important;
+}
+
+.bg-outline-yellow {
+    background: #fff6e6;
+    color: #f1c40f !important;
+}
+
+.bg-az {
+    // alizarin
+    background: #e74c3c !important;
+    color: white !important;
+}
+
+.bg-ed {
+    // emerald
+    background: #2ecc71 !important;
+    color: white !important;
+}
+
+.bg-wa {
+    // wet asphalt
+    background: $darkBlue !important;
+    color: white !important;
+}
+
+.bg-by {
+    // bright yarrow
+    background: #f0bc74;
+}
+
+.bg-sm {
+    // shy moment
+    background: #8463FF;
+}
+
+.text-wa {
+    color: #323B46;
+}
+
+.text-darkBlue {
+    color: $darkBlue !important;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+p.button {
+    text-decoration: none;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}

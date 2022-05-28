@@ -32,15 +32,10 @@ module.exports = {
         checkAccepted()
         await Payment.findAll({
             include: [{
-                model: Payment,
-                as: 'payments',
-            },{
                 model: User,
                 as: 'user',
             }],
-            where:{
-                [Op.or]: [{status:'Accepted'}, {status:'Delivering'}, {status:'Processing'}]
-        }}).then(data => {
+            where:{status:'Accepted'}}).then(data => {
             if(!data){
                 res.status(404).json({message: 'Program yang sudah dibayar tidak ditemukan', status: false})
             }else{
@@ -59,7 +54,7 @@ module.exports = {
                     total_harga = total_harga + item.total_harga
                     let payment_item = {
                         'id' : item.kode,
-                        'title' : `Rp. ${Number(item.total_harga).toLocaleString()},00`,
+                        'title' : `${item.kode} | Rp. ${Number(item.total_harga).toLocaleString()},00`,
                         'total_harga' : `Rp. ${Number(item.total_harga).toLocaleString()},00`,
                         'start' : item.updatedAt,
                         'user_id' : item.user_id,
@@ -80,6 +75,8 @@ module.exports = {
                     program : Object.values(count.program),
                 }
 
+                console.log(countMonth)
+
                 res.json({
                     count: countMonth,
                     total_harga : total_harga,
@@ -97,9 +94,10 @@ module.exports = {
         })
     },
     getHistory: async(req, res) => {
-        let { page } = req.query
+        let { page, keyword } = req.query
         const { limit, offset } = getPagination(page, 10)
-        await checkStatus(req.params.status, limit, offset).then(data => {            
+        console.log(page, keyword)
+        await checkHistory(limit, offset, keyword).then(data => {
             if(!data){
                 res.status(404).json({message: 'Tipe program tidak tersedia', status: false})
             }else{
@@ -133,7 +131,9 @@ module.exports = {
     },
     showPayment: async(req, res) => {
         if(req.params.kode){
-            await checkStatus(req.params.status, null, null, null, req.params.kode).then(data => {
+            console.log(req.params)
+            // return
+            await checkHistory(null, null, null, req.params.kode).then(data => {
                 if(!data){
                     res.status(404).json({message: 'Pembayaran tidak ditemukan', status: false})
                 }else{
@@ -157,45 +157,6 @@ module.exports = {
         }else{
             res.status(404).json({message : 'Kode pembayaran belum dimasukkan', status: false})
         }
-    },
-    searchPayments: async(req, res) => {
-        if(req.params.keyword == ''){
-            res.status(404).json({message : 'Program tidak ditemukan', status: false})
-        }
-        let { page } = req.query
-        const { limit, offset } = getPagination(page, 10)
-        
-        await checkStatus(req.params.status, limit, offset, req.params.keyword).then(data => {
-            if(!data){
-                res.status(404).json({message: 'Tipe program tidak tersedia', status: false})
-            }else{
-                let total_harga = 0
-                data.rows.map(item =>{
-                    total_harga = total_harga + item.total_harga
-                })
-
-                const { totalItems, dataPaginate, totalPages, currentPage } = getPagingData(data, page, limit)
-
-                if(dataPaginate.length != 0 && !isNaN(currentPage)){
-                    res.json({
-                        total_harga : total_harga,
-                        totalItems : totalItems,
-                        limitItems : limit,
-                        totalPages : totalPages,
-                        currentPage : currentPage,
-                        payments : dataPaginate,
-                        message: 'Pencarian berhasil ditampilkan',
-                        request: {
-                            method: req.method,
-                            url: process.env.BASE_URL + 'payments/search/' + req.params.status + req.params.keyword
-                        },
-                        status: true
-                    })
-                }else{res.json({totalItems : 0, message : 'Pencarian tidak ditemukan', status: false})}
-            }
-        }).catch(() => {
-            res.status(404).json({message : 'Pencarian tidak ditemukan', status: false})
-        })
     },
     replyComment: async(req, res) => {
         if(req.body.messages == ''){
@@ -281,12 +242,11 @@ async function checkAccepted(){
     })
 }
 
-async function checkStatus (status, limit, offset, keyword, kode) {
+async function checkHistory(limit, offset, keyword, kode) {
     checkAccepted()
     let include = [{
-        model: Payment,
-        as: 'payments',
-        include : [{model : Program, as: 'program'}] // nested association
+        model : Program,
+        as: 'program'
     },{
         model: User,
         as: 'user',
@@ -296,18 +256,18 @@ async function checkStatus (status, limit, offset, keyword, kode) {
     }]
 
     if(kode){
-        return Payment.findOne({include: include, where: {kode: kode, status: `${status}`}})
+        return Payment.findOne({include: include, where: {kode: kode, status: `Accepted`}})
     }else{
         if(keyword){
             return Payment.findAndCountAll({limit, offset, include: include, where : {
                 kode : {
                     [Op.like]: `%${keyword}%`,
                 },
-                status : `${status}`
+                status : `Accepted`
             }, order: [['updatedAt', 'DESC']], distinct: true})
         }
         
-        return Payment.findAndCountAll({limit, offset, include: include, where : {status : `${status}`}, order: [['updatedAt', 'DESC']], distinct: true})
+        return Payment.findAndCountAll({limit, offset, include: include, where : {status : `Accepted`}, order: [['updatedAt', 'DESC']], distinct: true})
     }
 
 }

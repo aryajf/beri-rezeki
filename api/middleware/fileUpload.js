@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         cb(null, uploadPath)
     },
     filename: function (req, file, cb) {
-        const getFileName = file.originalname.split('.')[0]
+        const getFileName = file.originalname.split(' ').join('-').split('.')[0]
         const unique = new Date().toISOString().replace(/[\/\\:]/g, "_")
         const extension = file.mimetype.split("/").pop()
         const fileName = getFileName + '-' + unique + '.' + extension

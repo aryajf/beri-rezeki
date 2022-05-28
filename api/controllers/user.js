@@ -1,6 +1,7 @@
 const {User} = require('../models')
 const { Op } = require("sequelize")
 const path = require('path')
+const hbs = require('nodemailer-express-handlebars')
 const bcrypt = require('bcrypt')
 const crypto = require("crypto")
 const avatarPath = path.join(__dirname, '../public/images/avatars/')
@@ -74,19 +75,22 @@ module.exports = {
                 let token = crypto.randomBytes(16).toString('hex')
 
                 let transporter = nodemailer.createTransport(emailConfig)
-                await transporter.sendMail({
+                await transporter.use('compile', hbs({
+                    viewEngine: {
+                        partialsDir: path.resolve('./views/email/'),
+                        defaultLayout: false,
+                    },
+                    viewPath: path.resolve('./views/email/'),
+                })).sendMail({
                     from: MAIL_FROM_ADDRESS,
                     to: userReq.email,
-                    subject: "Verifikasi email - Pojoklaku",
-                    html: `
-                    <div>
-                        <h1 style="color:#fff;text-align:center;background-color:#333;">Verifikasi Email anda</h1>
-                        <div style="padding: auto 10px;">
-                            <h3>Link akan kadaluarsa dalam 1 jam | Harap jangan bagikan link ini kepada orang lain yaa :)</h3>
-                            <a href='${HOME_URL}verify/${req.body.email}/${token}' target='_blank'>Klik Disini Untuk Verifikasi Email</a>
-                        </div>
-                    </div>
-                    `,
+                    subject: "Verifikasi email - Beri Rezeki",
+                    template: 'register',
+                    context: {
+                        url: HOME_URL,
+                        email: req.body.email,
+                        token: token
+                    }
                 }).then(async () => {
                     const newUser = await User.create({
                         email: userReq.email,

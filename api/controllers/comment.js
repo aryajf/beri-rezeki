@@ -5,6 +5,8 @@ const {getPagination, getPagingData} = require('../config/mixins')
 
 module.exports = {
     get: async(req, res) => {
+
+        console.log(req.query)
         let { page } = req.query
         const { limit, offset } = getPagination(page, 10)
         

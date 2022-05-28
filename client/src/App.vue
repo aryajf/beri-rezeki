@@ -68,14 +68,14 @@ const checkToken = () => {
 
 const showNavbar = () => {
     let url = route.name
-    if(url == 'Home' || url == 'Login' || url == 'Register'){
+    if(url == 'Home' || url == 'Login' || url == 'Register' || url == 'Profile'){
         return true
     }
     return false
 }
 const showFooter = () => {
     let url = route.name
-    if(url == 'Home' || url == 'Login' || url == 'Register'){
+    if(url == 'Home' || url == 'Login' || url == 'Register' || url == 'Profile'){
         return true
     }
     return false

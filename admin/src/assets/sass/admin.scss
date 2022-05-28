@@ -1,0 +1,111 @@
+@import './table.scss';
+
+// WRAPPER
+.admin-wrapper {
+    box-sizing: border-box;
+}
+
+.admin-header {
+    padding: 20px;
+}
+
+.admin-header-heading {
+    color: #323B46;
+}
+
+.admin-header-heading>p {
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.admin-header-heading>p::first-letter {
+    text-transform: capitalize;
+}
+
+.admin-header-heading>p>a {
+    text-decoration: none;
+}
+
+.admin-body {
+    padding: 20px;
+}
+
+.admin-panel-responsive {
+    margin: 10px 0;
+}
+
+.admin-panel>a {
+    border: 1px solid #8463FF;
+    color: #8463FF;
+    margin-right: 5px;
+}
+
+.admin-panel>a:hover {
+    transition: 0.4s;
+    background: #8463FF;
+    color: white;
+}
+
+.admin-body-heading {
+    font-size: 20px;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #bdc3c7;
+    color: #323B46;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.nyimas-progress .p-progressbar-value{
+    background-color: #FFB300;
+}
+
+.progress-value{
+    font-size:11px;
+    text-align:center;
+    width:100%;
+}
+
+@media screen and (max-width: 768px) {
+
+    // WRAPPER MOBILE
+    .admin-header {
+        padding: 10px;
+    }
+
+    .admin-header-heading>p {
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .admin-header-heading>span {
+        font-size: 15px;
+    }
+
+    .admin-header-heading>p::first-letter {
+        text-transform: capitalize;
+    }
+
+    .admin-body {
+        padding: 10px 0;
+    }
+
+    .admin-panel-responsive {
+        margin-top: 0;
+        overflow-x: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .admin-panel {
+        width: 700px;
+    }
+
+    .top-button {
+        margin-bottom: 20px;
+    }
+}

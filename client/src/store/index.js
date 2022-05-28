@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import auth from './modules/auth'
+import comments from './modules/comments'
+import payments from './modules/payments'
 import program from './modules/program'
 
 export default createStore({
@@ -33,6 +35,6 @@ export default createStore({
     }
   },
   modules: {
-    auth, program
+    auth, comments, payments, program
   }
 })

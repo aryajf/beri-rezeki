@@ -1,0 +1,127 @@
+.checkout-method {
+    .checkout-method-content {
+        border-radius: 10px;
+        padding: 30px 0;
+    }
+
+    .checkout-text {
+        margin-bottom: 30px;
+        text-align: center;
+
+        .checkout-heading {
+            margin: 0;
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        .countdown,
+        .finished {
+            font-size: 20px;
+        }
+    }
+
+    .bank-info {
+        font-size: 17px;
+    }
+
+    .wisata-tanggal-input {
+        width: 75%;
+
+        input {
+            padding: 3px 10px;
+        }
+
+        button {
+            padding: 3px;
+        }
+    }
+
+    .submit-wisata-jadwal {
+        width: 23%;
+        margin-left: 2%;
+    }
+}
+
+.payment-detail {
+    .detail-heading {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .line-heading {
+        width: 50px;
+        height: 2px;
+        margin-bottom: 10px;
+        background: #323B46;
+    }
+
+    .detail-item {
+        margin-bottom: 15px;
+
+        span {
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .order-info {
+        margin-bottom: 10px;
+
+        .order-link:hover {
+            color: #323B46;
+        }
+    }
+
+    .btn-finish {
+        margin-top: 20px;
+    }
+}
+
+.payment-action {
+    a {
+        padding: 10px 0;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .checkout-method {
+        .checkout-method-content {
+            padding: 20px 0;
+        }
+
+        .checkout-text {
+            .checkout-heading {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .payment-detail {
+        margin-bottom: 100px;
+
+        .order-info {
+            margin-top: 20px;
+
+            .order-info-short-desc {
+                display: none;
+            }
+        }
+
+        .payment-info {
+            margin-bottom: 20px;
+        }
+
+        .btn-finish {
+            width: 100%;
+        }
+    }
+}

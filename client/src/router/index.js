@@ -4,7 +4,7 @@ import store from '@/store'
 const routes = [
   {
     path: '/:pathMatch(.*)*',
-    name: 'not-found',
+    name: 'NotFound',
     component: () => import(/* webpackChunkName: "404" */ '@/components/errors/404.vue')
   },
   {
@@ -57,43 +57,16 @@ const routes = [
     path: '/forgot',
     name: 'Forgot',
     component: () => import(/* webpackChunkName: "Forgot" */ '@/views/auth/Forgot.vue'),
-    beforeEnter: (to, from, next) => {
-      window.scrollTo(0, 0)
-      if(store.getters['auth/authenticated']){
-        return next({
-          name : 'Home'
-        })
-      }
-      next()
-    }
   },
   {
     path: '/verify/:email/:token',
     name: 'Verify',
     component: () => import(/* webpackChunkName: "Verify" */ '@/views/auth/Verify.vue'),
-    beforeEnter: (to, from, next) => {
-      window.scrollTo(0, 0)
-      if(store.getters['auth/authenticated']){
-        return next({
-          name : 'Home'
-        })
-      }
-      next()
-    }
   },
   {
     path: '/password/update/:email/:token',
     name: 'UpdatePassword',
-    component: () => import(/* webpackChunkName: "UpdatePassword" */ '@/views/auth/UpdatePassword.vue'),
-    beforeEnter: (to, from, next) => {
-      window.scrollTo(0, 0)
-      if(store.getters['auth/authenticated']){
-        return next({
-          name : 'Home'
-        })
-      }
-      next()
-    }
+    component: () => import(/* webpackChunkName: "UpdatePassword" */ '@/views/auth/UpdatePassword.vue')
   },
   {
     path: '/profile',

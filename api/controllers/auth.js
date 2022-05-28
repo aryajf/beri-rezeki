@@ -1,5 +1,6 @@
 const {User} = require('../models')
 const bcrypt = require('bcrypt')
+const hbs = require('nodemailer-express-handlebars')
 const jwt = require('jsonwebtoken')
 const crypto = require("crypto")
 const nodemailer = require("nodemailer")
@@ -101,19 +102,22 @@ module.exports = {
                 let token = crypto.randomBytes(16).toString('hex')
 
                 let transporter = nodemailer.createTransport(emailConfig)
-                await transporter.sendMail({
+                await transporter.use('compile', hbs({
+                    viewEngine: {
+                        partialsDir: path.resolve('./views/email/'),
+                        defaultLayout: false,
+                    },
+                    viewPath: path.resolve('./views/email/'),
+                })).sendMail({
                     from: MAIL_FROM_ADDRESS,
                     to: userReq.email,
                     subject: "Verifikasi email - Beri Rezeki",
-                    html: `
-                    <div>
-                        <h1 style="color:#333;text-align:center;">Verifikasi Email anda</h1>
-                        <div style="padding: auto 10px;">
-                            <div>Link akan kadaluarsa dalam 1 jam | Harap jangan bagikan link ini kepada orang lain yaa :)</div>
-                            <a href='${HOME_URL}verify/${req.body.email}/${token}' target='_blank'>Klik Disini Untuk Verifikasi Email</a>
-                        </div>
-                    </div>
-                    `,
+                    template: 'register',
+                    context: {
+                        url: HOME_URL,
+                        email: req.body.email,
+                        token: token
+                    }
                 }).then(async () => {
                     const newUser = await User.create({
                         email: userReq.email,
@@ -199,14 +203,12 @@ module.exports = {
         }
     },
     forgotPasswordRequest: async(req, res) => {
-        if(!req.body.tokenRecaptcha) return res.status(400).json({message: 'Human Verification belum anda centang', status: false})
-
-        if(userValidation({email: req.body.email}, req.url) != null){
-            res.status(400).send(userValidation({email: req.body.email}, req.url))
-            return
-        }
-
         try{
+            if(userValidation({email: req.body.email}, req.url) != null){
+                res.status(400).send(userValidation({email: req.body.email}, req.url))
+                return
+            }
+
             let user = await findUser(req.body.email)
             if(user){
                 const token = crypto.randomBytes(16).toString('hex')
@@ -214,35 +216,43 @@ module.exports = {
                 await user.save()
 
                 let transporter = nodemailer.createTransport(emailConfig)
-                await transporter.sendMail({
-                    from: MAIL_FROM_ADDRESS,
-                    to: req.body.email,
-                    subject: "Ubah Password - Beri Rezeki",
-                    html: `
-                    <div>
-                        <h1 style="color:#333;text-align:center;">Ubah password anda</h1>
-                        <div style="padding: auto 10px;">
-                            <div>Link akan kadaluarsa dalam 1 jam | Harap jangan bagikan link ini kepada orang lain yaa :)</div>
-                            <a href='${HOME_URL}password/update/${req.body.email}/${token}' target='_blank'>Klik Disini Untuk Mengubah password</a>
-                        </div>
-                    </div>
-                    `,
-                })
-
-                if(user.token){
-                    setTimeout(async function(){
-                        user.token = null
-                        await user.save()
-                    }, 3600000)
-                }
-    
-                res.status(201).json({
-                    message: 'Silahkan cek email anda untuk mengubah password',
-                    request: {
-                        method: req.method,
-                        url: BASE_URL + 'password/forgot'
+                await transporter.use('compile', hbs({
+                    viewEngine: {
+                        partialsDir: path.resolve('./views/email/'),
+                        defaultLayout: false,
                     },
-                    status: true,
+                    viewPath: path.resolve('./views/email/'),
+                })).sendMail({
+                    from: MAIL_FROM_ADDRESS,
+                    to: user.email,
+                    subject: "Lupa Password - Moazza Indonesia",
+                    template: 'forgot',
+                    context: {
+                        url: HOME_URL,
+                        email: user.email,
+                        token: token
+                    }
+                }).then(async () => {
+                    if (user.token) {
+                        setTimeout(async function () {
+                            user.token = null
+                            await user.save()
+                        }, 3600000)
+                    }
+
+                    res.status(201).json({
+                        message: 'Silahkan cek email anda untuk mengubah password',
+                        request: {
+                            method: req.method,
+                            url: process.env.BASE_URL + req.url
+                        },
+                        status: true,
+                    })
+                }).catch(() => {
+                    res.status(400).json({
+                        message: 'Terjadi kesalahan saat mengirim email',
+                        status: false
+                    })
                 })
             }else{
                 res.status(404).json({email: req.body.email, message: 'Email tidak ditemukan', status: false})
@@ -256,8 +266,6 @@ module.exports = {
         }
     },
     updatePassword: async (req, res) => {
-        if(!req.body.tokenRecaptcha) return res.status(400).json({message: 'Human Verification belum anda centang', status: false})
-
         let user = await findUser(req.params.email)
         if(user == null || user.token != req.params.token || user.token == null){
             res.status(404).json({
