@@ -293,6 +293,10 @@
         padding-right: 8px;
     }
 
+    .nama-akun{
+        visibility: hidden;
+    }
+
     footer .p1 {
         font-size: 0.9em;
         color: #045256;
