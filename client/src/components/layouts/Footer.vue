@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer id="footer">
         <div class="text-center py-1">
             <p class="p1">BeriRezeki dibuat dengan tujuan dapat membantu masyarakat diseluruh Wilayah Indonesia.
                 Hampir jutaan masyarakat & perusahaan bergabung dengan kami. 

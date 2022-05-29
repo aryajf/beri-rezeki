@@ -51,11 +51,10 @@ export default({
                 window.notyf.success(res.data.message)
                 dispatch('attempt', res.data.token)
                 setTimeout(() => {
-                    console.log(res.data)
                     if(res.data.data.role == 'Admin'){
                         window.location.href= appConfig.adminURL
                     }else{
-                        window.history.back()
+                        router.push("/")
                     }
                 }, 900)
             }).catch(err => {

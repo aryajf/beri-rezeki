@@ -1,0 +1,143 @@
+.bill-default {
+    img {
+        border-radius: 10px;
+    }
+}
+
+.image-bill {
+    padding: 20px 0;
+    border-radius: 10px;
+
+    img {
+        width: 30%;
+        margin-left: 35%;
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 25px;
+    }
+}
+
+.donate-wrapper {
+    margin: 20px 0;
+    min-height: 100vh;
+}
+
+.back-button {
+    margin-bottom: 20px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.donate-method {
+    .donate-method-content {
+        border-radius: 10px;
+        padding: 30px 0;
+    }
+
+    .donate-text {
+        margin-bottom: 30px;
+        text-align: center;
+
+        .donate-heading {
+            margin: 0;
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        .finished {
+            font-size: 20px;
+        }
+    }
+
+    .bank-info {
+        font-size: 17px;
+    }
+
+    .btn-chat {
+        margin-top: 20px;
+        background: #00E676;
+        color: white;
+    }
+}
+
+
+.donate-detail {
+    .detail-heading {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .line-heading {
+        width: 50px;
+        height: 2px;
+        margin-bottom: 10px;
+        background: #323B46;
+    }
+
+    .detail-item {
+        margin-bottom: 15px;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    .order-info {
+        margin-bottom: 30px;
+
+        .order-link:hover {
+            color: #323B46;
+        }
+    }
+
+    .payment-info {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .donate-wrapper {
+        margin-top: 10px;
+
+        .donate-wrapper-spacing {
+            padding: 0 15px;
+        }
+    }
+
+    .donate-method {
+        .donate-method-content {
+            padding: 20px 0;
+        }
+
+        .donate-text {
+            .donate-heading {
+                font-size: 15px;
+            }
+
+            .countdown {
+                font-size: 13px;
+            }
+        }
+
+        .atas-nama {
+            font-size: 17px;
+            text-align: center;
+        }
+
+        .btn-chat {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .donate-detail {
+        .order-info {
+            .order-info-short-desc {
+                display: none;
+            }
+        }
+    }
+}

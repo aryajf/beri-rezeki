@@ -36,7 +36,7 @@
                             </div>
                             <p>{{user.nama}}</p>
                             <div class="action col-md-12">
-                                <button class="btn btn-sm bg-red" data-bs-toggle="modal" data-bs-target="#signoutModal">
+                                <button class="btn btn-sm bg-red" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                     <i class="uil uil-sign-out-alt me-1"></i>Logout
                                 </button>
                             </div>

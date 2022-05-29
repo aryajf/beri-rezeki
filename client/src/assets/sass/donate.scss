@@ -1,0 +1,108 @@
+.text-judul{
+    font-size: 20px;
+    font-weight: 700;
+    color: #045256;
+}
+.accordion-button:not(.collapsed) {
+    color: #323B46;
+    border: none !important;
+    box-shadow: none;
+}
+
+.accordion-item {
+    border: none;
+    background: #F6F8FD;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+    .accordion-header {
+        button {
+            border-radius: 5px !important;
+            background: #F6F8FD;
+            color: #323B46;
+            font-weight: 500;
+            font-size: 17px;
+            padding: 20px;
+        }
+    }
+
+    .accordion-body {
+        padding: 0 10px;
+    }
+}
+
+.list-group-item:last-child {
+    border: none;
+}
+
+.list-group-item {
+    background: #F6F8FD;
+    border-radius: none !important;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #D7D9DD;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+        width: 70px;
+        display: block;
+    }
+
+    span {
+        display: block;
+        margin-top: 5px;
+        font-weight: 500;
+        font-size: 15px;
+        color: #323B46;
+    }
+}
+
+.item-right {
+    .item-preview {
+        .item-info {
+            margin-bottom: 20px;
+
+            .title {
+                margin-bottom: 5px;
+                display: block;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .accordion-item {
+        .accordion-header {
+            button {
+                font-size: 15px;
+                padding: 15px 10px;
+            }
+        }
+
+        .accordion-body {
+            padding: 0 5px;
+        }
+    }
+
+    .list-group-item {
+        img {
+            width: 50px;
+        }
+
+        span {
+            font-weight: 400;
+            font-size: 15px;
+        }
+    }
+
+    .p-inputgroup-addon {
+        padding: 0.1rem 0.1rem;
+    }
+
+    .p-inputtext {
+        padding: 0 5px;
+    }
+}

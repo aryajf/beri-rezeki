@@ -55,9 +55,11 @@
                 <div class="row" v-if="programs.program && programs.totalItems != 0">
                     <div class="col-md-6 py-3" v-for="program in programs.program" :key="program.id">
                         <div class="card shadow-sm">
+                            <router-link :to="'/program/'+program.slug">
                             <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" :src="`${apiURL}/images/programs/${program.cover}`" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            </router-link>
                             <div class="card-body">
-                                <h5 class="card-title">{{ program.title }}</h5>
+                                <h5 class="card-title"><router-link :to="'/program/'+program.slug" style="text-decoration:inherit;color:inherit;">{{ program.title }}</router-link></h5>
                                 <p class="card-text">{{ program.short_desc }}</p>
                                 <p v-if="program.type == 'Single'" class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.harga)}}</small></p>
                                 <template v-if="program.type == 'Crowdfunding'">
@@ -162,10 +164,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <hr size="3" width="100%" color="black">
-                <button type="button" class="btn btn-info">Lihat Semua</button>
             </div>
         </div>
         <!-- ------------------------------------------------- END CONTENT BeriRezeki ------------------------------------>

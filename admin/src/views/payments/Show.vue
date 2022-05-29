@@ -115,11 +115,6 @@
                                             <small class="badge bg-light text-dark">Belum diisi</small>
                                         </template>
                                     </p>
-                                    <p class="detail-item">
-                                        <span>Alamat</span> <br>
-                                        <template v-if="payment.user.alamat">{{ payment.user.alamat }}</template>
-                                        <template v-else><small class="badge bg-light text-dark">Belum diisi</small></template>
-                                    </p>
                                 </template>
                                 <template v-else>
                                     <p class="detail-item">
@@ -132,10 +127,6 @@
                                     </p>
                                     <p class="detail-item">
                                         <span>No. Telepon</span> <br>
-                                        <small class="badge bg-light text-dark">Akun sudah dihapus</small>
-                                    </p>
-                                    <p class="detail-item">
-                                        <span>Alamat</span> <br>
                                         <small class="badge bg-light text-dark">Akun sudah dihapus</small>
                                     </p>
                                 </template>

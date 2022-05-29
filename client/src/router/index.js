@@ -23,6 +23,62 @@ const routes = [
       window.scrollTo(0, 0)
     }
   },
+  {
+    path: '/program/:slug/donate',
+    name: 'Donate',
+    component: () => import(/* webpackChunkName: "Donate" */ '@/views/payments/Donate.vue'),
+    beforeEnter: (to, from, next) => {
+      window.scrollTo(0, 0)
+      if(!store.getters['auth/authenticated'] || store.getters['auth/user'].role == 'Admin'){
+        return next({
+          name : 'Home'
+        })
+      }
+      next()
+    }
+  },
+  {
+    path: '/pending',
+    name: 'Pending',
+    component: () => import(/* webpackChunkName: "Pending" */ '@/views/payments/Pending.vue'),
+    beforeEnter: (to, from, next) => {
+      window.scrollTo(0, 0)
+      if(!store.getters['auth/authenticated'] || store.getters['auth/user'].role == 'Admin'){
+        return next({
+          name : 'Home'
+        })
+      }
+      next()
+    }
+  },
+  {
+    path: '/accepted',
+    name: 'Accepted',
+    component: () => import(/* webpackChunkName: "Accepted" */ '@/views/payments/Accepted.vue'),
+    beforeEnter: (to, from, next) => {
+      window.scrollTo(0, 0)
+      if(!store.getters['auth/authenticated'] || store.getters['auth/user'].role == 'Admin'){
+        return next({
+          name : 'Home'
+        })
+      }
+      next()
+    }
+  },
+  {
+    path: '/:status/:kode',
+    name: 'ShowPayment',
+    component: () => import(/* webpackChunkName: "ShowPayment" */ '@/views/payments/ShowPayment.vue'),
+    beforeEnter: (to, from, next) => {
+      window.scrollTo(0, 0)
+      if(!store.getters['auth/authenticated'] || store.getters['auth/user'].role == 'Admin'){
+        return next({
+          name : 'Home'
+        })
+      }
+      next()
+    }
+  },
 
   // AUTHENTICATION
   {

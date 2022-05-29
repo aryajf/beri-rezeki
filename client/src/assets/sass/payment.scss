@@ -1,0 +1,135 @@
+@import './variables.scss';
+
+.payment-wrapper {
+    margin: 100px 0 100px 0;
+}
+
+.back-button {
+    margin-bottom: 20px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.payment-menu {
+    margin: 20px 0;
+    padding: 7px 0;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .payment-menu-scroll {
+        min-width: 500px;
+
+        a {
+            background: #9ab8ba;
+            color: $darkBlue;
+            margin-right: 10px;
+            width: 240px;
+
+            &:hover {
+                transition: 0.4s;
+                background: #84a1a3;
+                color: $darkBlue;
+            }
+
+            .badge-total {
+                background: $darkBlue;
+                color: white;
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.payment-text {
+    position: relative;
+
+    .payment-title {
+        text-decoration: none;
+        font-size: 20px;
+        display: block;
+        margin-top: 10px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: $darkBlue;
+    }
+
+    .payment-short-desc {
+        margin-bottom: 35px;
+    }
+
+    .payment-harga {
+        font-size: 17px;
+        position: absolute;
+        top: 0;
+        right: 40px;
+        font-weight: bold;
+        color: $darkBlue;
+    }
+
+    .btn-pay {
+        text-decoration: none;
+        position: absolute;
+        bottom: 0;
+        color: #6C63FF;
+        font-weight: bold;
+    }
+
+    .btn-delete {
+        font-size: 20px !important;
+        position: absolute;
+        bottom: 0;
+        right: 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .payment-menu {
+        a {
+            margin-right: 5px;
+        }
+    }
+
+    .payment-text {
+        padding-left: 0;
+
+        .countdown {
+            margin-top: 10px;
+        }
+
+        .payment-title {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .payment-short-desc {
+            display: none;
+        }
+
+        .payment-harga {
+            font-size: 14px;
+            position: relative;
+            right: 0;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .btn-pay {
+            position: relative;
+            bottom: 0;
+            font-size: 14px;
+        }
+
+        .btn-delete {
+            font-size: 20px !important;
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+        }
+    }
+}

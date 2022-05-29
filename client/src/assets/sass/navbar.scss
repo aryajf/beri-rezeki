@@ -96,12 +96,18 @@ nav{
 	background-color: #9AB8BA;
 }
 
+.nama-akun{
+	font-size: 1em;
+	font-weight: 600;
+	color: #045256;
+}
+
 .container-nav{
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0px 10px;
+	margin: 0 10px;
 }
 
 @media(max-width:680px){

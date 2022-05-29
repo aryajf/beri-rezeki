@@ -83,5 +83,5 @@ import '@/store/subscriber'
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
     const app = createApp(App)
     app.config.globalProperties.emitter = emitter
-    app.use(store).use(router).use(PrimeVue).use(VueProgressBar, options).mixin(Mixins).component(VueCountdown.name, VueCountdown).component("ConfirmDialog", ConfirmDialog).component("ProgressBar", ProgressBar).component("Message", Message).component("Paginator", Paginator).component("Skeleton", Skeleton).mount('#app')
+    app.use(store).use(router).use(ConfirmationService).use(PrimeVue).use(VueProgressBar, options).mixin(Mixins).component(VueCountdown.name, VueCountdown).component("ConfirmDialog", ConfirmDialog).component("ProgressBar", ProgressBar).component("Message", Message).component("Paginator", Paginator).component("Skeleton", Skeleton).mount('#app')
 })

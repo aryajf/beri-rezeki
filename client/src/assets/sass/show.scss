@@ -6,9 +6,13 @@
 
 #detail-header {
     background-color: transparent;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
-.logo a i {
+.back-button-show a i {
+    font-size: 3em;
     color: white;
 }
 
@@ -45,4 +49,8 @@
 #button:hover {
     background-color: #bff5f7;
     color: #045256;
+}
+
+.comment-avatar{
+    width: 75px;
 }

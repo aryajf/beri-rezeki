@@ -90,10 +90,10 @@ export default({
 
             return cancel
         },
-        async buyProposal({commit, dispatch}, data){
+        async donate({commit, dispatch}, data){
             commit('SET_BUTTON_LOADING', true, {root: true})
             try{
-                let res = await axios.put(`payment/buy/proposal/${data.slug}`, data)
+                let res = await axios.put(`payment/buy/${data.slug}`, data)
                 dispatch("getPayment", {status:'pending'})
                 dispatch("getPayment", {status:'accepted'})
                 commit('SET_BUTTON_LOADING', false, {root: true})

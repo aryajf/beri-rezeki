@@ -32,6 +32,9 @@ export default createStore({
     },
     formErrors(state){
       return state.formErrors
+    },
+    loadingStatus(state){
+      return state.loadingStatus
     }
   },
   modules: {

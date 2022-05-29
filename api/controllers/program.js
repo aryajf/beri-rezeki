@@ -52,7 +52,6 @@ module.exports = {
         if(program != null){
             const program_comments = await Comment.findAll({
                 where: {
-                    type: 'program',
                     program_id: program.id
                 },
                 order:[['updatedAt', 'DESC']],
@@ -61,6 +60,7 @@ module.exports = {
                     as: 'user',
                 }]
             })
+
             let comments_length = 0
             let comments = []
             if(program_comments.length != 0){
@@ -117,10 +117,10 @@ module.exports = {
 
             if(program.type == 'Crowdfunding'){
                 program.dataValues.total_funding = 0
-                program.item.map(itemCart => {
-                    if(itemCart.payment){
-                        if(itemCart.payment.status == 'Accepted' && itemCart.payment.type == 'Program'){
-                            program.dataValues.total_funding += itemCart.payment.total_harga
+                program.payments.map(payment => {
+                    if(payment){
+                        if(payment.status == 'Accepted' && payment.type == 'Program'){
+                            program.dataValues.total_funding += payment.total_harga
                         }
                     }
                 })
@@ -293,7 +293,7 @@ function findProgram(slug){
         as: 'payments',
     },{
         model: Comment,
-        as: 'comment',
+        as: 'comments',
         required: false,
         include: [{
             model: User,
