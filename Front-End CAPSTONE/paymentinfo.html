@@ -17,28 +17,23 @@
 </head>
 <body>
     <header>
-        <nav class="fixed-top bg-transparent">
+        <nav class="fixed-top">
             <div class="container-nav">
                 <div class="logo">
                     <a href="index.html"><img src="src/style/image/logo/Logo_BeriRezeki_3.png" class="img-fluid"></a>
                 </div>
-                <button type="button" class="nav-toggler">
-                    <span></span>
-                </button>
-                <div class="nav">
-                    <ul>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle dark" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="index.html">Beranda</a></li>
-                                <li><a class="dropdown-item" href="payment.html">Transaksi</a></li>
-                                <li><a class="dropdown-item" href="#">Kontak</a></li>
-                                <li><a class="dropdown-item" href="#">Tentang</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Alul Gaming <i class="fa-solid fa-user"></i></a></li>
+                <div class="text-end akun d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <p class="mb-0 me-2 nama-akun">Alul Gaming</p>
+                    <a href="#" class="link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="src/style/image/profil.jpeg" alt="" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small text-end" aria-labelledby="dropdownUser1">
+                      <li><a class="dropdown-item" href="index.html">Beranda</a></li>
+                      <li><a class="dropdown-item" href="payment.html">Transaksi</a></li>
+                      <li><a class="dropdown-item" href="#">Kontak</a></li>
+                      <li><a class="dropdown-item" href="#">Tentang</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Sign out</a></li>
                     </ul>
                 </div>
             </div>
