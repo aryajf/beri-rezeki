@@ -13,7 +13,7 @@
                     <div class="text-end akun d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <p class="mb-0 me-2 nama-akun">{{authenticated.nama}}</p>
                         <a href="#" class="link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img v-if="authenticated.avatar" :src="apiURL+'images/avatar/'+authenticated.avatar" alt="" width="32" height="32" class="rounded-circle">
+                        <img v-if="authenticated.avatar" :src="apiURL+'/images/avatars/'+authenticated.avatar" alt="" width="32" height="32" class="rounded-circle">
                         <img v-else src="@/assets/images/no-avatar.png" alt="" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small text-end" aria-labelledby="dropdownUser1" style="padding:0;">
@@ -22,6 +22,7 @@
                             <li><a class="dropdown-item" href="#footer">Kontak</a></li>
                             <li><a class="dropdown-item" href="#">Tentang</a></li>
                             <li><hr class="dropdown-divider" style="margin:0;padding:0;"></li>
+                            <li><router-link class="dropdown-item" to="/profile">Profile</router-link></li>
                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">Sign out</a></li>
                         </ul>
                     </div>

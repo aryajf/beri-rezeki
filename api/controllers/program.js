@@ -1,4 +1,4 @@
-const {Program, Payment, Comment, Item, User} = require('../models')
+const {Program, Payment, Comment, Like, User} = require('../models')
 const { Op } = require("sequelize")
 const path = require('path')
 const programCoverPath = path.join(__dirname, '../public/images/programs/')
@@ -26,7 +26,7 @@ module.exports = {
                             }
                         })
                     }
-                    delete program.dataValues.item
+                    delete program.dataValues.payments
                 })
 
                 res.json({
@@ -56,6 +56,9 @@ module.exports = {
                 },
                 order:[['updatedAt', 'DESC']],
                 include: [{
+                    model: Like,
+                    as: 'likes',
+                },{
                     model: User,
                     as: 'user',
                 }]
@@ -66,6 +69,12 @@ module.exports = {
             if(program_comments.length != 0){
                 program_comments.map(item => {
                     if(!item.kode.includes('ADMIN-') && item.status == 'Accepted'){
+                        let likes = []
+                        if(item.likes){
+                            item.likes.map((like) => {
+                                likes.push(like)
+                            })
+                        }
                         if(item.user){
                             comments.push({
                                 id: item.kode,
@@ -76,6 +85,7 @@ module.exports = {
                                 messages: item.messages,
                                 createdAt: item.createdAt,
                                 updatedAt: item.updatedAt,
+                                likes: likes,
                                 reply_comments: []
                             })
                         }else{
@@ -88,6 +98,7 @@ module.exports = {
                                 messages: item.messages,
                                 createdAt: item.createdAt,
                                 updatedAt: item.updatedAt,
+                                likes: likes,
                                 reply_comments: []
                             })
                         }
@@ -119,13 +130,13 @@ module.exports = {
                 program.dataValues.total_funding = 0
                 program.payments.map(payment => {
                     if(payment){
-                        if(payment.status == 'Accepted' && payment.type == 'Program'){
+                        if(payment.status == 'Accepted'){
                             program.dataValues.total_funding += payment.total_harga
                         }
                     }
                 })
             }
-            delete program.dataValues.item
+            delete program.dataValues.payments
 
             res.json({
                 comments_length: comments_length,

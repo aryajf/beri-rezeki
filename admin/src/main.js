@@ -4,22 +4,22 @@ import router from './router'
 import store from './store'
 import appConfig from "./config/app"
 
-// import { registerSW } from 'virtual:pwa-register'
+import { registerSW } from 'virtual:pwa-register'
 
-// const updateSW = registerSW({
-//     onRegistered(r) {
-//         r && setInterval(() => {
-//             r.update()
-//         }, 60 * 60 * 1000 /* 1 hour: timeout in milliseconds */)
-//     },
-//     onNeedRefresh() {
-//         // show a prompt to user
-//     },
-//     onOfflineReady() {
-//         // show a ready to work offline to user
-//     },
-// })
-// updateSW()
+const updateSW = registerSW({
+    onRegistered(r) {
+        r && setInterval(() => {
+            r.update()
+        }, 60 * 60 * 1000 /* 1 hour: timeout in milliseconds */)
+    },
+    onNeedRefresh() {
+        // show a prompt to user
+    },
+    onOfflineReady() {
+        // show a ready to work offline to user
+    },
+})
+updateSW()
 
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css"

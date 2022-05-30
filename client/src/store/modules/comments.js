@@ -28,6 +28,32 @@ export default({
                 commit('SET_LOADING', false, {root: true})
                 return err
             }
+        },
+        async likeComment({commit}, kode){
+            commit('SET_BUTTON_LOADING', true, {root: true})
+            let reply = await axios.post(`comment/like/${kode}`).then(res => {
+                console.log(kode)
+                commit('SET_BUTTON_LOADING', false, {root: true})
+                window.notyf.success(res.data.message)
+                return res
+            }).catch(err => {
+                commit('SET_BUTTON_LOADING', false, {root: true})
+                return err.response
+            })
+            return reply
+        },
+        async replyComment({commit},data){
+            commit('SET_BUTTON_LOADING', true, {root: true})
+            let reply = await axios.post(`product/reply/${data.kode}`, {messages: data.messages}).then(res => {
+                commit('SET_BUTTON_LOADING', false, {root: true})
+                window.notyf.success(res.data.message)
+                return res
+            }).catch(err => {
+                commit('SET_BUTTON_LOADING', false, {root: true})
+                window.notyf.error(err.response.data.message)
+                return err.response
+            })
+            return reply
         }
     }
 })

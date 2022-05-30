@@ -1,4 +1,4 @@
-const {User} = require('../models')
+const {Like, User} = require('../models')
 const bcrypt = require('bcrypt')
 const hbs = require('nodemailer-express-handlebars')
 const jwt = require('jsonwebtoken')
@@ -170,7 +170,8 @@ module.exports = {
                 avatar: user.avatar,
                 role: user.role,
                 email_status: user.email_status,
-                token_expired_at: user.token_expired_at
+                token_expired_at: user.token_expired_at,
+                likes: user.likes
             },
             request: {
                 method: req.method,
@@ -411,7 +412,10 @@ module.exports = {
 }
 
 function findUser(email){
-    return User.findOne({where: {email: email}})
+    return User.findOne({where: {email: email}, include: [{
+        model: Like,
+        as: 'likes'
+    }]})
 }
 
 function hashPassword(password){

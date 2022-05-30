@@ -14,7 +14,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="avatar">
-                                <span class="btn btn-sm bg-yellow"><i class="uil uil-export me-1"></i>Select Avatar</span>
+                                <span class="btn btn-sm bg-darkBlue"><i class="uil uil-export me-1"></i>Select Avatar</span>
                                 <button id="saveBtn" class="btn btn-sm btn-primary ms-2 d-none" @click="updateAvatar" :disabled="btnLoading">
                                     <div class="d-flex">
                                         <span>Simpan</span>

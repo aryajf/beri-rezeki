@@ -21,13 +21,13 @@
                             <div class="avatar">
                                 <button class="btn rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#avatarModal"><i class="uil uil-pen"></i></button>
                                 <template v-if="avatar != null">
-                                    <img :src="apiURL+'images/avatar/'+avatar" class="rounded-circle shadow-sm" alt="Foto User">
+                                    <img :src="apiURL+'/images/avatars/'+avatar" class="rounded-circle shadow-sm" alt="Foto User">
                                 </template>
                                 <template v-else-if="user.avatar == null">
                                     <img src="@/assets/images/no-avatar.png" class="rounded-circle shadow-sm" alt="Foto User">
                                 </template>
                                 <template v-else>
-                                    <img :src="apiURL+'images/avatar/'+user.avatar" class="rounded-circle shadow-sm" alt="Foto User">
+                                    <img :src="apiURL+'/images/avatars/'+user.avatar" class="rounded-circle shadow-sm" alt="Foto User">
                                 </template>
                             </div>
                             <div class="text-center">

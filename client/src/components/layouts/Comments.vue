@@ -21,7 +21,7 @@
                 <swiper-slide class="comment-item-home" v-for="comment in comments.comments" :key="comment.id">
                     <div>
                         <div class="d-flex justify-content-center">
-                            <img v-if="(comment.user) && (comment.user.avatar !== null)" :src="`${apiURL}/images/avatars/${comment.user.avatar}`" class="w-25" :alt="comment.messages">
+                            <img v-if="(comment.user) && (comment.user.avatar !== null)" :src="`${apiURL}//images/avatars/${comment.user.avatar}`" class="w-25 rounded-circle" :alt="comment.messages">
                             <img v-else src="@/assets/images/no-avatar.png" class="w-25" :alt="comment.messages">
                         </div>
                         <h2 class="text-center mt-1">{{comment.user.nama}}</h2>

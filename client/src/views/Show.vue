@@ -66,8 +66,11 @@
                                 <div class="card shadow-sm mx-5">
                                     <div class="card-body">
                                         <div class="col d-flex align-items-center">
-                                            <img v-if="comment.avatar" :src="apiURL+'images/avatar/'+comment.avatar" class="comment-avatar" alt="" srcset="">
-                                            <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" alt="" srcset="">
+                                            <template v-if="comment.avatar">
+                                                <img v-if="comment.isAnonymous" src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
+                                                <img v-else :src="apiURL+'/images/avatars/'+comment.avatar" class="comment-avatar rounded-circle" alt="User Avatar" srcset="">
+                                            </template>
+                                            <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
                                             <div>
                                                 <h5 class="fw-bold mb-0 pt-2 p-lg-2" v-if="comment.isAnonymous">Anonim</h5>
                                                 <h5 class="fw-bold mb-0 pt-2 p-lg-2" v-else>{{comment.nama}}</h5>
@@ -77,14 +80,18 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col text-start">
-                                                <p><strong>5000</strong> <small class="text-muted">orang mengaminkan doa ini</small></p>
+                                                <p><strong>{{comment.likes.length}}</strong> <small class="text-muted">orang mengaminkan doa ini</small></p>
                                             </div>
                                             <div class="col text-end">
-                                                <a href="#" @click.prevent="selectComment(comment.id)"><i class="fa-solid fa-comment-dots"></i> Komentari</a>&nbsp;
-                                                <a href="#"><i class="fa-regular fa-heart"></i> Aamiin</a>
+                                                <template v-if="authenticated">
+                                                    <a href="#" v-if="authenticated.role == 'Admin'" @click.prevent="selectComment(comment.id)"><i class="fa-solid fa-comment-dots"></i> Komentari</a>&nbsp;
+                                                    <button class="btn" v-if="checkLike(authenticated.likes, comment.likes)" :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-solid fa-heart"></i> Aamiin</button>
+                                                    <button class="btn" v-else :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-regular fa-heart"></i> Aamiin</button>
+                                                </template>
+                                                <a v-else href="#"><i class="fa-regular fa-heart"></i> Aamiin</a>
                                             </div>
                                         </div>
-                                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" v-if="replykode == comment.id">
+                                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" v-if="authenticated.role == 'Admin' && replykode == comment.id">
                                             <div class="d-flex flex-start w-100">
                                                 <div class="form-outline w-100">
                                                     <textarea class="form-control" id="textAreaExample" style="background: #fff;" placeholder="Masukkan balasan anda" rows="3" v-model="replyMessages"></textarea>
@@ -173,7 +180,7 @@ export default {
         },
         replyComment() {
             this.$store
-                .dispatch('program/replyComment', {
+                .dispatch('comments/replyComment', {
                     messages: this.replyMessages,
                     kode: this.replykode,
                 })
@@ -186,12 +193,37 @@ export default {
                     this.$refs.modalClose.click()
                 })
         },
+        checkLike(authenticated, comment){
+            let result = authenticated.filter(function(o1){
+                // filter out (!) items in result2
+                return comment.some(function(o2){
+                    return o1.id === o2.id;          // assumes unique id
+                });
+            })
+            if(result.length == 1){
+                return true
+            }
+            return false
+        },
+        likeComment(kode) {
+            this.$store.dispatch('comments/likeComment', kode).then((res) => {
+                if (res.status == 200) {
+                    this.getProgram()
+                    this.getProfile()
+                }
+            })
+        },
         getProgram() {
             this.$store
                 .dispatch('program/getProgram', this.$route.params.slug)
                 .catch(() => {
                     this.$router.push({ name: 'Home' })
                 })
+        },
+        getProfile() {
+            if(this.authenticated){
+                this.$store.dispatch('auth/getProfile')
+            }
         },
     },
 }

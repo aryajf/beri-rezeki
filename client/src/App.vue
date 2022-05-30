@@ -1,5 +1,6 @@
 <template>
     <div>
+        <ConfirmDialog :breakpoints="{'960px': '75vw', '640px': '100vw'}" :style="{width: '50vw'}"></ConfirmDialog>
         <!-- TOKEN EXPIRED MODAL -->
         <div class="modal fade" ref="tokenExpiredModal" id="tokenExpiredModal" tabindex="-1" aria-labelledby="tokenExpiredModalLabel" aria-hidden="true">
             <div class="modal-dialog">

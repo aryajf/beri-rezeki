@@ -35,6 +35,7 @@
     "@vitejs/plugin-vue": "^2.0.0",
     "@vue/compiler-sfc": "^3.2.33",
     "sass": "^1.43.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "vite-plugin-pwa": "^0.12.0"
   }
 }
