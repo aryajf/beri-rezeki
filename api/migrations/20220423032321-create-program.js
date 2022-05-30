@@ -28,6 +28,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      pdf_file: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       harga: {
         allowNull: false,
         type: Sequelize.BIGINT

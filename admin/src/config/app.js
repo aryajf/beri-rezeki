@@ -2,10 +2,10 @@ const module =  {
     apiURL: 'http://localhost:3000/',
     homeURL: 'http://localhost:8080',
     baseURL: 'http://localhost:8081',
-
-    // apiURL: 'https://api.pojoklaku.com/',
-    // homeURL: 'https://pojoklaku.com',
-    // // homeURL: 'https://demo.pojoklaku.com',
+    
+    // apiURL: 'https://api-beri-rezeki.netlify.app/',
+    // homeURL: 'http://beri-rezeki.netlify.app',
+    // baseURL: 'http://admin-beri-rezeki.netlify.app',
 }
 
 export default module

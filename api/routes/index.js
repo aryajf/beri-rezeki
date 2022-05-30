@@ -15,9 +15,7 @@ const isAdmin = require('../middleware/isAdmin')
 const fileUpload = require('../middleware/fileUpload')
 
 router.get('/', async function(req, res) {
-    res.json({
-        messages: 'hello world'
-    })
+    res.redirect(process.env.HOME_URL)
 })
 
 // AUTH
@@ -58,14 +56,14 @@ router.route('/history/:kode')
 // PROGRAM
 router.route('/program')
     .get(program.index)
-    .post(checkAuth, isAdmin, fileUpload.single('cover'), program.store)
+    .post(checkAuth, isAdmin, fileUpload.fields([{name: 'cover'}, {name: 'pdf_file'}]), program.store)
 
-router.route('/program/reply/:kode')
+router.route('/comment/reply/:kode')
     .post(checkAuth, isAdmin, admin.replyComment)
 
 router.route('/program/:slug')
     .get(program.show)
-    .put(checkAuth, isAdmin, fileUpload.single('cover'), program.update)
+    .put(checkAuth, isAdmin, fileUpload.fields([{name: 'cover'}, {name: 'pdf_file'}]), program.update)
     .delete(checkAuth, isAdmin, program.delete)
 
 // COMMENTS

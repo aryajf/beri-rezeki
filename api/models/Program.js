@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     short_desc: DataTypes.STRING,
     long_desc: DataTypes.TEXT('long'),
     cover: DataTypes.STRING,
+    pdf_file: DataTypes.STRING,
     harga: DataTypes.BIGINT,
     type: DataTypes.ENUM('Single', 'Crowdfunding'),
     expiredAt: DataTypes.DATE

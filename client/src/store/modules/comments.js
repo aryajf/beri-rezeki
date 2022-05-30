@@ -34,7 +34,6 @@ export default({
             let reply = await axios.post(`comment/like/${kode}`).then(res => {
                 console.log(kode)
                 commit('SET_BUTTON_LOADING', false, {root: true})
-                window.notyf.success(res.data.message)
                 return res
             }).catch(err => {
                 commit('SET_BUTTON_LOADING', false, {root: true})
@@ -44,7 +43,7 @@ export default({
         },
         async replyComment({commit},data){
             commit('SET_BUTTON_LOADING', true, {root: true})
-            let reply = await axios.post(`product/reply/${data.kode}`, {messages: data.messages}).then(res => {
+            let reply = await axios.post(`comment/reply/${data.kode}`, {messages: data.messages}).then(res => {
                 commit('SET_BUTTON_LOADING', false, {root: true})
                 window.notyf.success(res.data.message)
                 return res

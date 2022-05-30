@@ -12,7 +12,7 @@ export default defineConfig({
       manifest: {
         "name":"Admin Beri Rezeki",
         "short_name":"Admin Beri Rezeki",
-        "theme_color":"#3F3D56",
+        "theme_color":"#045256",
         "icons":[
           {"src":"./img/icons/android-chrome-192x192.png", "sizes":"192x192","type":"image/png"},
           {"src":"./img/icons/android-chrome-512x512.png", "sizes":"512x512", "type":"image/png"},

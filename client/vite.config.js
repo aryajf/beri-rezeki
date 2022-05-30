@@ -11,7 +11,7 @@ export default defineConfig({
       manifest: {
         "name":"Beri Rezeki",
         "short_name":"Beri Rezeki",
-        "theme_color":"#EC615B",
+        "theme_color":"#9ab8ba",
         "icons":[
           {"src":"./img/icons/android-chrome-192x192.png", "sizes":"192x192","type":"image/png"},
           {"src":"./img/icons/android-chrome-512x512.png", "sizes":"512x512", "type":"image/png"},

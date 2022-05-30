@@ -1,5 +1,23 @@
 <template>
     <div>
+        <!-- MODAL LOGIN ALERT -->
+        <div class="modal fade" ref="loginModal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel"><i class="uil uil-bell me-2"></i>Pemberitahuan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Kamu harus login terlebih dahulu sebelum memesan
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" @click="toLogin()" data-bs-dismiss="modal" class="btn btn-sm btn-primary">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <header id="detail-header">
             <nav class="position-absolute bg-transparent text-white">
                 <div class="container-nav">
@@ -16,7 +34,7 @@
             <div class="container">
                 <div class="col-md-12 py-3">
                     <h2 class="card-title text-center mb-3">{{program.title}}</h2>
-                    <div>{{ program.short_desc }}</div>
+                    <div v-html="program.short_desc"></div>
                     <template v-if="program.type == 'Single'">
                         <p class="text-end"><strong>Rp{{NumberFormat(program.harga)}}</strong></p>
                     </template>
@@ -27,7 +45,10 @@
                     
                     <p class="text-end"><small class="text-end">{{DateFormatExpired(program.expiredAt)}}</small></p>
                     <div class="btn-group d-flex">
-                        <router-link :to="'/program/'+program.slug+'/donate'" class="d-block w-100"><button type="button" class="btn btn-info py-3 w-100" id="button"><span class="text-donasi">Donasi <i class="fa-solid fa-people-carry-box"></i></span></button></router-link>
+                        <template v-if="authenticated">
+                            <router-link v-if="authenticated.role == 'Member'" :to="'/program/'+program.slug+'/donate'" class="d-block w-100"><button type="button" class="btn btn-info py-3 w-100" id="button"><span class="text-donasi">Donasi <i class="fa-solid fa-people-carry-box"></i></span></button></router-link>
+                        </template>
+                        <a v-else data-bs-toggle="modal" data-bs-target="#loginModal" class="d-block w-100"><button type="button" class="btn btn-info py-3 w-100" id="button"><span class="text-donasi">Donasi <i class="fa-solid fa-people-carry-box"></i></span></button></a>
                     </div>
                 </div>
             </div>
@@ -45,10 +66,10 @@
                                 <img v-if="program.cover" class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" :src="`${apiURL}/images/programs/${program.cover}`" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <img v-else class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/image-not-available.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <div class="card-body" id="card-donation-detail">
-                                    <div class="text-end mb-3">
-                                        <a href="index.html" class=""><i class="fa-solid fa-file-pdf"></i> Lihat Program</a>
+                                    <div class="text-end mb-3" v-if="program.pdf_file">
+                                        <a target="_blank" :href="`${apiURL}/pdf/programs/${program.pdf_file}`" class=""><i class="fa-solid fa-file-pdf" download></i> Lihat Program</a>
                                     </div>
-                                    <p class="card-text">{{ program.long_desc }}</p>
+                                    <div class="card-text my-3" v-html="program.long_desc"></div>
                                 </div>
                             </div>
                         </div>
@@ -72,8 +93,9 @@
                                             </template>
                                             <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
                                             <div>
-                                                <h5 class="fw-bold mb-0 pt-2 p-lg-2" v-if="comment.isAnonymous">Anonim</h5>
-                                                <h5 class="fw-bold mb-0 pt-2 p-lg-2" v-else>{{comment.nama}}</h5>
+                                                <h5 class="fw-bold mb-0" v-if="comment.isAnonymous">Anonim</h5>
+                                                <h5 class="fw-bold mb-0" v-else>{{comment.nama}}</h5>
+                                                <small class="d-block comment-date text-secondary">{{DateFormat(comment.updatedAt)}}</small>
                                             </div>
                                         </div>
                                         <p class="card-text pt-4">{{comment.messages}}</p>
@@ -84,14 +106,14 @@
                                             </div>
                                             <div class="col text-end">
                                                 <template v-if="authenticated">
-                                                    <a href="#" v-if="authenticated.role == 'Admin'" @click.prevent="selectComment(comment.id)"><i class="fa-solid fa-comment-dots"></i> Komentari</a>&nbsp;
+                                                    <a href="#" v-if="authenticated.role == 'Admin' && comment.reply_comments.length === 0" @click.prevent="selectComment(comment.id)"><i class="fa-solid fa-comment-dots"></i> Komentari</a>&nbsp;
                                                     <button class="btn" v-if="checkLike(authenticated.likes, comment.likes)" :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-solid fa-heart"></i> Aamiin</button>
                                                     <button class="btn" v-else :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-regular fa-heart"></i> Aamiin</button>
                                                 </template>
-                                                <a v-else href="#"><i class="fa-regular fa-heart"></i> Aamiin</a>
+                                                <a v-else data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-heart"></i> Aamiin</a>
                                             </div>
                                         </div>
-                                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" v-if="authenticated.role == 'Admin' && replykode == comment.id">
+                                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" v-if="authenticated && authenticated.role == 'Admin' && replykode == comment.id">
                                             <div class="d-flex flex-start w-100">
                                                 <div class="form-outline w-100">
                                                     <textarea class="form-control" id="textAreaExample" style="background: #fff;" placeholder="Masukkan balasan anda" rows="3" v-model="replyMessages"></textarea>
@@ -101,6 +123,25 @@
                                                 <button @click="replyComment" type="button" class="btn btn-primary btn-sm">Post comment</button>
                                             </div>
                                         </div>
+                                        <template v-if="comment.reply_comments.length !== 0">
+                                        <h6 class="fw-bold mt-3">Balasan dari admin:</h6>
+                                        <div class="mt-3" v-for="reply_comment in comment.reply_comments" :key="reply_comment.id">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="comment-user-avatar" :class="user.role == 'Admin' && comment.reply_comments.length === 0  ? '' : 'offset-md-2'">
+                                                    <img v-if="reply_comment.isAnonymous" src="@/assets/images/no-avatar.png" class="comment-avatar rounded-circle" alt="Anonim">
+                                                    <img v-else-if="reply_comment.avatar" :src="apiURL+'/images/avatars/'+reply_comment.avatar" class="comment-avatar rounded-circle" :alt="reply_comment.nama">
+                                                    <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" :alt="reply_comment.nama">
+                                                </div>
+                                                <div class="comment-user-name d-flex align-items-center">
+                                                    <div>
+                                                        <h5 class="d-block fw-bold mb-0">{{reply_comment.nama}} <i class="uil uil-check-circle text-success"></i></h5>
+                                                        <small class="d-block comment-date text-secondary">{{DateFormat(reply_comment.updatedAt)}}</small>
+                                                        <span class="d-block my-3 comment-text">{{reply_comment.messages}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +231,6 @@ export default {
                         this.replykode = null
                         this.replyMessages = ''
                     }
-                    this.$refs.modalClose.click()
                 })
         },
         checkLike(authenticated, comment){
@@ -225,6 +265,9 @@ export default {
                 this.$store.dispatch('auth/getProfile')
             }
         },
+        toLogin(){
+            this.$router.push("/login")
+        }
     },
 }
 </script>

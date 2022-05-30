@@ -9,14 +9,14 @@
                 <div class="dashboard-left-desktop align-items-center sticky-top">
                     <div class="col-md-12 dashboard-left-desktop-content bg-wa shadow">
                         <div class="logo mb-4">
-                            <a href="https://pojoklaku.com"><img loading="lazy" src="@/assets/images/berirezeki.png" alt="pojoklaku" class="w-75"></a>
+                            <a :href="homeURL"><img loading="lazy" src="@/assets/images/berirezeki.png" alt="Beri Rezeki" class="w-100"></a>
                         </div>
                         <div class="user mb-2">
                             <div class="row">
                                 <template v-if="user.length != 0">
                                     <div class="col-md-3">
                                         <div v-if="user.data.avatar">
-                                            <img loading="lazy" :src="`${apiURL}images/avatar/${user.data.avatar}`" :alt="user.data.avatar" class="w-100 rounded-circle">
+                                            <img loading="lazy" :src="`${apiURL}/images/avatars/${user.data.avatar}`" :alt="user.data.avatar" class="w-100 rounded-circle">
                                         </div>
                                         <div v-else>
                                             <img loading="lazy" src="@/assets/images/no-avatar.png" :alt="user.data.nama" class="w-100 rounded-circle">
@@ -82,7 +82,7 @@
                                 <div class="company-info">
                                     <div class="row">
                                         <div class="canvas-logo col-10">
-                                            <a href="https://pojoklaku.com"><img src="@/assets/images/berirezeki.png" alt="pojoklaku" class="w-100"></a>
+                                            <a :href="homeURL"><img src="@/assets/images/berirezeki.png" alt="Beri Rezeki" class="w-100"></a>
                                         </div>
                                         <div class="canvas-cross col-2 d-flex justify-content-end align-content-center">
                                             <span type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="uil uil-times"></i></span>
@@ -96,7 +96,7 @@
                                         <template v-if="user.length != 0">
                                             <div class="col-3 d-flex align-items-center">
                                                 <div v-if="user.data.avatar">
-                                                    <img :src="`${apiURL}images/avatar/${user.data.avatar}`" :alt="user.data.avatar" class="w-100 rounded-circle">
+                                                    <img :src="`${apiURL}/images/avatars/${user.data.avatar}`" :alt="user.data.avatar" class="w-100 rounded-circle">
                                                 </div>
                                                 <div v-else>
                                                     <img src="@/assets/images/no-avatar.png" :alt="user.data.nama" class="w-100 rounded-circle">

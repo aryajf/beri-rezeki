@@ -74,12 +74,6 @@
                             </p>
 
                             <p class="profile-item">
-                                <span><i class="uil uil-map-pin-alt me-1"></i>Alamat</span> <br>
-                                <template v-if="user.alamat != null">{{ user.alamat }}</template>
-                                <template v-else><span class="text-secondary fw-normal">Belum ditambahkan</span></template>
-                            </p>
-
-                            <p class="profile-item">
                                 <span><i class="uil uil-phone-alt me-1"></i>No. Telp</span> <br>
                                 <template v-if="user.no_telp != null">{{ user.no_telp }}</template>
                                 <template v-else><span class="text-secondary fw-normal">Belum ditambahkan</span></template>
@@ -118,17 +112,6 @@
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="uil uil-phone-alt"></i></span>
                                         <input type="text" class="form-control" :class="{'is-invalid': formErrors.no_telp && formErrors.no_telp.length > 0}" v-model="user.no_telp" placeholder="Masukkan nomor telepon">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        Alamat
-                                        <span class="text-danger text-sm" v-if="formErrors.alamat">*{{formErrors.alamat[0]}}</span>
-                                    </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="uil uil-map-pin-alt"></i></span>
-                                        <textarea class="form-control" :class="{'is-invalid': formErrors.alamat && formErrors.alamat.length > 0}" v-model="user.alamat" placeholder="Masukkan alamat anda"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">

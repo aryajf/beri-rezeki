@@ -26,7 +26,9 @@
                         </div>
                         <h2 class="text-center mt-1">{{comment.user.nama}}</h2>
                         <div class="text-center my-3">{{comment.messages}}</div>
-                        <div class="text-center"><router-link :to="'/program/'+comment.program.slug" class="btn btn-secondary">{{comment.program.title}}</router-link></div>
+                        <div class="text-center"><router-link :to="'/program/'+comment.program.slug" class="btn btn-info">{{comment.program.title}} <i class="fa fa-arrow-right"></i></router-link></div>
+                        <hr>
+                        <small class="d-block text-center"><span class="fw-bold">{{comment.likes.length}}</span> orang mengaminkan doa ini</small>
                     </div>
                 </swiper-slide>
             </swiper>

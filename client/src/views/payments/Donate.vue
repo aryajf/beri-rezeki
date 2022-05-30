@@ -13,7 +13,7 @@
                 <div class="col-md-6 text-start">
                     <div class="card-body">
                         <h5 class="card-title">{{ program.title }}</h5>
-                        <div>{{program.short_desc}}</div>
+                        <div v-html="ShortText(program.short_desc)"></div>
                         <template v-if="program.type == 'Single'">
                             <p class="card- text-end"><strong>Rp{{NumberFormat(program.harga)}}</strong></p>
                         </template>

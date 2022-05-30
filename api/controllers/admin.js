@@ -75,8 +75,6 @@ module.exports = {
                     program : Object.values(count.program),
                 }
 
-                console.log(countMonth)
-
                 res.json({
                     count: countMonth,
                     total_harga : total_harga,
@@ -96,7 +94,6 @@ module.exports = {
     getHistory: async(req, res) => {
         let { page, keyword } = req.query
         const { limit, offset } = getPagination(page, 10)
-        console.log(page, keyword)
         await checkHistory(limit, offset, keyword).then(data => {
             if(!data){
                 res.status(404).json({message: 'Tipe program tidak tersedia', status: false})
@@ -131,7 +128,6 @@ module.exports = {
     },
     showPayment: async(req, res) => {
         if(req.params.kode){
-            console.log(req.params)
             // return
             await checkHistory(null, null, null, req.params.kode).then(data => {
                 if(!data){

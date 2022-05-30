@@ -64,7 +64,7 @@ export default({
             try{
                 let res
                 // Cek jika parameter data yang isinya page & keyword tidak ada maka masuk ke search program tanpa ?page=
-                page == null ? res = await axios.get(`program?keyword=${keyword}`) : res = await axios.get(`program?keyword=${keyword}&page=${data.page}`)
+                page != null ? res = await axios.get(`program?page=${page}&keyword=${keyword}`) : res = await axios.get(`program?keyword=${keyword}`)
                 commit('SET_BUTTON_LOADING', false, {root: true})
                 commit('SET_PROGRAMS', res.data)
                 commit('SET_LOADING', false, {root: true})

@@ -2,6 +2,7 @@ const {Program, Payment, Comment, Like, User} = require('../models')
 const { Op } = require("sequelize")
 const path = require('path')
 const programCoverPath = path.join(__dirname, '../public/images/programs/')
+const programPDFPath = path.join(__dirname, '../public/pdf/programs/')
 const Validator = require('validatorjs')
 const validatorMessage = require('../config/validatorMessage')
 const {compressImage, moveFile, deleteFile, makeDirectory, createSlug, getPagination, getPagingData, fs} = require('../config/mixins')
@@ -9,7 +10,7 @@ const {compressImage, moveFile, deleteFile, makeDirectory, createSlug, getPagina
 module.exports = {
     index: async(req, res) => {
         let { page, type, keyword } = req.query
-        const { limit, offset } = getPagination(page, 6)
+        const { limit, offset } = getPagination(page, 12)
         
         await programType(limit, offset, type, keyword).then(async (data) => {
             const { totalItems, dataPaginate, totalPages, currentPage } = getPagingData(data, page, limit)
@@ -50,6 +51,11 @@ module.exports = {
     show: async(req, res) => {
         const program = await findProgram(req.params.slug)
         if(program != null){
+            let programSize = 0
+            if(program.pdf_file){
+                fs.existsSync(programPDFPath + program.pdf_file) ? programSize = fs.statSync(programPDFPath + program.pdf_file).size : programSize = 'Unknown'
+            }
+
             const program_comments = await Comment.findAll({
                 where: {
                     program_id: program.id
@@ -142,6 +148,7 @@ module.exports = {
                 comments_length: comments_length,
                 comments: comments,
                 program : program,
+                programSize: programSize,
                 message: 'Program berhasil ditampilkan',
                 request: {
                     method: req.method,
@@ -161,16 +168,30 @@ module.exports = {
             short_desc: req.body.short_desc,
             long_desc: req.body.long_desc,
             cover: '',
+            pdf_file: null,
             harga: req.body.harga,
             type: req.body.type,
             expiredAt: req.body.expiredAt
         }
-
-        !req.file ? programReq.cover = null : programReq.cover = req.file.filename
+        if(Object.keys(req.files).length === 0){
+            programReq.cover = null
+            programReq.pdf_file = null
+        }else{
+            if(req.files.cover){
+                if(req.files.cover[0]){
+                    programReq.cover = req.files.cover[0].filename
+                }
+            }
+            if(req.files.pdf_file){
+                if(req.files.pdf_file[0]){
+                    programReq.pdf_file = req.files.pdf_file[0].filename
+                }
+            }
+        }
         if(programValidation(programReq) != null){
             res.status(400).send(programValidation(programReq))
             if(programReq.cover){
-                deleteFile(req.file.path)
+                deleteFile(req.files.cover[0].path)
             }
             return
         }
@@ -185,7 +206,12 @@ module.exports = {
 
             // 1. Make cover 2. pdf directory, 3. Move pdf file, 4. Compress image
             makeDirectory(programCoverPath)
-            compressImage('public/uploads/'+req.file.filename, programCoverPath, req.file.path)
+            compressImage('public/uploads/'+req.files.cover[0].filename, programCoverPath, req.files.cover[0].path)
+
+            if(programReq.pdf_file){
+                makeDirectory(programPDFPath)
+                moveFile(req.files.pdf_file[0].path, programPDFPath + req.files.pdf_file[0].filename)
+            }
 
             res.status(201).json({
                 data: {
@@ -200,7 +226,7 @@ module.exports = {
                 status: true,
             })
         }catch(err){
-            deleteFile(req.file.path)
+            deleteFile(req.files.cover[0].path)
             res.status(400).json({
                 error: err.message,
                 message: 'Terjadi kesalahan saat menambah program',
@@ -213,7 +239,7 @@ module.exports = {
 
         if(program == null){
             res.status(404).json({message : 'Belum ada program', status: false})
-            deleteFile(req.file.path)
+            deleteFile(req.files.cover[0].path)
             return 
         }
 
@@ -221,27 +247,47 @@ module.exports = {
             title: req.body.title,
             short_desc: req.body.short_desc,
             long_desc: req.body.long_desc,
-            cover: '',
+            cover: program.cover,
+            pdf_file: null,
             harga: req.body.harga,
             type: req.body.type,
             expiredAt: req.body.expiredAt
         }
 
-        if(!req.file){
-            programReq.cover = program.cover
-            if(programValidation(programReq) != null){
-                res.status(400).send(programValidation(programReq))
-                return
+        if(program.pdf_file){
+            programReq.pdf_file = program.pdf_file
+        }
+        
+        if(req.files.cover){
+            if(req.files.cover[0]){
+                programReq.cover = req.files.cover[0].filename
+                compressImage('public/uploads/'+req.files.cover[0].filename, programCoverPath, req.files.cover[0].path)
+                deleteFile(programCoverPath + program.cover)
+
+                if(programValidation(programReq) != null){
+                    res.status(400).send(programValidation(programReq))
+                    deleteFile(req.files.cover[0].path)
+                    return
+                }
             }
-        }else{
-            programReq.cover = req.file.filename
-            if(programValidation(programReq) != null){
-                res.status(400).send(programValidation(programReq))
-                deleteFile(req.file.path)
-                return
+        }
+        if(req.files.pdf_file){
+            if(req.files.pdf_file[0]){
+                programReq.pdf_file = req.files.pdf_file[0].filename
+                compressImage('public/uploads/'+req.files.pdf_file[0].filename, programPDFPath, req.files.pdf_file[0].path)
+                deleteFile(programPDFPath + program.pdf_file)
+
+                if(programValidation(programReq) != null){
+                    res.status(400).send(programValidation(programReq))
+                    deleteFile(req.files.pdf_file[0].path)
+                    return
+                }
             }
-            compressImage('public/uploads/'+req.file.filename, shopCoverPath, req.file.path)
-            deleteFile(shopCoverPath + shop.cover)
+        }
+
+        if(programValidation(programReq) != null){
+            res.status(400).send(programValidation(programReq))
+            return
         }
         
         try{
@@ -270,11 +316,14 @@ module.exports = {
         const program = await findProgram(req.params.slug)
         if(program != null){
             deleteFile(programCoverPath + program.cover)
+            if(program.pdf_file){
+                deleteFile(programPDFPath + program.pdf_file)
+            }
 
             try{
                 program.destroy()
 
-                res.json({
+                res.status(200).json({
                     data : {
                         slug: program.slug,
                         title: program.title
@@ -325,6 +374,9 @@ function programType(limit, offset, type, keyword){
             include: [{
                 model: Payment,
                 as: 'payments',
+            },{
+                model: Comment,
+                as: 'comments',
             }], limit,offset,order:[['updatedAt', 'DESC']]
         }
     }else{
@@ -334,6 +386,9 @@ function programType(limit, offset, type, keyword){
             include: [{
                 model: Payment,
                 as: 'payments',
+            },{
+                model: Comment,
+                as: 'comments',
             }], 
             limit,offset,order:[['updatedAt', 'DESC']]
         }
@@ -363,9 +418,9 @@ function programValidation(dataRequest){
         title: 'required|min:3',
         short_desc: 'required',
         long_desc: 'required',
+        cover: 'required',
         harga: 'required|numeric|min:4',
         type: 'required',
-        cover: 'required',
         expiredAt: 'required',
     }
     

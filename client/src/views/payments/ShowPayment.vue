@@ -230,7 +230,7 @@
                                                     </div>
                                                     <div class="col-md-9 col-8 p-0">
                                                         <p class="fw-bold mb-1">{{ program.program.title }}</p>
-                                                        <div class="order-info-short-desc" v-html="program.program.short_desc"></div>
+                                                        <div class="order-info-short-desc" v-html="ShortText(program.program.short_desc)"></div>
                                                     </div>
                                                 </div>
                                             </router-link>

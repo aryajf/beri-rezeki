@@ -2,7 +2,8 @@
 api/node_modules/
 api/public/images/avatars/
 api/public/images/programs/
-api/public/uploads
+api/public/pdf/programs/
+api/public/uploads/
 api/.env
 api/api.zip
 

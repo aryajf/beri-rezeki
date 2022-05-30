@@ -53,14 +53,14 @@
             </div>
             <div class="container px-5">
                 <div class="row" v-if="programs.program && programs.totalItems != 0">
-                    <div class="col-md-6 py-3" v-for="program in programs.program" :key="program.id">
+                    <div class="col-lg-4 col-md-6 py-3" v-for="program in programs.program" :key="program.id">
                         <div class="card shadow-sm">
                             <router-link :to="'/program/'+program.slug">
                             <img class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" :src="`${apiURL}/images/programs/${program.cover}`" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                             </router-link>
                             <div class="card-body">
                                 <h5 class="card-title"><router-link :to="'/program/'+program.slug" style="text-decoration:inherit;color:inherit;">{{ program.title }}</router-link></h5>
-                                <p class="card-text">{{ program.short_desc }}</p>
+                                <p class="card-text" v-html="ShortText(program.short_desc)"></p>
                                 <p v-if="program.type == 'Single'" class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.harga)}}</small></p>
                                 <template v-if="program.type == 'Crowdfunding'">
                                     <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
@@ -71,7 +71,10 @@
                                     <div class="btn-group">
                                         <router-link :to="'/program/'+program.slug" class="btn btn-info">Donasi</router-link>
                                     </div>
-                                    <small class="text-muted text-end">{{ DateFormatExpired(program.expiredAt) }}</small>
+                                    <div>
+                                        <small class="text-muted d-block text-end">{{ DateFormatExpired(program.expiredAt) }}</small>
+                                        <small class="text-muted d-block text-end">{{ program.comments.length }} orang berkomentar</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +104,7 @@
                         <div class="container carousel-donasi">
                             <div class="carousel-caption text-start">
                                 <h1>{{program.title}}</h1>
-                                <p>{{program.short_desc}}</p>
+                                <p v-html="ShortText(program.short_desc)"></p>
                                 <router-link class="btn btn-info" :to="'/program/'+program.slug">Donasi</router-link>
                             </div>
                         </div>
@@ -150,7 +153,7 @@
                             <div class="card-body">
                                 <i class="fa-solid fa-box-heart"></i>
                                 <h5 class="card-title">{{program.title}}</h5>
-                                <p class="card-text">{{program.short_desc}}</p>
+                                <p class="card-text" v-html="ShortText(program.short_desc)"></p>
                                 <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
                                 </ProgressBar>
                                 <p class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}</small></p>
@@ -187,10 +190,9 @@ const crowdPrograms = computed(() => store.getters['program/crowdPrograms'])
 const apiURL = ref(appConfig.apiURL)
 const keyword = ref('')
 const index = ref(null)
-const paginationSearch = ref(false)
 
 watch(keyword, () => {
-    search()
+    getPrograms()
 })
 
 onMounted(() => {
@@ -200,25 +202,17 @@ onMounted(() => {
 })
 
 const getPrograms = () => {
-    paginationSearch.value = false
-    store.dispatch('program/getPrograms', {keyword: keyword.value})
+    store.dispatch('program/getPrograms', {page: 0, keyword: keyword.value})
 }
 const getSinglePrograms = () => {
-    paginationSearch.value = false
     store.dispatch('program/getSinglePrograms', {})
 }
 const getCrowdfundingPrograms = () => {
-    paginationSearch.value = false
     store.dispatch('program/getCrowdfundingPrograms', {})
 }
 
 const changePage = (event) => {
-    if (paginationSearch.value == true) {
-        const data = { keyword: keyword.value, page: event.page }
-        store.dispatch('program/searchProgram', { keyword: keyword.value, page: event.page })
-    } else {
-        store.dispatch('program/getPrograms', {page: event.page})
-    }
+    store.dispatch('program/getPrograms', {page: event.page, keyword: keyword.value})
 }
 const changePageSingle = (event) => {
     store.dispatch('program/getSinglePrograms', {page: event.page})
@@ -226,15 +220,6 @@ const changePageSingle = (event) => {
 
 const changePageCrowd = (event) => {
     store.dispatch('program/getCrowdfundingPrograms', {page: event.page})
-}
-
-const search = () => {
-    paginationSearch.value = true
-    if (keyword.value != '') {
-        store.dispatch('program/getPrograms', { keyword: keyword.value })
-    } else {
-        getPrograms()
-    }
 }
 </script>
 

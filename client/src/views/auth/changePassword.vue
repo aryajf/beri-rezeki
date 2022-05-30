@@ -24,7 +24,7 @@
                     <input type="password" class="form-control" :class="{'is-invalid': formErrors.confirmNewPassword && formErrors.confirmNewPassword.length > 0}" placeholder="Konfirmasi password anda" v-model="this.form.confirmNewPassword">
                 </div>
 
-                <button type="submit" class="btn bg-db btn-sm d-flex" :disabled="btnLoading">
+                <button type="submit" class="btn bg-darkBlue btn-sm d-flex" :disabled="btnLoading">
                     Simpan
                     <template v-if="btnLoading">
                         <Pulse />

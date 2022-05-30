@@ -18,9 +18,9 @@
                         </a>
                         <ul class="dropdown-menu text-small text-end" aria-labelledby="dropdownUser1" style="padding:0;">
                             <li><router-link class="dropdown-item" to="/">Beranda</router-link></li>
-                            <li><router-link class="dropdown-item" to="/pending">Transaksi</router-link></li>
+                            <li v-if="authenticated.role == 'Admin'"><a class="dropdown-item" :href="adminURL">Dashboard</a></li>
+                            <li v-else-if="authenticated.role == 'Member'"><router-link class="dropdown-item" to="/pending">Transaksi</router-link></li>
                             <li><a class="dropdown-item" href="#footer">Kontak</a></li>
-                            <li><a class="dropdown-item" href="#">Tentang</a></li>
                             <li><hr class="dropdown-divider" style="margin:0;padding:0;"></li>
                             <li><router-link class="dropdown-item" to="/profile">Profile</router-link></li>
                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">Sign out</a></li>
