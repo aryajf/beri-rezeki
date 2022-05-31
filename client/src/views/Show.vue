@@ -29,7 +29,7 @@
         </header>
 
         <main id="detail">
-            <div v-if="program.cover" id="image-header" :style="`background: url('${apiURL}/images/programs/${program.cover}');`"></div>
+            <div v-if="program.cover" id="image-header" :style="`background: url('${apiURL}/images/programs/${program.cover}')`"></div>
 
             <div class="container">
                 <div class="col-md-12 py-3">

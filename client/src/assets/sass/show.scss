@@ -18,8 +18,8 @@
 
 #detail #image-header  {
     height: 500px;
-    background-size: cover;
-    background-position: center;
+    background-size: cover !important;
+    background-position: center !important;
 }
 
 #card-donation-detail {
