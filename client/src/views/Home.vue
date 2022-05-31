@@ -27,10 +27,10 @@
                         <a href="#"><img src="@/assets/images/jumbotron.jpeg" class="d-block w-100 img-fluid" alt="..."></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <a href="#"><img src="@/assets/images/Kuning Neon Minimal Ilustratif Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" class="d-block w-100 img-fluid" alt="..."></a>
+                        <a href="#"><img src="@/assets/images/Sampul1.png" class="d-block w-100 img-fluid" alt="..."></a>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <a href="#"><img src="@/assets/images/Putih Trendi Fotosentris Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" class="d-block w-100 img-fluid" alt="..."></a>
+                        <a href="#"><img src="@/assets/images/Sampul2.png" class="d-block w-100 img-fluid" alt="..."></a>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <div v-else id="carouselSingleProgram" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="@/assets/images/Putih Trendi Fotosentris Layanan Manusia Penggalangan Dana Facebook Foto Sampul 1.png" class="d-block w-100 img-fluid" alt="...">
+                        <img src="@/assets/images/Sampul2.png" class="d-block w-100 img-fluid" alt="...">
                     </div>
                     <div class="carousel-item" v-for="program in singlePrograms.program" :key="program.id" data-bs-interval="10000">
                         <img :src="`${apiURL}/images/programs/${program.cover}`" class="d-block w-100 img-fluid" :alt="program.title">

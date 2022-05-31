@@ -3,9 +3,9 @@ const module =  {
     adminURL: 'http://localhost:8081',
     baseURL: 'http://localhost:8080',
 
-    // apiURL: 'https://api-beri-rezeki.netlify.app/',
-    // adminURL: 'http://admin-beri-rezeki.netlify.app',
-    // baseURL: 'http://beri-rezeki.netlify.app',
+    // apiURL: 'https://berirezeki-api.digitalinteraktif.com/',
+    // adminURL: 'https://beri-rezeki-admin.netlify.app',
+    // baseURL: 'https://berirezeki.netlify.app',
 }
 
 export default module

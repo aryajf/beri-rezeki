@@ -13,6 +13,13 @@
                     </div>
                     <div class="text-danger text-sm" v-if="formErrors.nama">*{{formErrors.nama[0]}}</div>
                 </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="uil uil-phone"></i></span>
+                        <input type="number" class="form-control" placeholder="Nomor Telepon" :class="{'is-invalid': formErrors.no_telp && formErrors.no_telp.length > 0}" v-model="form.no_telp">
+                    </div>
+                    <div class="text-danger text-sm" v-if="formErrors.no_telp">*{{formErrors.no_telp[0]}}</div>
+                </div>
 
                 <div class="form-group">
                     <div class="input-group">
