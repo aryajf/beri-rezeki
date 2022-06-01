@@ -35,14 +35,14 @@
 }
 
 .admin-panel>a {
-    border: 1px solid #8463FF;
-    color: #8463FF;
+    border: 1px solid #045256;
+    color: #045256;
     margin-right: 5px;
 }
 
 .admin-panel>a:hover {
     transition: 0.4s;
-    background: #8463FF;
+    background: #045256;
     color: white;
 }
 
@@ -68,6 +68,9 @@
 @media screen and (max-width: 768px) {
 
     // WRAPPER MOBILE
+    .admin-wrapper{
+        padding: 0 0 75px 0;
+    }
     .admin-header {
         padding: 10px;
     }

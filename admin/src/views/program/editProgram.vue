@@ -231,8 +231,14 @@ export default {
                 fileType == "image/jpeg" ||
                 fileType == "image/gif"
             ) {
-                this.coverName = file[0].name
-                this.createImage(file[0])
+                let fileSize = file[0].size / 1024 / 1024
+
+                if(fileSize > 10){
+                    window.notyf.error('Ukuran file tidak boleh lebih dari 10MB')
+                }else{
+                    this.coverName = file[0].name
+                    this.createImage(file[0])
+                }
             } else {
                 e.target.value = ""
                 window.notyf.error("Cover harus gambar (PNG, JPG, JPEG, GIF)")

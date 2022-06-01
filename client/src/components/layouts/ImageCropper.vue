@@ -67,8 +67,14 @@ const onImageChange = (e) => {
         fileType == 'image/jpeg' ||
         fileType == 'image/gif'
     ) {
-        fileName = file[0].name
-        createImage(file[0])
+        let fileSize = file[0].size / 1024 / 1024
+
+        if(fileSize > 10){
+            window.notyf.error('Ukuran file tidak boleh lebih dari 10MB')
+        }else{
+            fileName = file[0].name
+            createImage(file[0])
+        }
     } else {
         e.target.value = ''
         window.notyf.error('Avatar harus gambar (PNG, JPG, JPEG, GIF)')

@@ -124,11 +124,6 @@
                                                 </li>
                                                 <p class="nav-heading">APPS</p>
                                                 <li class="nav-item">
-                                                    <router-link to="/category" class="nav-link">
-                                                        <i class="uil uil-tag-alt me-2"></i> Category
-                                                    </router-link>
-                                                </li>
-                                                <li class="nav-item">
                                                     <router-link to="/program" class="nav-link">
                                                         <i class="uil uil-file-bookmark-alt me-2"></i> Semua Program
                                                     </router-link>
@@ -181,7 +176,7 @@
                             <li>
                                 <router-link to="/user">
                                     <span class="icon"><i class="uil uil-users-alt"></i></span>
-                                    <span class="title">Semua User</span>
+                                    <span class="title">Users</span>
                                 </router-link>
                             </li>
                             <li>
