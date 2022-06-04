@@ -54,3 +54,11 @@
     width: 75px;
     margin-right: 10px;
 }
+
+@media(max-width: 768px) {
+    #detail #image-header  {
+        height: 35vh;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+}

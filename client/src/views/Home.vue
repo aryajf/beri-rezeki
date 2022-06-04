@@ -7,7 +7,7 @@
                     <div class="col-md-6 text-start">
                         <h1>Bersatu Kita Teguh</h1>
                         <h5>Panggilan donasi untuk mereka yang membutuhkan</h5>
-                        <p>Wabah Covid-19 yang disusul karantina masyarakat telah menyebabkan banyak rumah tangga kehilangan mata pencaharian dan pendapatan.</p>
+                        <p>Banyak yang membutuhkan bantuan dari kita. Mari bersama mewujudkan kebahagiaan sesama.</p>
                     </div>
                     <div class="col-md-6 header-image-right">
                         <img src="@/assets/images/banner.svg" alt="" class="w-100">
@@ -21,16 +21,16 @@
         
         <!-- --------------------------------------------------    BANNER     -------------------------------------------->
         <div class="m-3 banner">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="2000">
-                        <a href="#"><img src="@/assets/images/jumbotron.jpeg" class="d-block w-100 img-fluid" alt="..."></a>
+                    <div class="carousel-item active" data-bs-interval="10">
+                        <img src="@/assets/images/jumbotron.png" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                        <a href="#"><img src="@/assets/images/Sampul1.png" class="d-block w-100 img-fluid" alt="..."></a>
+                    <div class="carousel-item" data-bs-interval="10">
+                        <img src="@/assets/images/Sampul3.png" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                        <a href="#"><img src="@/assets/images/Sampul2.png" class="d-block w-100 img-fluid" alt="..."></a>
+                    <div class="carousel-item" data-bs-interval="10">
+                        <img src="@/assets/images/Sampul4.png" class="d-block w-100" alt="...">
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <div v-else id="carouselSingleProgram" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="@/assets/images/Sampul2.png" class="d-block w-100 img-fluid" alt="...">
+                        <img src="@/assets/images/Sampul1.png" class="d-block w-100 img-fluid" alt="...">
                     </div>
                     <div class="carousel-item" v-for="program in singlePrograms.program" :key="program.id" data-bs-interval="10000">
                         <img :src="`${apiURL}/images/programs/${program.cover}`" class="d-block w-100 img-fluid" :alt="program.title">
@@ -108,6 +108,15 @@
                                 <router-link class="btn btn-info" :to="'/program/'+program.slug">Donasi</router-link>
                             </div>
                         </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <img src="@/assets/images/Sampul2.png" class="d-block w-100 img-fluid" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <img src="@/assets/images/Sampul3.png" class="d-block w-100 img-fluid" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <img src="@/assets/images/Sampul4.png" class="d-block w-100 img-fluid" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselSingleProgram" data-bs-slide="prev">
