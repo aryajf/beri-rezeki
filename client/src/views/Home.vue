@@ -20,20 +20,23 @@
         
         
         <!-- --------------------------------------------------    BANNER     -------------------------------------------->
-        <div class="m-3 banner">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="true">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10">
-                        <img src="@/assets/images/jumbotron.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="10">
-                        <img src="@/assets/images/Sampul3.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="10">
-                        <img src="@/assets/images/Sampul4.png" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-            </div>
+        <div class="my-1 mx-3">
+            <swiper
+            :spaceBetween="30"
+            :centeredSlides="true"
+            :autoplay="{
+            delay: 2000,
+            disableOnInteraction: false,
+            }"
+            :loop="true"
+            :navigation="false"
+            :modules="modules"
+            class="mySwiper"
+        >
+            <swiper-slide><img src="@/assets/images/jumbotron.png" /></swiper-slide>
+            <swiper-slide><img src="@/assets/images/Sampul2.png" /></swiper-slide>
+            <swiper-slide><img src="@/assets/images/Sampul1.png" /></swiper-slide>
+        </swiper>
         </div>
         <!-- --------------------------------------------------  END BANNER ---------------------------------------------->
 
@@ -60,12 +63,16 @@
                             </router-link>
                             <div class="card-body">
                                 <h5 class="card-title"><router-link :to="'/program/'+program.slug" style="text-decoration:inherit;color:inherit;">{{ program.title }}</router-link></h5>
-                                <p class="card-text" v-html="ShortText(program.short_desc)"></p>
-                                <p v-if="program.type == 'Single'" class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.harga)}}</small></p>
+                                <p class="card-text overflow-hidden" v-html="ShortText(program.short_desc)"></p>
                                 <template v-if="program.type == 'Crowdfunding'">
                                     <ProgressBar :value="progressFunding(program.total_funding, program.harga)">
                                     </ProgressBar>
                                     <p class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}</small></p>
+                                </template>
+                                <template v-else>
+                                    <ProgressBar class="invisible">
+                                    </ProgressBar>
+                                    <p class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.harga)}}</small></p>
                                 </template>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <div class="btn-group">
@@ -133,7 +140,7 @@
 
 
 
-        <!-- ---------------------------------------------------        BeriDoa         ---------------------------------->\
+        <!-- ---------------------------------------------------        BeriDoa         ---------------------------------->
         <!-- COMMENTS -->
         <div class="BeriDoa container py-3">
             <div class="row">
@@ -182,12 +189,15 @@
     </main>
 </template>
 <script setup>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination, Navigation } from "swiper";
 import { ref, computed, onMounted, watch } from 'vue'
 import Rolling from '@/components/loadings/Rolling.vue'
 import Comments from '@/components/layouts/Comments.vue'
 import appConfig from '@/config/app'
 import store from '@/store'
 
+const modules = ref([Autoplay, Pagination, Navigation])
 const loadingStatus = computed(() => store.getters['loadingStatus'])
 const btnLoading = computed(() => store.getters['btnLoading'])
 const programs = computed(() => store.getters['program/programs'])

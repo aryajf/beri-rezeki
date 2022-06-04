@@ -31,7 +31,7 @@
         <main id="detail">
             <div v-if="program.cover" id="image-header" :style="`background: url('${apiURL}/images/programs/${program.cover}')`"></div>
 
-            <div class="container">
+            <div class="container detail-donasi">
                 <div class="col-md-12 py-3">
                     <h2 class="card-title text-center mb-3">{{program.title}}</h2>
                     <div v-html="program.short_desc"></div>
