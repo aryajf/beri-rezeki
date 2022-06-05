@@ -59,7 +59,7 @@
                                             <img src="@/assets/images/no-avatar.png" class="w-100 rounded-circle shadow-sm" :alt="item.nama.split(' ').slice(0,2).join(' ')">
                                         </template>
                                         <template v-else>
-                                            <img :src="`${apiURL}images/avatar/${item.avatar}`" :alt="item.nama.split(' ').slice(0,2).join(' ')" class="w-100 rounded-circle shadow-sm">
+                                            <img :src="`${apiURL}/images/avatars/${item.avatar}`" :alt="item.nama.split(' ').slice(0,2).join(' ')" class="w-100 rounded-circle shadow-sm">
                                         </template>
                                     </td>
                                     <td>
