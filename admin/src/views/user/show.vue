@@ -14,8 +14,7 @@
                                     <img src="@/assets/images/no-avatar.png" class="rounded-circle shadow-sm" :alt="user.nama.split(' ').slice(0,2).join(' ')">
                                 </template>
                                 <template v-else>
-                                    <img v-if="user.auth_type == 'Local'" :src="`${apiURL}images/avatar/${user.avatar}`" :alt="user.nama.split(' ').slice(0,2).join(' ')" class="rounded-circle shadow-sm">
-                                    <img v-else :src="user.avatar" :alt="user.nama.split(' ').slice(0,2).join(' ')" class="rounded-circle shadow-sm">
+                                    <img :src="`${apiURL}/images/avatars/${user.avatar}`" :alt="user.nama.split(' ').slice(0,2).join(' ')" class="rounded-circle shadow-sm">
                                 </template>
                             </div>
                             <div class="text-center">

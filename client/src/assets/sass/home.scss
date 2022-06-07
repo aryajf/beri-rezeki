@@ -22,6 +22,26 @@ body{
 .pagination-BeriDonasi {
 	background-color: transparent;
 }
+.card-text {
+    height: 10vh;
+    min-height: 10vh;
+    max-height: 10vh;
+}
+
+
+.swiper {
+    width: 100%;
+}
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
 
 
 
@@ -198,7 +218,7 @@ body{
     }
 }
 
-@media(max-width: 428px) {
+@media(max-width: 425px) {
     .jumbotron .row h1 {
         font-size: 2.5em;
         font-weight: bold;
@@ -241,6 +261,11 @@ body{
     } 
     .carousel-caption button {
         font-size: 0.5em;
+    }
+
+    .swiper-slide{
+        width: 100%;
+        height: 100%;
     }
 }
 

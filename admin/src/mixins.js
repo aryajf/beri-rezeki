@@ -23,7 +23,7 @@ const Mixins = {
       return moment(item, 'YYYYMMDD').locale('id').fromNow()
     },
     NumberFormat(num) {
-      return Number(num).toLocaleString()
+      return Number(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     countDown(expiredToken) {
       return new Date(expiredToken) - new Date()

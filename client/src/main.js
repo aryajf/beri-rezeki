@@ -74,6 +74,7 @@ import VueCountdown from '@chenfengyuan/vue-countdown'
 // Swiper
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // Vue Cropper
 import 'cropperjs/dist/cropper.css'

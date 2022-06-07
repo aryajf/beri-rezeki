@@ -7,7 +7,7 @@
                 Selamat datang, kelola program donasi disini.
             </p>
             <hr>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+            <p class="mb-0">Berikut laporan detail berupa chart dan kalender dari seluruh program donasi website BeriRezeki</p>
         </div>
         <Chart class="my-4" />
         <div class="calendar-panel">
