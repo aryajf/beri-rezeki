@@ -9,7 +9,7 @@
                     </div>
                     <div class="modal-body text-center">
                         <div class="avatarPreview rounded-circle shadow-sm mb-3">
-                            <img v-if="user.avatar" :src="apiURL+'images/avatar/'+user.avatar" class="w-100" alt="avatar">
+                            <img v-if="user.avatar" :src="apiURL+'/images/avatars/'+user.avatar" class="w-100" alt="avatar">
                             <img v-else src="@/assets/images/no-avatar.png" class="w-100" alt="avatar">
                         </div>
                         <div class="form-group mb-3">
