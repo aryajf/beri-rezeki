@@ -9,7 +9,7 @@
                 <a target="_blank" href="https://www.instagram.com/beri.berkahrezeki"><img src="@/assets/images/logo/ig.png"></a>
                 <a target="_blank" href="https://api.whatsapp.com/send?phone=6281260389554"><img src="@/assets/images/logo/wa.png"></a>
                 <a target="_blank" href="#"><img src="@/assets/images/logo/fb.png"></a>
-                <a target="_blank" href="#"><img src="@/assets/images/logo/twitter.png"></a>
+                <a target="_blank" href="https://twitter.com/berirezeki"><img src="@/assets/images/logo/twitter.png"></a>
             </p>
             <p class="copyright">Copyright © 2022 BeriRezeki. All Rights Reserved</p>
         </div>
