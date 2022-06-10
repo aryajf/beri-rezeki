@@ -28,7 +28,7 @@
                                                     <img v-else-if="payment.va_numbers[0].bank == 'bni'" class="w-100" src="@/assets/images/payment/bni.png" :alt="payment.va_numbers[0].bank == 'bni'.toUpperCase()">
                                                     <img v-else-if="payment.va_numbers[0].bank == 'bri'" class="w-100" src="@/assets/images/payment/bri.png" :alt="payment.va_numbers[0].bank == 'bri'.toUpperCase()">
                                                 </div>
-                                                <div class="col-12 bank-info">
+                                                <div class="col-12 mb-3 bank-info">
                                                     <small>Total Pembayaran</small> <br>
                                                     <span class="fw-bold">Rp{{NumberFormat(program.total_harga)}}</span>
                                                 </div>
@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://api.whatsapp.com/send?phone=6281292751775" target="_blank" class="btn btn-chat w-100">
+                            <a href="https://api.whatsapp.com/send?phone=6281260389554" target="_blank" class="btn btn-chat w-100">
                                 <i class="uil uil-whatsapp me-2"></i>Whatsapp Ke Admin
                             </a>
                         </div>
@@ -212,7 +212,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://api.whatsapp.com/send?phone=6281292751775" target="_blank" class="btn btn-chat w-100">
+                            <a href="https://api.whatsapp.com/send?phone=6281260389554" target="_blank" class="btn btn-chat w-100">
                                 <i class="uil uil-whatsapp me-2"></i>Whatsapp Ke Admin
                             </a>
                         </div>
