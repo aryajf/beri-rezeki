@@ -13,7 +13,7 @@
                     <div class="payment-menu">
                         <div class="payment-menu-scroll">
                             <router-link to="/pending" class="btn btn-sm"><i class="uil uil-clock-three me-1"></i>Menunggu Pembayaran <span class="badge badge-total">{{pending.totalItems}}</span></router-link>
-                            <router-link to="/accepted" class="btn btn-sm"><i class="uil uil-check-circle me-1"></i>Riwayat Pembelian <span class="badge badge-total">{{accepted.totalItems}}</span></router-link>
+                            <router-link to="/accepted" class="btn btn-sm"><i class="uil uil-check-circle me-1"></i>Riwayat Pembayaran <span class="badge badge-total">{{accepted.totalItems}}</span></router-link>
                         </div>
                     </div>
 

@@ -223,7 +223,7 @@
                                         <p class="detail-heading"><i class="uil uil-invoice me-1"></i>Program Donasi</p>
                                         <div class="line-heading"></div>
                                         <template v-if="program.program !== null">
-                                            <router-link :to="'/'+program.program.slug" class="text-decoration-none d-block order-link text-darkBlue">
+                                            <router-link :to="'/program/'+program.program.slug" class="text-decoration-none d-block order-link text-darkBlue">
                                                 <div class="row">
                                                     <div class="col-md-3 col-4">
                                                         <img :src="apiURL+'/images/programs/'+program.program.cover" :alt="program.program.title" class="w-100 rounded">

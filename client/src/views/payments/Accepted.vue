@@ -5,15 +5,15 @@
                 <div class="col-md-8">
                     <!-- PAYMENT BANNER -->
                     <div class="payment-banner">
-                        <h1>Menunggu Pembayaran <i class="uil uil-clock-three ms-1"></i></h1>
-                        <span>Segera selesaikan pembayaran anda</span>
+                        <h1>Riwayat Pembayaran <i class="uil uil-clock-three ms-1"></i></h1>
+                        <span>List pembayaran yang sudah anda selesaikan</span>
                     </div>
 
                     <!-- PAYMENT MENU -->
                     <div class="payment-menu">
                         <div class="payment-menu-scroll">
                             <router-link to="/pending" class="btn btn-sm"><i class="uil uil-clock-three me-1"></i>Menunggu Pembayaran <span class="badge badge-total">{{pending.totalItems}}</span></router-link>
-                            <router-link to="/accepted" class="btn btn-sm"><i class="uil uil-check-circle me-1"></i>Riwayat Pembelian <span class="badge badge-total">{{accepted.totalItems}}</span></router-link>
+                            <router-link to="/accepted" class="btn btn-sm"><i class="uil uil-check-circle me-1"></i>Riwayat Pembayaran <span class="badge badge-total">{{accepted.totalItems}}</span></router-link>
                         </div>
                     </div>
 
