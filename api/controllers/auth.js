@@ -152,6 +152,7 @@ module.exports = {
                     })
                 })
             }catch(err){
+                console.log(err)
                 res.status(400).json({
                     error: err.message,
                     message: 'Terjadi kesalahan saat register',

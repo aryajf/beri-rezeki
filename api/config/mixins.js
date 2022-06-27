@@ -56,7 +56,7 @@ function createSlug(string) {
 function midtransApi() {
     return new midtransClient.CoreApi({
         // Set to true if you want Production Environment (accept real transaction).
-        isProduction : false,
+        isProduction : true,
         serverKey : MIDTRANS_SERVER,
         clientKey : MIDTRANS_CLIENT
     })

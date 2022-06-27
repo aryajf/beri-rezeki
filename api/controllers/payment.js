@@ -252,6 +252,7 @@ module.exports = {
                     })
                 })
             }).catch((err) => {
+                console.log(err)
                 res.status(500).json({message : 'Terjadi kesalahan saat membeli program', status: false})
             })
         }else{res.status(404).json({message : 'Program tidak ditemukan', status: false})}
