@@ -68,7 +68,7 @@
                                         <span class="badge bg-dark d-block text-start">Berakhir: <span class="d-block">{{DateFormat(item.expiredAt)}}</span></span>
                                     </td>
                                     <td align="center">
-                                        <a :href="homeURL+'/'+item.slug" class="text-dark fs-4" target="_blank">
+                                        <a :href="homeURL+'/program/'+item.slug" class="text-dark fs-4" target="_blank">
                                             <i class="uil uil-eye"></i>
                                         </a>
                                         <router-link :to="'/program/edit/'+item.slug" class="text-primary fs-4"><i class="uil uil-edit"></i></router-link>
