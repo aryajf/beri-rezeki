@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="col-md-9 p-0 d-flex align-items-center">
                                         <div>
-                                            <p class="p-0 m-0">{{ user.data.nama }}</p>
+                                            <p class="fw-bold p-0 m-0">{{ user.data.nama }}</p>
                                             <span class="badge bg-by text-dark">{{ user.data.role }}</span>
                                         </div>
                                     </div>

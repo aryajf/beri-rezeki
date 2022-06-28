@@ -10,6 +10,17 @@ body{
 	width: 100%;
 	height: 100%;
 }
+
+.btn-donate{
+    background-color: #DDF7F8;
+    color: #045256;
+}
+
+.btn-donate:hover {
+    background-color: #bff5f7;
+    color: #045256;
+}
+
 .content-title{
 	font-size: 24px;
 	font-weight: bold;
@@ -59,7 +70,7 @@ body{
 	font-size: 2.5em;
 	font-weight: bold;
 	padding: 4px 0;
-	color: red;
+	color: #fff;
 }
 .jumbotron .row p {
 	font-size: 1em;

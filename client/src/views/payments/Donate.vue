@@ -122,28 +122,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-counter">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-counterCollapse" aria-expanded="false" aria-controls="panelsStayOpen-counterCollapse">
-                                    <i class="uil uil-shop me-1"></i>Bayar di Counter Terdekat (Min Rp10.000,00)
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-counterCollapse" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-counter">
-                                <div class="accordion-body">
-                                    <ul class="list-group">
-                                        <label>
-                                            <li class="list-group-item">
-                                                <div>
-                                                    <img src="@/assets/images/payment/alfagroup.png" alt="alfagroup">
-                                                    <span>CStore Alfagroup</span>
-                                                </div>
-                                                <input class="form-check-input me-1" v-model="method" value="alfamart" type="radio">
-                                            </li>
-                                        </label>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </template>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-eWallet">

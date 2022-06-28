@@ -1,5 +1,6 @@
 <template>
-    <footer id="footer">
+    <footer id="footer" class="py-3">
+        <div class="container">
         <div class="text-center py-1">
             <p class="p1">BeriRezeki dibuat dengan tujuan dapat membantu masyarakat diseluruh Wilayah Indonesia.
                 Hampir jutaan masyarakat & perusahaan bergabung dengan kami. 
@@ -12,6 +13,7 @@
                 <a target="_blank" href="https://twitter.com/berirezeki"><img src="@/assets/images/logo/twitter.png"></a>
             </p>
             <p class="copyright">Copyright © 2022 BeriRezeki. All Rights Reserved</p>
+        </div>
         </div>
     </footer>
 </template>

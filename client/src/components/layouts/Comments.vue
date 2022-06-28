@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <template v-if="comments.totalItems == 0">
-            <div class="alert alert-warning"><i class="uil uil-sad-squint me-1"></i>Belum ada komentar</div>
+            <div class="alert alert-warning">Belum ada yang berkomentar</div>
         </template>
         <template v-else>
             <swiper :breakpoints='{
@@ -26,7 +26,7 @@
                         </div>
                         <h2 class="text-center mt-1">{{comment.user.nama}}</h2>
                         <div class="text-center my-3">{{comment.messages}}</div>
-                        <div class="text-center"><router-link :to="'/program/'+comment.program.slug" class="btn btn-info">{{comment.program.title}} <i class="fa fa-arrow-right"></i></router-link></div>
+                        <div class="text-center"><router-link :to="'/program/'+comment.program.slug" class="btn btn-info btn-donate">{{comment.program.title}} <i class="fa fa-arrow-right"></i></router-link></div>
                         <hr>
                         <small class="d-block text-center"><span class="fw-bold">{{comment.likes.length}}</span> orang mengaminkan doa ini</small>
                     </div>

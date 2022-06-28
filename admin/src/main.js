@@ -48,8 +48,8 @@ axios.defaults.baseURL = appConfig.apiURL
 // Progressbar Loading
 import VueProgressBar from "@aacassandra/vue3-progressbar"
 const options = {
-    color: "#045256",
-    failedColor: "#AA0022",
+    color: "#9ab8ba",
+    failedColor: "#ec615b",
     thickness: "5px",
     transition: {
         speed: "0.2s",

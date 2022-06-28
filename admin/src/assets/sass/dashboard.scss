@@ -39,7 +39,7 @@
 }
 
 .nav-heading {
-    color: $white;
+    color: $darkBlue;
     margin-top: 20px;
     margin-bottom: 5px;
     padding: 0 10px;
@@ -51,7 +51,7 @@
 }
 
 .nav-link {
-    color: $white;
+    color: $darkBlue;
     padding: 10px !important;
     border-radius: 10px;
 
@@ -74,7 +74,7 @@
 }
 
 .nav-link:hover {
-    background: #09474b;
+    background: $darkBlue;
     transition: 0.4s;
 }
 
@@ -160,6 +160,6 @@
 
     .active {
         background: none;
-        color: $purple !important;
+        color: $darkBlue !important;
     }
 }

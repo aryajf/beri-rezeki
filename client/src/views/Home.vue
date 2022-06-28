@@ -76,7 +76,7 @@
                                 </template>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <div class="btn-group">
-                                        <router-link :to="'/program/'+program.slug" class="btn btn-info">Donasi</router-link>
+                                        <router-link :to="'/program/'+program.slug" class="btn btn-info btn-donate">Donasi</router-link>
                                     </div>
                                     <div>
                                         <small class="text-muted d-block text-end">{{ DateFormatExpired(program.expiredAt) }}</small>
@@ -112,7 +112,7 @@
                             <div class="carousel-caption text-start">
                                 <h1>{{program.title}}</h1>
                                 <p v-html="ShortText(program.short_desc)"></p>
-                                <router-link class="btn btn-info" :to="'/program/'+program.slug">Donasi</router-link>
+                                <router-link class="btn btn-info btn-donate" :to="'/program/'+program.slug">Donasi</router-link>
                             </div>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                                 <p class="card- text-end"><small class="text-muted text-end">Rp{{NumberFormat(program.total_funding)}} / Rp{{NumberFormat(program.harga)}}</small></p>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <div class="btn-group">
-                                        <router-link :to="'/program/'+program.slug" class="btn btn-info">Donasi</router-link>
+                                        <router-link :to="'/program/'+program.slug" class="btn btn-info btn-donate">Donasi</router-link>
                                     </div>
                                     <small class="text-muted text-end">{{ DateFormatExpired(program.expiredAt) }}</small>
                                 </div>

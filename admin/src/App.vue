@@ -1,5 +1,7 @@
 <template>
     <div>
+        <vue-progress-bar></vue-progress-bar>
+        
         <!-- SESSION EXPIRED MODAL -->
         <div class="modal fade" ref="tokenExpiredModal" id="tokenExpiredModal" tabindex="-1" aria-labelledby="tokenExpiredModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -22,8 +24,6 @@
         <div v-if="authenticated">
             <DashboardMenu />
         </div>
-
-        <vue-progress-bar></vue-progress-bar>
     </div>
 </template>
 

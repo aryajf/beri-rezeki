@@ -1,5 +1,15 @@
 @import './variables.scss';
 
+.btn-donate{
+    background-color: #DDF7F8;
+    color: #045256;
+}
+
+.btn-donate:hover {
+    background-color: #bff5f7;
+    color: #045256;
+}
+
 .comment-item-home {
     padding: 15px;
 }
