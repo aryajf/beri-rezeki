@@ -31,8 +31,8 @@
                                 </template>
                             </div>
                             <div class="text-center">
-                                <small v-if="user.user_status == 'Verified'" class="badge bg-outline-green ms-1"><i class="uil uil-check me-1"></i>Verified Account</small>
-                                <small v-else class="badge bg-outline-red ms-1"><i class="uil uil-times-circle me-1"></i>Unverified Account</small>
+                                <small v-if="user.role == 'Admin'" class="badge bg-outline-green ms-1">Admin</small>
+                                <small v-else class="badge bg-outline-green ms-1">Member</small>
                             </div>
                             <p>{{user.nama}}</p>
                             <div class="action col-md-12">
