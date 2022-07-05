@@ -87,5 +87,5 @@ const submit = () => {
 </script>
 
 <style lang="scss">
-@import '@/assets/sass/login_register.scss';
+@import '@/assets/sass/register.scss';
 </style>
