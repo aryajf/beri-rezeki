@@ -59,20 +59,14 @@
                         <h5 class="content-title">Tentang Penggalangan Dana</h5>
                     </div>
                 </div>
-                <div class="container text-start">
-                    <div class="card-beriRezeki">
-                        <div class="col-md-12 py-3">
-                            <div class="card shadow-sm mx-5">
-                                <img v-if="program.cover" class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" :src="`${apiURL}/images/programs/${program.cover}`" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <img v-else class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/image-not-available.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <div class="card-body" id="card-donation-detail">
-                                    <div class="text-end mb-3" v-if="program.pdf_file">
-                                        <a target="_blank" :href="`${apiURL}/pdf/programs/${program.pdf_file}`" class=""><i class="fa-solid fa-file-pdf" download></i> Lihat Program</a>
-                                    </div>
-                                    <div class="card-text my-3" v-html="program.long_desc"></div>
-                                </div>
-                            </div>
+                <div class="card shadow-sm">
+                    <img v-if="program.cover" class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" :src="`${apiURL}/images/programs/${program.cover}`" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <img v-else class="bd-placeholder-img card-img-top img-fluid" width="100%" height="225" src="@/assets/images/image-not-available.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <div class="card-body" id="card-donation-detail">
+                        <div class="text-end mb-3" v-if="program.pdf_file">
+                            <a target="_blank" :href="`${apiURL}/pdf/programs/${program.pdf_file}`" class=""><i class="fa-solid fa-file-pdf" download></i> Lihat Program</a>
                         </div>
+                        <div class="card-text my-3" v-html="program.long_desc"></div>
                     </div>
                 </div>
                 <div class="BeriRezeki container py-3" v-if="programComments && programCommentsLength != 0">
@@ -82,67 +76,65 @@
                         </div>
                     </div>
                     <div class="container text-start">
-                        <div class="card-beriRezeki">
-                            <div class="col-md-12 py-3" v-for="comment in programComments" :key="comment.id">
-                                <div class="card shadow-sm mx-5">
-                                    <div class="card-body">
-                                        <div class="col d-flex align-items-center">
-                                            <template v-if="comment.avatar">
-                                                <img v-if="comment.isAnonymous" src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
-                                                <img v-else :src="apiURL+'/images/avatars/'+comment.avatar" class="comment-avatar rounded-circle" alt="User Avatar" srcset="">
-                                            </template>
-                                            <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
-                                            <div>
-                                                <h5 class="fw-bold mb-0" v-if="comment.isAnonymous">Anonim</h5>
-                                                <h5 class="fw-bold mb-0" v-else>{{comment.nama}}</h5>
-                                                <small class="d-block comment-date text-secondary">{{DateFormat(comment.updatedAt)}}</small>
-                                            </div>
+                        <div class="col-md-12 py-3" v-for="comment in programComments" :key="comment.id">
+                            <div class="card shadow-sm mx-5">
+                                <div class="card-body">
+                                    <div class="col d-flex align-items-center">
+                                        <template v-if="comment.avatar">
+                                            <img v-if="comment.isAnonymous" src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
+                                            <img v-else :src="apiURL+'/images/avatars/'+comment.avatar" class="comment-avatar rounded-circle" alt="User Avatar" srcset="">
+                                        </template>
+                                        <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" alt="User Avatar" srcset="">
+                                        <div>
+                                            <h5 class="fw-bold mb-0" v-if="comment.isAnonymous">Anonim</h5>
+                                            <h5 class="fw-bold mb-0" v-else>{{comment.nama}}</h5>
+                                            <small class="d-block comment-date text-secondary">{{DateFormat(comment.updatedAt)}}</small>
                                         </div>
-                                        <p class="card-text pt-4">{{comment.messages}}</p>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col text-start">
-                                                <p><strong>{{comment.likes.length}}</strong> <small class="text-muted">orang mengaminkan doa ini</small></p>
-                                            </div>
-                                            <div class="col text-end">
-                                                <template v-if="authenticated">
-                                                    <a href="#" v-if="authenticated.role == 'Admin' && comment.reply_comments.length === 0" @click.prevent="selectComment(comment.id)"><i class="fa-solid fa-comment-dots"></i> Komentari</a>&nbsp;
-                                                    <button class="btn" v-if="checkLike(authenticated.likes, comment.likes)" :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-solid fa-heart"></i> Aamiin</button>
-                                                    <button class="btn" v-else :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-regular fa-heart"></i> Aamiin</button>
-                                                </template>
-                                                <a v-else data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-heart"></i> Aamiin</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" v-if="authenticated && authenticated.role == 'Admin' && replykode == comment.id">
-                                            <div class="d-flex flex-start w-100">
-                                                <div class="form-outline w-100">
-                                                    <textarea class="form-control" id="textAreaExample" style="background: #fff;" placeholder="Masukkan balasan anda" rows="3" v-model="replyMessages"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="float-end mt-2 pt-1">
-                                                <button @click="replyComment" type="button" class="btn btn-primary btn-sm">Post comment</button>
-                                            </div>
-                                        </div>
-                                        <template v-if="comment.reply_comments.length !== 0">
-                                        <h6 class="fw-bold mt-3">Balasan dari admin:</h6>
-                                        <div class="mt-3" v-for="reply_comment in comment.reply_comments" :key="reply_comment.id">
-                                            <div class="d-flex justify-content-start">
-                                                <div class="comment-user-avatar" :class="user.role == 'Admin' && comment.reply_comments.length === 0  ? '' : 'offset-md-2'">
-                                                    <img v-if="reply_comment.isAnonymous" src="@/assets/images/no-avatar.png" class="comment-avatar rounded-circle" alt="Anonim">
-                                                    <img v-else-if="reply_comment.avatar" :src="apiURL+'/images/avatars/'+reply_comment.avatar" class="comment-avatar rounded-circle" :alt="reply_comment.nama">
-                                                    <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" :alt="reply_comment.nama">
-                                                </div>
-                                                <div class="comment-user-name d-flex align-items-center">
-                                                    <div>
-                                                        <h5 class="d-block fw-bold mb-0">{{reply_comment.nama}} <i class="uil uil-check-circle text-success"></i></h5>
-                                                        <small class="d-block comment-date text-secondary">{{DateFormat(reply_comment.updatedAt)}}</small>
-                                                        <span class="d-block my-3 comment-text">{{reply_comment.messages}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </template>
                                     </div>
+                                    <p class="card-text pt-4">{{comment.messages}}</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col text-start">
+                                            <p><strong>{{comment.likes.length}}</strong> <small class="text-muted">orang mengaminkan doa ini</small></p>
+                                        </div>
+                                        <div class="col text-end">
+                                            <template v-if="authenticated">
+                                                <a href="#" v-if="authenticated.role == 'Admin' && comment.reply_comments.length === 0" @click.prevent="selectComment(comment.id)"><i class="fa-solid fa-comment-dots"></i> Komentari</a>&nbsp;
+                                                <button class="btn" v-if="checkLike(authenticated.likes, comment.likes)" :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-solid fa-heart"></i> Aamiin</button>
+                                                <button class="btn" v-else :disabled="btnLoading" href="#" @click.prevent="likeComment(comment.id)"><i class="fa-regular fa-heart"></i> Aamiin</button>
+                                            </template>
+                                            <a v-else data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-regular fa-heart"></i> Aamiin</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" v-if="authenticated && authenticated.role == 'Admin' && replykode == comment.id">
+                                        <div class="d-flex flex-start w-100">
+                                            <div class="form-outline w-100">
+                                                <textarea class="form-control" id="textAreaExample" style="background: #fff;" placeholder="Masukkan balasan anda" rows="3" v-model="replyMessages"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="float-end mt-2 pt-1">
+                                            <button @click="replyComment" type="button" class="btn btn-primary btn-sm">Post comment</button>
+                                        </div>
+                                    </div>
+                                    <template v-if="comment.reply_comments.length !== 0">
+                                    <h6 class="fw-bold mt-3">Balasan dari admin:</h6>
+                                    <div class="mt-3" v-for="reply_comment in comment.reply_comments" :key="reply_comment.id">
+                                        <div class="d-flex justify-content-start">
+                                            <div class="comment-user-avatar" :class="user.role == 'Admin' && comment.reply_comments.length === 0  ? '' : 'offset-md-2'">
+                                                <img v-if="reply_comment.isAnonymous" src="@/assets/images/no-avatar.png" class="comment-avatar rounded-circle" alt="Anonim">
+                                                <img v-else-if="reply_comment.avatar" :src="apiURL+'/images/avatars/'+reply_comment.avatar" class="comment-avatar rounded-circle" :alt="reply_comment.nama">
+                                                <img v-else src="@/assets/images/no-avatar.png" class="comment-avatar" :alt="reply_comment.nama">
+                                            </div>
+                                            <div class="comment-user-name d-flex align-items-center">
+                                                <div>
+                                                    <h5 class="d-block fw-bold mb-0">{{reply_comment.nama}} <i class="uil uil-check-circle text-success"></i></h5>
+                                                    <small class="d-block comment-date text-secondary">{{DateFormat(reply_comment.updatedAt)}}</small>
+                                                    <span class="d-block my-3 comment-text">{{reply_comment.messages}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
                                 </div>
                             </div>
                         </div>
